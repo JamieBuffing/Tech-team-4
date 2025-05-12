@@ -25,7 +25,7 @@ async function connectDB() {
 connectDB()
 
 app.get('/', function(req, res) {
-    res.render('index');
+    res.render('pages/index');
 });
 
 app.post("/login", verwerkLogin);
@@ -33,6 +33,7 @@ app.get("/login", toonLogin)
 
 function verwerkLogin(req, res){
     let formData = req.body;
+    console.log(formData);
     res.render("login.ejs");
 }
 
