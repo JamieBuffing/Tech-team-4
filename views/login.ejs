@@ -5,8 +5,23 @@
 
     <form action="/login" method="post">
         <label for="voornaam">Voornaam:</label>
-        <input type="text" id="voornaam" name="voornaam" value=""><br><br>
-        <label for="achternaam">Achternaam:</label>
-        <input type="text" id="achternaam" name="achternaam" value=""><br><br>
+        <input 
+            type="text" 
+            id="voornaam" 
+            name="voornaam"><br><br>
+            
+        <label for="email">email:</label>
+        <input 
+            type="email" 
+            id="email" 
+            name="email" 
+            required 
+            autocomplete="email"><br><br>
+
+        <label for="achternaam">wachtwoord:</label>
+        <input 
+            type="password" 
+            id="wachtwoord" 
+            name="password"><br><br>
         <input type="submit" value="Inloggen">
     </form>
