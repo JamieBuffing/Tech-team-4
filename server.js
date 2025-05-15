@@ -3,6 +3,7 @@ const express = require("express");
 const app = express();
 
 app.use(express.static("static"));
+app.use(express.urlencoded({ extended: true }))
 app.set('view engine', 'ejs');
 
 require('dotenv').config();
@@ -28,21 +29,23 @@ app.get('/', function(req, res) {
     res.render('pages/index');
 });
 
-app.post("/login", verwerkLogin);
 app.get("/login", toonLogin)
 
-function verwerkLogin(req, res){
-    let formData = req.body;
-    console.log(formData);
-    res.render("login.ejs");
-}
+app.post('/login', async (req, res) => {
+    let postData = req.body
+    console.log(postData)
+    db.collection('users').insertOne(postData)
+    console.log(postData.voornaam)
+    res.redirect('/')
+})
+
 
 function toonLogin(req, res) {
-    res.render("login");
+    res.render("pages/login");
 }
 
 function toonIndex(req, res) {
-    res.render("Index");
+    res.render("index");
 }
 
 
