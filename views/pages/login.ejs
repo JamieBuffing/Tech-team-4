@@ -1,15 +1,18 @@
 <!doctype html>
-
+<head>
 <title>Login</title>
-<p>Hoi</p>
+<link href="/css/style.css" rel="stylesheet" type="text/css">
+</head>
 
-    <form action="/login" method="post">
+<body>
+    <form id="login" action="/login" method="post">
         <label for="voornaam">Voornaam:</label>
         <input 
             type="text" 
             id="voornaam" 
-            name="voornaam"><br><br>
-            
+            name="voornaam"
+            required><br><br>
+
         <label for="email">email:</label>
         <input 
             type="email" 
@@ -22,6 +25,9 @@
         <input 
             type="password" 
             id="wachtwoord" 
-            name="password"><br><br>
+            name="password"
+            required><br><br>
+
         <input type="submit" value="Inloggen">
     </form>
+</body>
