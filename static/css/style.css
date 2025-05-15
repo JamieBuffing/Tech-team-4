@@ -15,31 +15,39 @@ body {
 header {
     display: grid;
     grid-area: 1 / 2 / 2 / 4;
-    border: solid white;
+    border-style: none none solid solid;
+    border-color: #56bf8e;
+    padding: 10px;
 }
 
 menu {
     display: grid;
     grid-area: 1 / 1 / 4 / 2;
-    border: solid white;
+    border-style: none solid none none;
+    border-color: #56bf8e;
+    padding: 10px;
 }
 
 main {
     display: grid;
     grid-area: 2 / 2 / 3 / 4;
-    border: solid white;
+    border-style: solid none solid solid;
+    border-color: #56bf8e;
+    padding: 10px;
 }
 
 footer {
     display: grid;
     grid-area: 3 / 2 / 4 / 4;
-    border: solid white;
+    border-style: solid none none solid;
+    border-color: #56bf8e;
+    padding: 10px;
 }
 
 #login {
     width: 30vw;
     height: 50vh;
-    border: solid black;
+    border: solid #56bf8e;
     margin-left: 34vw;
     margin-top: 14vh;
     padding: 2vw;

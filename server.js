@@ -37,6 +37,7 @@ app.post('/login', async (req, res) => {
     db.collection('users').insertOne(postData)
     console.log(postData.voornaam)
     res.redirect('/')
+    res.send("partials/")
 })
 
 
