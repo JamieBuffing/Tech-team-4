@@ -57,6 +57,7 @@ app.get('/', function(req, res) {   // Als er niks is ingevuld of gewoon de home
                 // Routes voor verschillende pagina's
 app.get("/login", toonLogin)    
 app.get("/Clear_Database", ClearDatabase)
+app.get("/filter", toonfilter)
 
 
         // Als er wordt geregistreerd dan wordt deze functie uitgevoerd
@@ -76,6 +77,10 @@ app.post('/login', upload.single('avatar'), async (req, res) => {
 
 function toonLogin(req, res) {      // Als dit adress wordt ingevuld
     res.render("pages/login");
+}
+
+function toonfilter(req, res) {
+    res.render("pages/filter");
 }
 
 
