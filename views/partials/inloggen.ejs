@@ -1,4 +1,4 @@
-    <form id="login" action="/login" method="post">
+    <form id="login" action="/login" method="post" enctype="multipart/form-data">
         <label for="voornaam">Voornaam:</label>
         <input 
             type="text" 
@@ -19,7 +19,13 @@
             type="password" 
             id="wachtwoord" 
             name="password"
-            required><br><br>
+            required/><br><br>
+
+        <input 
+            type="file"
+            id="avatar"
+            name="avatar"
+            accept="image/*"><br><br>
 
         <input type="submit" value="Inloggen">
     </form>
