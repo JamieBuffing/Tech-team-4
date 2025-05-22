@@ -1,8 +1,8 @@
 const apiKey = '80731283f03d46cfbd7f0053cf1fc99e';
 let allGames = [];
 
-async function FetchData() {
-  const response = await fetch(`https://api.rawg.io/api/games?key=${apiKey}&page_size=50`);
+async function Data() {
+  const response = await fetch(`https://api.rawg.io/api/games?key=${apiKey}&page_size=200`);
   const data = await response.json();
   allGames = data.results;
 
@@ -10,15 +10,14 @@ async function FetchData() {
   laatZien(allGames);
 }
 
-FetchData();
-
+Data();
 function laatZien(games) {
   const gameDiv = document.getElementById('games');
   gameDiv.innerHTML = "";
 
   games.forEach(game => {
     const gameContainer = document.createElement('div');
-
+    gameContainer.classList.add("game");
 
     const title = document.createElement('h2');
     title.textContent = game.name;
@@ -34,14 +33,22 @@ function laatZien(games) {
     const platforms = document.createElement('p');
     platforms.innerHTML = `<strong>Platforms:</strong> ${game.platforms.map(p => p.platform.name).join(', ')}`;
 
+    const button = document.createElement('button');
+    button.textContent = 'Meer informatie';
+    button.addEventListener('click', () => {
+      alert(`Meer informatie over: ${game.name}`);
+    });
+
     gameContainer.appendChild(title);
     gameContainer.appendChild(img);
     gameContainer.appendChild(genres);
     gameContainer.appendChild(platforms);
+    gameContainer.appendChild(button);
 
     gameDiv.appendChild(gameContainer);
   });
 }
+
 
 function vulFilters(games) {
   const genreSet = new Set();
