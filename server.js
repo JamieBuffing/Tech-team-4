@@ -30,6 +30,10 @@ app.get('/', function(req, res) {
 });
 
 app.get("/login", toonLogin)
+app.get("/games", toonGames)    
+app.get("/profile", toonProfile)
+app.get("/matchen", toonMatchen)
+app.get("/settings", toonSettings)
 
 app.post('/login', async (req, res) => {
     let postData = req.body
@@ -43,6 +47,22 @@ app.post('/login', async (req, res) => {
 
 function toonLogin(req, res) {
     res.render("pages/login");
+}
+
+function toonGames(req, res) {
+    res.render("pages/games")
+}
+ 
+function toonMatchen(req, res) {
+    res.render("pages/matchen")
+}
+ 
+function toonProfile(req, res) {
+    res.render("pages/profile")
+}
+ 
+function toonSettings(req, res) {
+    res.render("pages/settings")
 }
 
 function toonIndex(req, res) {

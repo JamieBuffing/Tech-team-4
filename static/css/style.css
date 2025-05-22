@@ -1,7 +1,7 @@
 * {
     margin: 0;
     padding: 0;
-    color: #FFF;
+    color: #FFFF;
 }
 
 body {
@@ -14,15 +14,16 @@ body {
 
 header {
     display: grid;
-    grid-area: 1 / 2 / 2 / 4;
+    grid-area: 1 / 1 / 2 / 4;
     border-style: none none solid solid;
     border-color: #56bf8e;
     padding: 10px;
+    background-color: #2e2e2e;
 }
 
 menu {
     display: grid;
-    grid-area: 1 / 1 / 4 / 2;
+    grid-area: 2 / 1 / 4 / 2;
     border-style: none solid none none;
     border-color: #56bf8e;
     padding: 10px;
@@ -57,4 +58,22 @@ footer {
 
 #login input {
     color: black;
+}
+
+h1 {
+    padding: 0 0.3em;
+}
+
+header nav li {
+    list-style-type: none;
+    display: inline;
+}
+
+header nav a {
+    text-decoration: none;
+    background-color: #9ce8ce;
+    color: #000000;
+    padding: 1em 1.5em;
+    margin: 0 0.5em;
+    border-radius: 1em;
 }
