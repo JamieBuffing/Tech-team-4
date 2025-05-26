@@ -80,8 +80,6 @@ app.get("/login", toonLogin)
 app.get("/games", toonGames)
 app.get("/matchen", toonMatchen)
 app.get("/settings", toonSettings)
-
-                // Routes voor verschillende pagina's
 app.get("/login", toonLogin)
 app.get("/Clear_Database", ClearDatabase)
 app.get("/profile", isLoggedIn, (req, res) => {
@@ -120,7 +118,7 @@ app.post('/login', async (req, res) => {
     if (result) {
         console.log("Wachtwoord komt overeen")
         req.session.isLoggedIn = true; // Set session variable
-        req.session.user = { id: user._id, email: user.r_email }; // Store user info in session
+        req.session.user = { id: user._id, email: user.r_email, voornaam: user.r_voornaam, avatar: user.avatar}; // Store user info in session
         res.redirect('/profile')           // Naar de profiel pagina
     } else {
         console.log("ongeldig email of wachtwoord")

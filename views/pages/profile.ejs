@@ -12,7 +12,27 @@
     <%- include('../partials/menu'); %>
 </menu>
 <main>
-    <a href="/login">login</a>
+    <section id="profiel">
+        <section id="userData">
+            <div>
+                <img alt="user profile picture" src="/uploads/<%= user.avatar %>">
+            </div>
+            <div>
+                <p>
+                voornaam = <%= user.voornaam %><br>
+                email = <%= user.email %><br>
+                avatar = <%= user.avatar %><br>
+                id = <%= user.id %><br>
+                </p>
+            </div>
+        </section>
+        <section id="">
+            
+        </section>
+        <section id="">
+            
+        </section>
+    </section>
 </main>
 <footer>
     <%- include('../partials/footer'); %>
