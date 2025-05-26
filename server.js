@@ -85,8 +85,6 @@ app.get("/Clear_Database", ClearDatabase)
 app.get("/profile", isLoggedIn, (req, res) => {
   const user = req.session.user; // Retrieve user info from session
   res.render("pages/profile", { user }); // Pass user data to the view
-  console.log("Dit is de user data")
-  console.log(user)
 });
 
 app.get("/filter", toonfilter)
