@@ -77,17 +77,16 @@ app.get('/', function(req, res) {   // Als er niks is ingevuld of gewoon de home
 });
 
 app.get("/login", toonLogin)
-app.get("/games", toonGames)    
-app.get("/profile", toonProfile)
+app.get("/games", toonGames)
 app.get("/matchen", toonMatchen)
 app.get("/settings", toonSettings)
 
                 // Routes voor verschillende pagina's
 app.get("/login", toonLogin)
 app.get("/Clear_Database", ClearDatabase)
-app.get("/account", isLoggedIn, (req, res) => {
+app.get("/profile", isLoggedIn, (req, res) => {
   const user = req.session.user; // Retrieve user info from session
-  res.render("pages/account", { user }); // Pass user data to the view
+  res.render("pages/profile", { user }); // Pass user data to the view
 });
 
 app.get("/filter", toonfilter)
@@ -104,7 +103,7 @@ app.post('/registreren', upload.single('avatar'), async (req, res) => {
     }
     console.log(postData)
     await db.collection('users').insertOne(postData)
-    res.redirect('/')           // Terug naar home pagina
+        res.redirect('/profile')           // Naar de profiel pagina
 })
 
 app.post('/login', async (req, res) => {
@@ -122,7 +121,7 @@ app.post('/login', async (req, res) => {
         console.log("Wachtwoord komt overeen")
         req.session.isLoggedIn = true; // Set session variable
         req.session.user = { id: user._id, email: user.r_email }; // Store user info in session
-        res.redirect('/account')           // Terug naar home pagina
+        res.redirect('/profile')           // Naar de profiel pagina
     } else {
         console.log("ongeldig email of wachtwoord")
     }
@@ -142,16 +141,8 @@ function toonMatchen(req, res) {
     res.render("pages/matchen")
 }
  
-function toonProfile(req, res) {
-    res.render("pages/profile")
-}
- 
 function toonSettings(req, res) {
     res.render("pages/settings")
-}
-
-function toonIndex(req, res) {
-    res.render("index");
 }
 
 function toonfilter(req, res) {
