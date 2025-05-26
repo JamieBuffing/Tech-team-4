@@ -105,6 +105,46 @@ footer {
     color: black;
 }
 
+.genreSelect {
+    background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 0 12px rgb(0 0 0 / 10%);
+  width: 320px;
+  display: grid;
+  gap: 20px;
+}
+
+#personalisatie h2 {
+    text-align: center;
+    margin: 0;
+}
+
+#personalisatie form {
+    display: grid;
+    gap: 12px;
+}
+
+#personalisatie label {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    gap: 8px;
+}
+
+#personalisatie button {
+    padding: 10px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+#personalisatie button:hover {
+    background-color: #2980b9;
+}
+
 #contentblok h1 {
     padding: 0 0.3em;
 }
