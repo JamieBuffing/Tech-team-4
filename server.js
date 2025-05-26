@@ -53,6 +53,11 @@ app.get('/', function(req, res) {   // Als er niks is ingevuld of gewoon de home
     res.render('pages/index');
 });
 
+app.get("/login", toonLogin)
+app.get("/games", toonGames)    
+app.get("/profile", toonProfile)
+app.get("/matchen", toonMatchen)
+app.get("/settings", toonSettings)
 
                 // Routes voor verschillende pagina's
 app.get("/login", toonLogin)    
@@ -79,6 +84,25 @@ function toonLogin(req, res) {      // Als dit adress wordt ingevuld
     res.render("pages/login");
 }
 
+function toonGames(req, res) {
+    res.render("pages/games")
+}
+ 
+function toonMatchen(req, res) {
+    res.render("pages/matchen")
+}
+ 
+function toonProfile(req, res) {
+    res.render("pages/profile")
+}
+ 
+function toonSettings(req, res) {
+    res.render("pages/settings")
+}
+
+function toonIndex(req, res) {
+    res.render("index");
+=======
 function toonfilter(req, res) {
     res.render("pages/filter");
 }
