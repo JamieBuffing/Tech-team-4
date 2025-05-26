@@ -89,7 +89,7 @@ app.get("/account", isLoggedIn, (req, res) => {
   const user = req.session.user; // Retrieve user info from session
   res.render("pages/account", { user }); // Pass user data to the view
 });
-=======
+
 app.get("/filter", toonfilter)
 
         // Als er wordt geregistreerd dan wordt deze functie uitgevoerd
@@ -152,7 +152,8 @@ function toonSettings(req, res) {
 
 function toonIndex(req, res) {
     res.render("index");
-=======
+}
+
 function toonfilter(req, res) {
     res.render("pages/filter");
 }

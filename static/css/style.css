@@ -39,7 +39,6 @@ menu {
     border-style: none solid none none;
     border-color: var(--groen1);
     padding: 10px;
-    border-color: #56bf8e;
 }
 
 main {
@@ -100,11 +99,13 @@ footer {
 
 #registreren {
     display: none;
+}
+
 #login input {
     color: black;
 }
 
-h1 {
+#contentblok h1 {
     padding: 0 0.3em;
 }
 
@@ -116,11 +117,12 @@ header nav li {
 header nav a {
     text-decoration: none;
     background-color: #9ce8ce;
-    color: #000000;
+    color: #000;
     padding: 1em 1.5em;
     margin: 0 0.5em;
     border-radius: 1em;
- 
+}
+
 .filtersContainer {
     display: flex;
     width: 100%;
@@ -151,8 +153,7 @@ header nav a {
     display: grid;
     grid-template-columns: 18em 18em 18em 18em ;
     align-content: space-evenly;
-    column-gap: 0.5em;
-    row-gap: 2em;
+    gap: 2em 0.5em;
 }
 
 .game {
