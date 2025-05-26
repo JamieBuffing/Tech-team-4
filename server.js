@@ -76,6 +76,11 @@ app.get('/', function(req, res) {   // Als er niks is ingevuld of gewoon de home
     res.render('pages/index');
 });
 
+app.get("/login", toonLogin)
+app.get("/games", toonGames)    
+app.get("/profile", toonProfile)
+app.get("/matchen", toonMatchen)
+app.get("/settings", toonSettings)
 
                 // Routes voor verschillende pagina's
 app.get("/login", toonLogin)
@@ -84,7 +89,8 @@ app.get("/account", isLoggedIn, (req, res) => {
   const user = req.session.user; // Retrieve user info from session
   res.render("pages/account", { user }); // Pass user data to the view
 });
-
+=======
+app.get("/filter", toonfilter)
 
         // Als er wordt geregistreerd dan wordt deze functie uitgevoerd
 app.post('/registreren', upload.single('avatar'), async (req, res) => {   
@@ -126,6 +132,29 @@ app.post('/login', async (req, res) => {
 
 function toonLogin(req, res) {      // Als dit adress wordt ingevuld
     res.render("pages/login");
+}
+
+function toonGames(req, res) {
+    res.render("pages/games")
+}
+ 
+function toonMatchen(req, res) {
+    res.render("pages/matchen")
+}
+ 
+function toonProfile(req, res) {
+    res.render("pages/profile")
+}
+ 
+function toonSettings(req, res) {
+    res.render("pages/settings")
+}
+
+function toonIndex(req, res) {
+    res.render("index");
+=======
+function toonfilter(req, res) {
+    res.render("pages/filter");
 }
 
 
