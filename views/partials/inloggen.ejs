@@ -1,31 +1,24 @@
-    <form id="login" action="/login" method="post" enctype="multipart/form-data">
-        <label for="voornaam">Voornaam:</label>
-        <input 
-            type="text" 
-            id="voornaam" 
-            name="voornaam"
-            required><br><br>
-
-        <label for="email">email:</label>
+    <form id="login" action="/login" method="post">
+        <label for="email">email:</label><br>
         <input 
             type="email" 
             id="email" 
             name="email" 
+            placeholder="email"
             required 
             autocomplete="email"><br><br>
-
-        <label for="achternaam">wachtwoord:</label>
+        
+        <label for="password">wachtwoord:</label><br>
         <input 
             type="password" 
-            id="wachtwoord" 
+            id="wachtwoord"
             name="password"
-            required/><br><br>
+            placeholder="wachtwoord"
+            required
+            minlength="8">
+            <br>
+            <input type="checkbox" id="showpass"><br>
+            
 
-        <input 
-            type="file"
-            id="avatar"
-            name="avatar"
-            accept="image/*"><br><br>
-
-        <input type="submit" value="Inloggen">
+        <input type="submit" value="Inloggen"><br><br>
     </form>

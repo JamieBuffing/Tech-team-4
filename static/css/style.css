@@ -1,11 +1,23 @@
+:root {
+  --achtergrond: #484848;
+  --achtergrond2: #919191;
+  --base1: #FFF;
+  --base2: #000;
+  --groen1: #3A8C6E;
+  --groen2: #56BF8E;
+  --groen3: #5AC99E;
+  --groen4: #9CE8CE;
+}
+
 * {
     margin: 0;
     padding: 0;
+    color: var(--base1);
     color: #FFFF;
 }
 
 body {
-    background-color: #484848;
+    background-color: var(--achtergrond);
     height: 100vh;
     width: 100vw;
     display: grid;
@@ -16,7 +28,7 @@ header {
     display: grid;
     grid-area: 1 / 1 / 2 / 4;
     border-style: none none solid solid;
-    border-color: #56bf8e;
+    border-color: var(--groen1);
     padding: 10px;
     background-color: #2e2e2e;
 }
@@ -25,6 +37,8 @@ menu {
     display: grid;
     grid-area: 2 / 1 / 4 / 2;
     border-style: none solid none none;
+    border-color: var(--groen1);
+    padding: 10px;
     border-color: #56bf8e;
 }
 
@@ -32,7 +46,7 @@ main {
     display: grid;
     grid-area: 2 / 2 / 3 / 4;
     border-style: solid none solid solid;
-    border-color: #56bf8e;
+    border-color: var(--groen1);
     padding: 10px;
 }
 
@@ -40,21 +54,52 @@ footer {
     display: grid;
     grid-area: 3 / 2 / 4 / 4;
     border-style: solid none none solid;
-    border-color: #56bf8e;
+    border-color: var(--groen1);
     padding: 10px;
 }
 
-#login {
+#contentBlok {
+    position: absolute;
     width: 30vw;
     height: 50vh;
-    border: solid #56bf8e;
+    border: solid var(--groen1);
     margin-left: 34vw;
     margin-top: 14vh;
     padding: 2vw;
-    background-color: #919191;
+    background-color: var(--achtergrond2);
     border-radius: 2vw;
 }
 
+#contentBlok form {
+    margin-left: 5vw;
+}
+
+#contentBlok input {
+    width: 20vw;
+    color: var(--base2);
+}
+
+#contentBlok #showpass {
+    width: auto;
+    float: left;
+}
+
+#contentBlok #rshowpass {
+    width: auto;
+    float: left;
+}
+
+#contentBlok h1 {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+#login {
+    display: block;
+}
+
+#registreren {
+    display: none;
 #login input {
     color: black;
 }
@@ -104,10 +149,10 @@ header nav a {
 #games {
     margin-left: 0.5em;
     display: grid;
-  grid-template-columns: 18em 18em 18em 18em ;
-  align-content: space-evenly;
-  column-gap: 0.5em;
-  row-gap: 2em;
+    grid-template-columns: 18em 18em 18em 18em ;
+    align-content: space-evenly;
+    column-gap: 0.5em;
+    row-gap: 2em;
 }
 
 .game {
@@ -133,8 +178,8 @@ header nav a {
     justify-content: center;
     align-items: center;
     margin-top: auto;
-margin-bottom: 0.5em;
-color: black;
+    margin-bottom: 0.5em;
+    color: black;
     
 }
 

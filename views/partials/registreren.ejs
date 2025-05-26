@@ -1,10 +1,37 @@
-    <form id="login" action="/login" method="post">
-        <label for="voornaam">Test:</label>
+    <form id="registreren" action="/registreren" method="post" enctype="multipart/form-data">
+        <label for="r_voornaam">Voornaam:</label><br>
         <input 
             type="text" 
-            id="voornaam" 
-            name="voornaam"
+            id="r_voornaam" 
+            name="r_voornaam"
+            placeholder="Voornaam"
             required><br><br>
 
-        <input type="submit" value="Inloggen">
+        <label for="r_email">email:</label><br>
+        <input 
+            type="email" 
+            id="r_email" 
+            name="r_email"
+            placeholder="email" 
+            required 
+            autocomplete="email"><br><br>
+
+        <label for="r_password">wachtwoord:</label><br>
+        <input 
+            type="password" 
+            id="r_wachtwoord" 
+            name="r_password"
+            placeholder="Wachtwoord"
+            required
+            minlength="8">
+            <br>
+            <input type="checkbox" id="rshowpass"><br>
+
+        <input 
+            type="file"
+            id="avatar"
+            name="avatar"
+            accept="image/*"><br><br>
+
+        <input type="submit" value="Registreren"><br><br>
     </form>
