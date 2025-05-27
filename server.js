@@ -86,8 +86,10 @@ app.get("/profile", isLoggedIn, (req, res) => {
   const user = req.session.user; // Retrieve user info from session
   res.render("pages/profile", { user }); // Pass user data to the view
 });
-
 app.get("/filter", toonfilter)
+app.get("/hulp", isLoggedIn, (req, res) => {
+  res.render("pages/hulp");
+});
 
         // Als er wordt geregistreerd dan wordt deze functie uitgevoerd
 app.post('/registreren', upload.single('avatar'), async (req, res) => {   
@@ -125,6 +127,18 @@ app.post('/login', async (req, res) => {
     }
     })
 
+})
+
+app.post('/voorkeuren', async (req, res) => {
+  const user = req.session.user;      // De ingelogde gebruiker wordt even opgezocht uit de session
+  let voornaam = user.voornaam        // De Voornaam wordt hieruit genomen
+  let postData = req.body             // De gestuurde data van het form wordt opgehaald
+  let addInUser = await db.collection('users').updateOne(   // De functie waarin het volgende gebeurt
+    { r_voornaam: voornaam },         // De gebruiker wordt opgezocht in de database via de voornaam
+    { $set: postData }                // De data van het form wordt toegevoegd aan het document in de database van de bijbehorende gebruiker
+  )
+  console.log(addInUser)              // Er wordt gelogd wat er precies is gebeurt tijdens het toevoegen om te kunnen debuggen
+  console.log(postData)               // Er wordt nog even gelogd wat er precies is meegekomen van het form
 })
 
 function toonLogin(req, res) {      // Als dit adress wordt ingevuld
