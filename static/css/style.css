@@ -43,10 +43,25 @@ menu {
 
 main {
     display: grid;
+    position: relative;
     grid-area: 2 / 2 / 3 / 4;
     border-style: solid none solid solid;
     border-color: var(--groen1);
     padding: 10px;
+}
+
+main #butInloggen {
+    background-color: #2e2e2e;
+    width: 10vw;
+    height: 2vw;
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 10px;
+    text-align: center;
+    border-radius: 0 0 0 2vw;
+    border: var(--groen1);
+    border-style: none none solid solid;
 }
 
 footer {
