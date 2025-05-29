@@ -25,6 +25,10 @@ menu {
     grid-area: 1 / 1 / 4 / 2;
     border-style: none solid none none;
     border-color: #56bf8e;
+    display: flex;
+    background-color: #3a8c6e;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
 main {
@@ -58,43 +62,37 @@ footer {
     color: black;
 }
 
-.filtersContainer {
-    display: flex;
-    width: 100%;
-    background-color: #3a8c6e;
-    flex-direction: column;
-    align-items: flex-start;
-    padding-top: 3em;
-}
 
 .filters {
     top: 0;
     position: sticky;
     padding-left: 1em;
+    padding-top: 3em;
 }
 
-#genreFilters {
+#genreFilters, #platformFilters {
     margin-bottom: 2em;
     margin-top: 1em;
+    display: flex;
+    flex-direction: column;
 }
 
-#platformFilters {
-    margin-bottom: 1em;
-    margin-top: 1em;
-}
+
  
 #games {
-    margin-left: 0.5em;
+    margin-left: auto;
+    margin-right: auto;
     display: grid;
-  grid-template-columns: 18em 18em 18em 18em ;
-  align-content: space-evenly;
-  column-gap: 0.5em;
-  row-gap: 2em;
+    grid-template-columns: repeat(4, 280px);
+    column-gap: 1em;
+    row-gap: 2em;
+    justify-content: center;
+    max-width: calc(4 * 280px + 3 * 1em);
 }
 
 
 .game {
-    width: 16.5em;
+    width: 250px;
     background-color: #3a8c6e;
     border-color: black;
     display: flex;
@@ -132,3 +130,4 @@ color: black;
 .game h2 {
     color: black;
 }
+

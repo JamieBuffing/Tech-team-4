@@ -58,7 +58,7 @@ app.get('/', function(req, res) {   // Als er niks is ingevuld of gewoon de home
 app.get("/login", toonLogin)    
 app.get("/Clear_Database", ClearDatabase)
 app.get("/filter", toonfilter)
-
+app.get("/profiel", toonprofiel)
 
         // Als er wordt geregistreerd dan wordt deze functie uitgevoerd
 app.post('/login', upload.single('avatar'), async (req, res) => {   
@@ -83,7 +83,9 @@ function toonfilter(req, res) {
     res.render("pages/filter");
 }
 
-
+function toonprofiel(req, res) {
+    res.render("pages/profiel");
+}
 
 
 
