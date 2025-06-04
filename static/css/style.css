@@ -131,3 +131,33 @@ color: black;
     color: black;
 }
 
+.dark-mode {
+    background-color: #121212;
+    color: #f1f1f1;
+  }
+  
+  .dark-mode header,
+  .dark-mode nav,
+  .dark-mode footer {
+    background-color: #1e1e1e;
+    color: #f1f1f1;
+  }
+  
+  .toggle-mode {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    background: #ccc;
+    color: #000;
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+    z-index: 1000;
+  }
+  
+  .dark-mode .toggle-mode {
+    background: #333;
+    color: #fff;
+  }
+  
