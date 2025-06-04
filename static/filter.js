@@ -113,25 +113,3 @@ function filterGames() {
   laatZien(filteredGames);
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  const toggleBtn = document.createElement('button');
-  toggleBtn.className = 'toggle-mode';
-  toggleBtn.innerText = 'Toggle Mode';
-  document.body.appendChild(toggleBtn);
-
-  const applyMode = () => {
-    const mode = localStorage.getItem('mode');
-    if (mode === 'dark') {
-      document.body.classList.add('dark-mode');
-    } else {
-      document.body.classList.remove('dark-mode');
-    }
-  };
-
-  toggleBtn.addEventListener('click', () => {
-    const isDark = document.body.classList.toggle('dark-mode');
-    localStorage.setItem('mode', isDark ? 'dark' : 'light');
-  });
-
-  applyMode();
-});
