@@ -90,8 +90,6 @@ app.get("/profile", isLoggedIn, (req, res) => {
   res.render("pages/profile", { user }); // Pass user data to the view
 });
 app.get("/filter", toonfilter)
-app.get("/profiel", toonprofiel)
-=======
 app.get("/hulp", isLoggedIn, (req, res) => {
   res.render("pages/hulp");
 });
@@ -193,13 +191,6 @@ function toonSettings(req, res) {
 function toonfilter(req, res) {
     res.render("pages/filter");
 }
-
-function toonprofiel(req, res) {
-    res.render("pages/profiel");
-}
-
-
-
 
         // Tijdelijke functie om de Database op te kunnen schonen. shhhh deze functie zouden wij nooit durven gebruiken
 function ClearDatabase() {
