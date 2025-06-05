@@ -85,14 +85,14 @@ app.get("/Clear_Database", ClearDatabase)
 app.get("/profile", isLoggedIn, (req, res) => {
   const user = req.session.user; // Retrieve user info from session
   res.render("pages/profile", { user }); // Pass user data to the view
+  console.log(user)
 });
+
 app.get("/filter", toonfilter)
-app.get("/profiel", toonprofiel)
-=======
+
 app.get("/hulp", isLoggedIn, (req, res) => {
   res.render("pages/hulp");
 });
-
         // Als er wordt geregistreerd dan wordt deze functie uitgevoerd
 app.post('/registreren', upload.single('avatar'), async (req, res) => {   
     let postData = req.body
@@ -142,7 +142,6 @@ app.post('/voorkeuren', async (req, res) => {
   console.log(addInUser)              // Er wordt gelogd wat er precies is gebeurt tijdens het toevoegen om te kunnen debuggen
   console.log(postData)               // Er wordt nog even gelogd wat er precies is meegekomen van het form
 })
-
 function toonLogin(req, res) {      // Als dit adress wordt ingevuld
     res.render("pages/login");
 }
@@ -163,9 +162,7 @@ function toonfilter(req, res) {
     res.render("pages/filter");
 }
 
-function toonprofiel(req, res) {
-    res.render("pages/profiel");
-}
+
 
 
 
