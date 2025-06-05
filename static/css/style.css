@@ -215,6 +215,7 @@ header nav a {
 }
 
 .filters label {
+    display: flow-root;
     margin-bottom: 0.5em;
     cursor: pointer;
     font-size: 15px;

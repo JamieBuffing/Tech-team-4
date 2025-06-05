@@ -10,39 +10,25 @@
     <%- include('../partials/header'); %>
 </header>
 <menu>
-
-    <article class="filtersContainer">
-    <div class="filters">
-        <h2>Filter op genre:</h2>
-        <div id="genreFilters"></div>
+    <article class="filters">
+    <h2>Filter op genre:</h2>
+    <div id="genreFilters"></div>
     
-        <h2>Filter op platform:</h2>
-        <div id="platformFilters"></div>
-  </div>
-  </article>
+    <h2>Filter op platform:</h2>
+    <div id="platformFilters"></div>
+    </article>
 </menu>
 <main>
   <a id="butInloggen" href="/login">Inloggen/account</a>
 
   <div id="games"></div>
-  <script src="/gamesScript.js"></script>
-  <!-- <script>
-    const userGames = "<%= user.games %>"
-    const userGamesArray = userGames.split(",")
-    console.log(userGamesArray)
-    function hearts() {
-    setTimeout(() => {
-    userGamesArray.forEach(gameID => {
-      let gameDIV = document.getElementById(gameID)
-      let hearts = gameDIV.querySelectorAll("form input.heart[type='image']");
-      hearts.forEach(heartImg => {
-        heartImg.src = "images/like_vol.png";
-      });
-    });
-    }, 2000);
-  }
-  hearts()
-  </script> -->
+
+  <div id="overlay">
+    <div id="overlayContent">
+      <button id="sluitOverlay">Sluiten</button>
+      <div id="overlayInfo"></div>
+    </div>
+  </div>
 
 </main>
 
@@ -50,5 +36,7 @@
     <%- include('../partials/footer'); %>
 </footer>
 
+  <script src="/gamesScript.js"></script>
+  <script src="/darkLight.js"></script>
 </body>
 </html>

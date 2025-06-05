@@ -15,7 +15,7 @@ Data();
 
 function laatZien(games) {
   const gameDiv = document.getElementById('games');
-  gameDiv.innerHTML = "";  // Maak de container leeg zodat oude games verdwijnen
+  gameDiv.innerHTML = "";
 
   // Loop door alle games in de lijst
   games.forEach(game => {
