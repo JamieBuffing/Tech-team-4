@@ -270,6 +270,8 @@ header nav a {
 .game button {
     background-color: #f6c;
     padding: 0.5em;
+    border: 0;
+    border-radius: 4px;
   }
   
 .gameButton {
