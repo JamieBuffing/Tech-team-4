@@ -17,31 +17,18 @@
 }
 
 body {
-    background-color: #121212;
-    color: #f1f1f1;
-    height: 100vh;
-    width: 100vw;
-    display: grid;
-    grid-template: 1fr 3fr 1fr / 1fr 4fr 1fr;
-    font-family: 'Segoe UI', sans-serif;
-    color: var(--base1);
-    color: #FFFF;
-}
-
-body {
-    background-color: var(--achtergrond);
     height: 100vh;
     width: 100vw;
     display: grid;
     grid-template: 1fr 5fr 1fr / 1fr 5fr;
+    font-family: 'Segoe UI', sans-serif;
+    color: var(--base1);
+    color: #FFFF;
+    background-color: var(--achtergrond);
 }
 
 header {
     display: grid;
-    grid-area: 1 / 2 / 2 / 4;
-    background-color: #1a1a1a;
-    border-style: none none solid solid;
-    border-color: #68beb0;
     grid-area: 1 / 1 / 2 / 4;
     border-style: none none solid solid;
     border-color: var(--groen1);
@@ -50,8 +37,6 @@ header {
 }
 
 menu {
-    display: flex;
-    grid-area: 1 / 1 / 4 / 2;
     flex-direction: column;
     align-items: flex-start;
     background-color: #1e1e1e;
@@ -87,6 +72,12 @@ main #butInloggen {
     border-style: none none solid solid;
 }
 
+.game form input{
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+}
+
 footer {
     display: grid;
     grid-area: 3 / 2 / 4 / 4;
@@ -101,12 +92,6 @@ footer {
     position: absolute;
     width: 30vw;
     height: 50vh;
-    border: solid #68beb0;
-    margin-left: 34vw;
-    margin-top: 14vh;
-    padding: 2vw;
-    background-color: #222;
-    border-radius: 1.5vw;
     border: solid var(--groen1);
     margin-left: 34vw;
     margin-top: 14vh;
@@ -152,6 +137,19 @@ footer {
 }
 
 .filters {
+    display: flex;
+    grid-area: 1 / 1 / 4 / 2;
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: #1e1e1e;
+    border-radius: 10px;
+    margin: 2.5em 1em;
+    color: #ccc;
+    font-size: 13px;
+    top: 0;
+    position: sticky;
+}
+
 #contentblok h1 {
     padding: 0 0.3em;
 }
@@ -218,6 +216,7 @@ header nav a {
 }
 
 .filters label {
+    display: flow-root;
     margin-bottom: 0.5em;
     cursor: pointer;
     font-size: 15px;
@@ -227,17 +226,13 @@ header nav a {
 #genreFilters, #platformFilters {
     margin-bottom: 1em;
     margin-top: 0.5em;
-    display: flex;
-    flex-direction: column;
 }
 
 #games {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 2em;
     margin-top: 2em;
     padding: 1em;
-    grid-template-columns: 18em 18em 18em 18em ;
     align-content: space-evenly;
     gap: 2em 0.5em;
 }
@@ -246,15 +241,16 @@ header nav a {
     background-color: #000;
     color: #f1f1f1;
     border: 3px solid #f6c;
-    border-radius: 10px;
-    padding: 1.2em;
-    text-align: center;
     box-shadow: 0 0 15px #f6c;
     transition: transform 0.2s;
     display: flex;
     justify-content: flex-start;
     align-items: center;
     flex-direction: column;
+    border-radius: 15px;
+    text-align: center;
+    padding: 1em 0.5em 0.5em;
+    position: relative;
 }
 
 .game:hover {
@@ -274,16 +270,15 @@ header nav a {
 
 .game button {
     background-color: #f6c;
+    padding: 0.5em;
   }
   
 .gameButton {
     width: 10em;
     height: 2.5em;
     background-color: #7DB9A4;
-    border-radius: 10px;
     border: none;
     padding: 11px 15px;
-    color: black;
     font-weight: 600;
     border-radius: 5px;
     cursor: pointer;
