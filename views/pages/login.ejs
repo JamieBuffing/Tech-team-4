@@ -1,10 +1,71 @@
 <!doctype html>
 <head>
-<title>Login</title>
+<title>Inloggen/Registreren</title>
 <link href="/css/style.css" rel="stylesheet" type="text/css">
 <script src="/darkLight.js"></script>
 </head>
 
 <body>
-    <%- include('../partials/inloggen'); %>
+    <div id="contentBlok">
+        <h1>Log in bij uw account</h1>
+        <hr>
+        <section>
+        <%- include('../partials/inloggen'); %>
+        <%- include('../partials/registreren'); %>
+        </section>
+        <hr>
+        <form id="other">
+            <label id="label" for="change">Nog geen account?</label>
+            <input
+                type="button"
+                value="Registreren"
+                id="change">
+        </form>
+    </div>
 </body>
+
+
+<script>
+    const showpass = document.getElementById("showpass")
+    const r_showpass = document.getElementById("rshowpass")
+    const swap = document.getElementById("change")
+    showpass.addEventListener("click", changevis)
+    r_showpass.addEventListener("click", r_changevis)
+    change.addEventListener("click", log_reg)
+
+    function changevis() {
+        wacht = document.getElementById("wachtwoord")
+        if(wacht.type === "password") {
+            wacht.type = "text"
+        } else {
+            wacht.type = "password"
+        }
+    }
+
+    function r_changevis() {
+        wacht = document.getElementById("r_wachtwoord")
+        if(wacht.type === "password") {
+            wacht.type = "text"
+        } else {
+            wacht.type = "password"
+        }
+    }
+
+    function log_reg() {
+        let inputValue = document.getElementById("change").value
+        if(document.getElementById("login").style.display === "block") {
+            document.getElementById("login").style.display = "none";
+            document.getElementById("registreren").style.display = "block";
+            document.querySelector("H1").innerHTML = "Registreer een nieuw account" 
+            document.getElementById("label").innerHTML = "Al een account?";
+            document.getElementById("change").value = "Inloggen"
+        } else {
+            document.getElementById("login").style.display = "block";
+            document.getElementById("registreren").style.display = "none"; 
+            document.querySelector("H1").innerHTML = "Log in bij uw account" 
+            document.getElementById("label").innerHTML = "Nog geen account?";
+            document.getElementById("change").value = "Registreren"
+        }
+    }
+
+</script>
