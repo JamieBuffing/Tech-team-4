@@ -77,7 +77,10 @@ app.get('/', function(req, res) {   // Als er niks is ingevuld of gewoon de home
 });
 
 app.get("/login", toonLogin)
-app.get("/games", toonGames)
+app.get("/games", isLoggedIn, (req, res) => {
+  const user = req.session.user; // Retrieve user info from session
+  res.render("pages/games", { user }); // Pass user data to the view
+});
 app.get("/matchen", toonMatchen)
 app.get("/settings", toonSettings)
 app.get("/login", toonLogin)
@@ -122,7 +125,13 @@ app.post('/login', async (req, res) => {
     if (result) {
         console.log("Wachtwoord komt overeen")
         req.session.isLoggedIn = true; // Set session variable
-        req.session.user = { id: user._id, email: user.r_email, voornaam: user.r_voornaam, avatar: user.avatar}; // Store user info in session
+        req.session.user = { 
+          id: user._id, 
+          email: user.r_email, 
+          voornaam: user.r_voornaam, 
+          avatar: user.avatar,
+          games: user.games
+        }; // Store user info in session
         res.redirect('/profile')           // Naar de profiel pagina
     } else {
         console.log("ongeldig email of wachtwoord")
@@ -143,12 +152,34 @@ app.post('/voorkeuren', async (req, res) => {
   console.log(postData)               // Er wordt nog even gelogd wat er precies is meegekomen van het form
 })
 
+app.post('/like', async (req, res) => {
+  let postData = req.body
+  let game_id = postData.game_id
+  console.log(postData.game_id)
+  const voornaam = req.session.user.voornaam;
+  const gebruiker = await db.collection('users').findOne({ r_voornaam: voornaam });
+    if (gebruiker.games.includes(game_id)) {
+      console.log("De game is er al")
+      await db.collection('users').updateOne(
+      { r_voornaam: voornaam },
+      { $pull: { games: game_id } })
+    } else {
+      console.log("De game is er nog niet")
+      await db.collection('users').updateOne(
+      { r_voornaam: voornaam },
+      { $addToSet: { games: game_id } })
+      req.session.user = {
+      ...req.session.user,
+      games: [...(req.session.user.games || []), game_id]
+      };
+    }
+    console.log(gebruiker.games)
+    const user = req.session.user;
+    res.render("pages/games", { user });
+})
+
 function toonLogin(req, res) {      // Als dit adress wordt ingevuld
     res.render("pages/login");
-}
-
-function toonGames(req, res) {
-    res.render("pages/games")
 }
  
 function toonMatchen(req, res) {
