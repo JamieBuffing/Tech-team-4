@@ -64,6 +64,12 @@ main #butInloggen {
     border-style: none none solid solid;
 }
 
+.game form input{
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+}
+
 footer {
     display: grid;
     grid-area: 3 / 2 / 4 / 4;
@@ -197,6 +203,7 @@ header nav a {
     border-radius: 15px;
     text-align: center;
     padding: 1em 0.5em 0.5em;
+    position: relative;
 }
 
 .gameButton {

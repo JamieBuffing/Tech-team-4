@@ -4,7 +4,7 @@
   <%- include('../partials/head'); %>
   <title>Filter</title>
 </head>
-<body>
+<body data-user-games="<%= user.games %>">
 
   <header>
     <%- include('../partials/header'); %>
@@ -25,7 +25,24 @@
   <a id="butInloggen" href="/login">Inloggen/account</a>
 
   <div id="games"></div>
-  <script src="/script.js"></script>
+  <script src="/gamesScript.js"></script>
+  <!-- <script>
+    const userGames = "<%= user.games %>"
+    const userGamesArray = userGames.split(",")
+    console.log(userGamesArray)
+    function hearts() {
+    setTimeout(() => {
+    userGamesArray.forEach(gameID => {
+      let gameDIV = document.getElementById(gameID)
+      let hearts = gameDIV.querySelectorAll("form input.heart[type='image']");
+      hearts.forEach(heartImg => {
+        heartImg.src = "images/like_vol.png";
+      });
+    });
+    }, 2000);
+  }
+  hearts()
+  </script> -->
 
 </main>
 

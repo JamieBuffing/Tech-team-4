@@ -18,12 +18,13 @@ function laatZien(games) {
   games.forEach(game => {
     const gameContainer = document.createElement('div');
     gameContainer.classList.add("game");
+    gameContainer.id = game.id;
 
     const title = document.createElement('h2');
     title.textContent = game.name;
 
     const img = document.createElement('img');
-    img.src = game.background_image || 'https://via.placeholder.com/400x200?text=No+Image';
+    img.src = game.background_image || 'https://via.placeholder.com/200x100?text=No+Image';
     img.alt = game.name;
     img.width = 300;
 
@@ -39,6 +40,29 @@ function laatZien(games) {
       alert(`Meer informatie over: ${game.name}`);
     });
 
+    const form = document.createElement('form');
+    form.class = 'like';
+    form.action = '/like';
+    form.method = 'post';
+
+    const input = document.createElement('input');
+    input.type = "image" 
+    input.src = "images/like_leeg.png" 
+    input.alt = "Submit" 
+    input.width = "24" 
+    input.height = "24"
+    input.classList.add("heart");
+    input.id = game.id;
+    
+    const input_hidden = document.createElement('input');
+    input_hidden.type = "hidden"
+    input_hidden.name = "game_id"
+    input_hidden.value = game.id;
+
+    form.appendChild(input_hidden);
+    form.appendChild(input);
+
+    gameContainer.appendChild(form);
     gameContainer.appendChild(title);
     gameContainer.appendChild(img);
     gameContainer.appendChild(genres);
@@ -47,8 +71,25 @@ function laatZien(games) {
 
     gameDiv.appendChild(gameContainer);
   });
+  setTimeout(() => {
+    hartjes()
+  }, 1000)
 }
 
+function hartjes() {
+  const userGames = document.body.dataset.userGames;
+  if (!userGames) return;
+  const userGamesArray = userGames.split(",");
+  console.log(userGamesArray);
+  userGamesArray.forEach(gameID => {
+    let gameDIV = document.getElementById(gameID);
+    if (!gameDIV) return;
+    let heart = gameDIV.querySelector("form input.heart[type='image']");
+    if (heart) {
+      heart.src = "images/like_vol.png";
+    }
+  });
+}
 
 function vulFilters(games) {
   const genreSet = new Set();
@@ -91,4 +132,5 @@ function filterGames() {
   });
 
   laatZien(filteredGames);
+  hartjes()
 }
