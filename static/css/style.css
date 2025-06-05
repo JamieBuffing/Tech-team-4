@@ -91,6 +91,7 @@ footer {
     margin-bottom: 0.5em;
     cursor: pointer;
     font-size: 15px;
+    accent-color: #f6c;
 }
 
 #genreFilters, #platformFilters {
@@ -177,7 +178,6 @@ footer {
 }
 
 
-
 body.lightMode {
     background-color: #f6f9f8;
     color: #222;
@@ -256,3 +256,41 @@ body.lightMode .toggleMode {
     color: #fff;
     box-shadow: 0 0 5px #3d9a89;
 }
+
+
+#overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  #overlayContent {
+    background-color: white;
+    color: #000;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 500px;
+    width: 90%;
+    position: relative;
+    text-align: center;
+  }
+  
+  #sluitOverlay {
+    display: flex;
+    justify-self: flex-end;
+    top: -10px;
+    background-color: #f6c;
+    border-radius: 3px;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  
