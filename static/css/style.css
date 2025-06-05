@@ -161,11 +161,18 @@ header nav li {
     display: inline-flex;
     height: 5vh;
     border-radius: 1em;
-    background-color: var(--groen4);
+    background-color: var(--groen3);
     margin: 0 0.5em;
     padding: 0.1em 1.5em;
     align-items: center;
     justify-content: center;
+    transition: .5s;
+}
+
+header nav li:hover {
+    transform: scale(1.10);
+    background-color: var(--groen4);
+    box-shadow: 0 0 .5em .2em var(--groen4);
 }
 
 header nav li:last-of-type {
@@ -173,6 +180,9 @@ header nav li:last-of-type {
     overflow: visible;
     border-radius: 0;
     background-color: transparent;
+    transition: none;
+    transform: none;
+    box-shadow: none;
 }
 
 header nav li img {
