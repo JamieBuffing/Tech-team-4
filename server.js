@@ -87,6 +87,8 @@ app.get("/profile", isLoggedIn, (req, res) => {
   res.render("pages/profile", { user }); // Pass user data to the view
 });
 app.get("/filter", toonfilter)
+app.get("/profiel", toonprofiel)
+=======
 app.get("/hulp", isLoggedIn, (req, res) => {
   res.render("pages/hulp");
 });
@@ -161,7 +163,9 @@ function toonfilter(req, res) {
     res.render("pages/filter");
 }
 
-
+function toonprofiel(req, res) {
+    res.render("pages/profiel");
+}
 
 
 

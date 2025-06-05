@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('../partials/head'); %>
+  <title>Filter</title>
+  <script src="/darkLight.js"></script>
+</head>
+<body>
+<header>
+    <%- include('../partials/header'); %>
+</header>
+<menu>
+      <article class="filters">
+    <h2>Filter op genre:</h2>
+    <div id="genreFilters"></div>
+    
+    <h2>Filter op platform:</h2>
+    <div id="platformFilters"></div>
+      </article>
+</menu>
+<main>
+
+
+  <div id="games"></div>
+
+
+ 
+  <div id="overlay">
+    <div id="overlayContent">
+      <button id="sluitOverlay">Sluiten</button>
+      <div id="overlayInfo"></div>
+    </div>
+  </div>
+
+
+</main>
+
+  <footer>
+    <%- include('../partials/footer'); %>
+</footer>
+<script src="/filter.js"></script>
+</body>
+</html>
