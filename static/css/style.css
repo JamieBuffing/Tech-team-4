@@ -234,7 +234,7 @@
       }
       
       #contentBlok form {
-        margin-left: 5vw;
+        margin-left: 3vw;
       }
       
       #contentBlok input {
@@ -289,6 +289,10 @@
     color: var(--base2);
   }
   
+  body.lightMode h1 {
+    color: #000;
+  }
+
   body.lightMode header,
   body.lightMode menu {
     background-color: var(--light-menu);
@@ -308,7 +312,7 @@
     color: var(--base2);
   }
   
-  body.lightMode #login {
+  body.lightMode #contentBlok {
     background-color: #b8e0d6;
     border-color: var(--groen2);
     color: var(--base2);
