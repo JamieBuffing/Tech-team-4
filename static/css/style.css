@@ -41,7 +41,6 @@
     grid-area: 1 / 1 / 2 / 4;
     border-style: none none solid solid;
     border-color: var(--groen1);
-    padding: 10px;
     background-color: var(--menus);
   }
   
@@ -94,6 +93,11 @@
     font: inherit;
 }
 
+ #butInloggen:hover {
+    cursor: pointer;
+    background-color: var(--roze1);
+  }
+
 #butInloggen::-webkit-scrollbar {
   display: none;
 }   
@@ -104,7 +108,6 @@
     bottom: 5px;
 }
 
-  
   footer {
     display: grid;
     grid-area: 3 / 2 / 4 / 4;
@@ -146,6 +149,10 @@
     float: left;
 }
 
+body.lightMode h1 {
+    color: #000;
+  }
+  
 #contentBlok h1 {
     text-align: center;
     margin-bottom: 50px;
@@ -162,61 +169,9 @@
 #login input {
     color: #444242;
 }
-
-.filters {
-    display: flex;
-    grid-area: 1 / 1 / 4 / 2;
-    flex-direction: column;
-    align-items: flex-start;
-    background-color: #1e1e1e;
-    border-radius: 10px;
-    margin: 2.5em 1em;
-    color: #ccc;
-    font-size: 13px;
-    top: 0;
-    position: sticky;
-}
-
+  
 #contentblok h1 {
     padding: 0 0.3em;
-}
-
-header nav li {
-    list-style-type: none;
-    display: inline-flex;
-    height: 5vh;
-    border-radius: 1em;
-    background-color: var(--groen3);
-    margin: 0 0.5em;
-    padding: 0.1em 1.5em;
-    align-items: center;
-    justify-content: center;
-    transition: .5s;
-}
-
-header nav li:hover {
-    transform: scale(1.10);
-    background-color: var(--groen4);
-    box-shadow: 0 0 .5em .2em var(--groen4);
-}
-
-header nav li:first-of-type {
-    overflow: visible;
-    border-radius: 0;
-    background-color: transparent;
-    transition: none;
-    transform: none;
-    box-shadow: none;
-}
-
-header nav li img {
-    height: 210%;
-    aspect-ratio: inherit;
-}
-
-header nav a {
-    text-decoration: none;
-    color: #000;
 }
 
     /* Navigatie */
@@ -229,18 +184,28 @@ header nav a {
         margin: 0 0.5em;
         padding: 0.1em 1.5em;
         align-items: center;
-        justify-content: center;
         transition: 0.5s;
       }
+
+      header nav {
+        display: flex;
+        align-items: center;
+        top: 0;
+        justify-content: flex-end;
+      }
       
+      header nav ul {
+        display: flex;
+        align-content: center;
+      }
+
       header nav li:hover {
         transform: scale(1.10);
         background-color: var(--groen4);
         box-shadow: 0 0 0.5em 0.2em var(--groen3);
       }
       
-      header nav li:last-of-type {
-        float: right;
+      header nav li:first-of-type {
         overflow: visible;
         border-radius: 0;
         background-color: transparent;
@@ -250,8 +215,8 @@ header nav a {
       }
       
       header nav li img {
-        height: 210%;
-        aspect-ratio: inherit;
+        height: 5em;
+
       }
       
       header nav a {
@@ -260,6 +225,7 @@ header nav a {
       }
   
   /* Games & filters */
+
   .filters {
     width: 98%;
     display: flex;
@@ -274,7 +240,7 @@ header nav a {
     top: 0;
     position: sticky;
   }
-  
+
   .filters h2 {
     font-size: 20px;
     color: var(--roze1);
@@ -334,12 +300,6 @@ header nav a {
     filter: none;
   }
   
-  .game form input {
-    position: absolute;
-    right: 5px;
-    bottom: 5px;
-  }
-  
   .game button,
   .gameButton {
     background-color: var(--roze1);
@@ -388,10 +348,6 @@ header nav a {
   body.lightMode {
     background-color: #f6f9f8;
     color: var(--base2);
-  }
-  
-  body.lightMode h1 {
-    color: #000;
   }
 
   body.lightMode header,
