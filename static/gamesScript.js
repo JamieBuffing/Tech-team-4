@@ -61,7 +61,7 @@ function laatZien(games) {
     input.src = "images/like_leeg.png" 
     input.alt = "Submit" 
     input.width = 24;
-  input.height = 24;
+    input.height = 24;
     input.classList.add("heart");
     input.id = game.id;
     

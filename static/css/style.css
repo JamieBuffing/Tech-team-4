@@ -55,13 +55,14 @@ main {
     border-style: solid none solid solid;
     border-color: #68beb0;
     border-color: var(--groen1);
-    padding: 10px;
+    padding: 20px;
 }
 
-main #butInloggen {
+#butInloggen {
+    z-index: 2;
     background-color: #2e2e2e;
-    width: 10vw;
-    height: 2vw;
+    width: fit-content;
+    height: fit-content;
     position: absolute;
     top: 0;
     right: 0;
@@ -70,7 +71,13 @@ main #butInloggen {
     border-radius: 0 0 0 2vw;
     border: var(--groen1);
     border-style: none none solid solid;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
+
+#butInloggen::-webkit-scrollbar {
+  display: none;
+}   
 
 .game form input{
     position: absolute;
@@ -90,8 +97,8 @@ footer {
 
 #contentBlok {
     position: absolute;
-    width: 30vw;
-    height: 50vh;
+    width: fit-content;
+    height: fit-content;
     border: solid var(--groen1);
     margin-left: 34vw;
     margin-top: 14vh;
@@ -101,11 +108,12 @@ footer {
 }
 
 #contentBlok form {
-    margin-left: 5vw;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #contentBlok input {
-    width: 20vw;
+    width: -webkit-fill-available;
     color: var(--base2);
 }
 
@@ -173,8 +181,7 @@ header nav li:hover {
     box-shadow: 0 0 .5em .2em var(--groen4);
 }
 
-header nav li:last-of-type {
-    float: right;
+header nav li:first-of-type {
     overflow: visible;
     border-radius: 0;
     background-color: transparent;
