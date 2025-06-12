@@ -1,247 +1,167 @@
 :root {
-  --achtergrond: #484848;
-  --achtergrond2: #919191;
-  --base1: #FFF;
-  --base2: #000;
-  --groen1: #3A8C6E;
-  --groen2: #56BF8E;
-  --groen3: #5AC99E;
-  --groen4: #9CE8CE;
-}
-
-* {
+    --achtergrond: #353535;
+    --achtergrond2: #919191;
+    --menus: #2e2e2e;
+    --base1: #f1f1f1;
+    --base2: #1a1a1a;
+    --groen1: #3A8C6E;
+    --groen2: #56BF8E;
+    --groen3: #5AC99E;
+    --groen4: #3cb389;
+    --roze1: #f6c;
+    --button: #EFBADE;
+    --light-menu: #a4d8cc;
+    --sidebar: #62bfa8;
+    
+  }
+  
+  * {
     margin: 0;
     padding: 0;
     transition: background-color 0.3s ease, color 0.3s ease;
     box-sizing: border-box;
-}
-
-body {
+  }
+  
+  body {
     height: 100vh;
     width: 100vw;
     display: grid;
     grid-template: 1fr 5fr 1fr / 1fr 5fr;
     font-family: 'Segoe UI', sans-serif;
     color: var(--base1);
-    color: #FFFF;
     background-color: var(--achtergrond);
-}
-
-header {
+  }
+  
+  h1 {
+    color: white;
+  }
+  
+  header {
     display: grid;
     grid-area: 1 / 1 / 2 / 4;
     border-style: none none solid solid;
     border-color: var(--groen1);
     padding: 10px;
-    background-color: #2e2e2e;
-}
-
-menu {
-    flex-direction: column;
-    align-items: flex-start;
-    background-color: #1e1e1e;
+    background-color: var(--menus);
+  }
+  
+  menu {
     display: grid;
     grid-area: 2 / 1 / 4 / 2;
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: var(--menus);
     border-style: none solid none none;
     border-color: var(--groen1);
     padding: 10px;
-}
-
-main {
+  }
+  
+  main {
     display: grid;
     position: relative;
     grid-area: 2 / 2 / 3 / 4;
-    background-color: #1a1a1a;
+    background-color: #242323;
     border-style: solid none solid solid;
-    border-color: #68beb0;
     border-color: var(--groen1);
-    padding: 10px;
-}
-
-main #butInloggen {
-    background-color: #2e2e2e;
-    width: 10vw;
-    height: 2vw;
-    position: absolute;
-    top: 0;
-    right: 0;
-    padding: 10px;
-    text-align: center;
-    border-radius: 0 0 0 2vw;
-    border: var(--groen1);
-    border-style: none none solid solid;
-}
-
-.game form input{
-    position: absolute;
-    right: 5px;
-    bottom: 5px;
-}
-
-footer {
+  }
+  
+  footer {
     display: grid;
     grid-area: 3 / 2 / 4 / 4;
-    background-color: #1a1a1a;
+    background-color: var(--achtergrond);
     border-style: solid none none solid;
-    border-color: #68beb0;
     border-color: var(--groen1);
     padding: 10px;
-}
+  }
 
-#contentBlok {
-    position: absolute;
-    width: 30vw;
-    height: 50vh;
-    border: solid var(--groen1);
-    margin-left: 34vw;
-    margin-top: 14vh;
-    padding: 2vw;
-    background-color: var(--achtergrond2);
-    border-radius: 2vw;
-}
-
-#contentBlok form {
-    margin-left: 5vw;
-}
-
-#contentBlok input {
-    width: 20vw;
-    color: var(--base2);
-}
-
-#contentBlok #showpass {
-    width: auto;
-    float: left;
-}
-
-#contentBlok #rshowpass {
-    width: auto;
-    float: left;
-}
-
-#contentBlok h1 {
-    text-align: center;
-    margin-bottom: 50px;
-}
-
-#login {
-    display: block;
-}
-
-#registreren {
-    display: none;
-}
-
-#login input {
-    color: #444242;
-}
-
-.filters {
+    /* Navigatie */
+    header nav li {
+        list-style-type: none;
+        display: inline-flex;
+        height: 5vh;
+        border-radius: 1em;
+        background-color: var(--groen3);
+        margin: 0 0.5em;
+        padding: 0.1em 1.5em;
+        align-items: center;
+        justify-content: center;
+        transition: 0.5s;
+      }
+      
+      header nav li:hover {
+        transform: scale(1.10);
+        background-color: var(--groen4);
+        box-shadow: 0 0 0.5em 0.2em var(--groen3);
+      }
+      
+      header nav li:last-of-type {
+        float: right;
+        overflow: visible;
+        border-radius: 0;
+        background-color: transparent;
+        transition: none;
+        transform: none;
+        box-shadow: none;
+      }
+      
+      header nav li img {
+        height: 210%;
+        aspect-ratio: inherit;
+      }
+      
+      header nav a {
+        text-decoration: none;
+        color: var(--base2);
+      }
+  
+  /* Games & filters */
+  .filters {
+    width: 98%;
     display: flex;
-    grid-area: 1 / 1 / 4 / 2;
     flex-direction: column;
-    align-items: flex-start;
-    background-color: #1e1e1e;
-    border-radius: 10px;
-    margin: 2.5em 1em;
-    color: #ccc;
-    font-size: 13px;
-    top: 0;
-    position: sticky;
-}
-
-#contentblok h1 {
-    padding: 0 0.3em;
-}
-
-/* Navigatie bar + effecten*/
-header nav li {
-    list-style-type: none;
-    display: inline-flex;
-    height: 5vh;
-    border-radius: 1em;
-    background-color: var(--groen3);
-    margin: 0 0.5em;
-    padding: 0.1em 1.5em;
-    align-items: center;
-    justify-content: center;
-    transition: .5s;
-}
-
-header nav li:hover {
-    transform: scale(1.10);
-    background-color: var(--groen4);
-    box-shadow: 0 0 .5em .2em var(--groen4);
-}
-
-header nav li:last-of-type {
-    float: right;
-    overflow: visible;
-    border-radius: 0;
-    background-color: transparent;
-    transition: none;
-    transform: none;
-    box-shadow: none;
-}
-
-header nav li img {
-    height: 210%;
-    aspect-ratio: inherit;
-}
-
-header nav a {
-    text-decoration: none;
-    color: #000;
-}
-
-.filtersContainer {
-    display: flex;
-    grid-area: 1 / 1 / 4 / 2;
-    flex-direction: column;
-    align-items: flex-start;
     padding: 1em;
-    background-color: #1e1e1e;
-    border: 2px dashed #68beb0;
+    background-color: var(--base2);
     border-radius: 10px;
-    margin: 2.5em 1em;
+    border: 2px dashed var(--roze1);
+    margin: 1em 0.1em;
     color: #ccc;
     font-size: 13px;
     top: 0;
     position: sticky;
-}
-
-.filters h2 {
+  }
+  
+  .filters h2 {
     font-size: 20px;
-    color: #f6c;
-}
-
-.filters label {
+    color: var(--roze1);
+  }
+  
+  .filters label {
     display: flow-root;
     margin-bottom: 0.5em;
     cursor: pointer;
     font-size: 15px;
-    accent-color: #f6c;
-}
-
-#genreFilters, #platformFilters {
-    margin-bottom: 1em;
-    margin-top: 0.5em;
-}
-
-#games {
+    accent-color: var(--roze1);
+  }
+  
+  #genreFilters,
+  #platformFilters {
+    margin: 0.5em 0 1em;
+  }
+  
+  #games {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    margin-top: 2em;
     padding: 1em;
     align-content: space-evenly;
     gap: 2em 0.5em;
-}
-
-.game {
-    background-color: #000;
-    color: #f1f1f1;
-    border: 3px solid #f6c;
-    box-shadow: 0 0 15px #f6c;
+    align-items: stretch;
+  }
+  
+  .game {
+    background-color: var(--base2);
+    color: var(--base1);
+    border: 3px solid var(--roze1);
+    box-shadow: 0 0 15px var(--roze1);
     transition: transform 0.2s;
     display: flex;
     justify-content: flex-start;
@@ -251,13 +171,14 @@ header nav a {
     text-align: center;
     padding: 1em 0.5em 0.5em;
     position: relative;
-}
-
-.game:hover {
+    min-height: 22em;
+  }
+  
+  .game:hover {
     transform: scale(1.07);
-}
-
-.game img {
+  }
+  
+  .game img {
     width: 200px;
     height: 110px;
     margin: 1em;
@@ -266,23 +187,23 @@ header nav a {
     border-radius: 6px;
     margin-bottom: 1.2em;
     filter: none;
-}
-
-.game button {
-    background-color: #f6c;
-    padding: 0.5em;
   }
   
-.gameButton {
-    width: 10em;
-    height: 2.5em;
-    background-color: #7DB9A4;
-    border: none;
-    padding: 11px 15px;
+  .game form input {
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+  }
+  
+  .game button,
+  .gameButton {
+    background-color: var(--roze1);
+    padding: 0.5em;
+    border: 0;
+    border-radius: 4px;
+    width: 12em;
+    height: 3em;
     font-weight: 600;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
     font-size: 11px;
     display: flex;
     justify-content: center;
@@ -290,19 +211,153 @@ header nav a {
     margin-top: auto;
     margin-bottom: 0.5em;
     color: black;
-}
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .game button:hover {
+    background-color: var(--groen4);
+    box-shadow: 0 0 15px var(--groen3);
+  }
+  
+    /* Content blokken */
+    #contentBlok {
+        position: absolute;
+        width: 30vw;
+        height: 50vh;
+        margin-left: 34vw;
+        margin-top: 14vh;
+        padding: 2vw;
+        background-color: var(--achtergrond2);
+        border: solid var(--groen1);
+        border-radius: 2vw;
+      }
+      
+      #contentBlok form {
+        margin-left: 3vw;
+      }
+      
+      #contentBlok input {
+        width: 20vw;
+        color: var(--base2);
+      }
+      
+      #contentBlok h1 {
+        text-align: center;
+        margin-bottom: 50px;
+      }
+      
+      #contentBlok #showpass,
+      #contentBlok #rshowpass {
+        width: auto;
+        float: left;
+      }
+      
+      /* Inlog & registratie */
+      #login {
+        display: block;
+      }
+      
+      #registreren {
+        display: none;
+      }
+      
+      #login input {
+        color: #444242;
+      }
+      
+      #butInloggen {
+        display: flex;
+        justify-self: flex-end;
+        padding: 0.5em 1em;
+        background-color: var(--button);
+        border-radius: 0 0 0 1em;
+        border: var(--groen1);
+        border-style: none none solid solid;
+        text-decoration: none;
+        color: var(--base2);
+      }
 
-.game button:hover {
-    background-color: #85ffce;
-}
+      #butInloggen:hover {
+        cursor: pointer;
+        background-color: var(--roze1);
+      }
+      
+  /* Light mode */
+  body.lightMode {
+    background-color: #f6f9f8;
+    color: var(--base2);
+  }
+  
+  body.lightMode h1 {
+    color: #000;
+  }
 
-
-/* Dark en light modes */
-.toggleMode {
+  body.lightMode header,
+  body.lightMode menu {
+    background-color: var(--light-menu);
+    border-color: var(--roze1);
+    color: var(--base2);
+  }
+  
+  body.lightMode main {
+    background-color: var(--base1);
+    border-color: var(--roze1);
+    color: var(--base2);
+  }
+  
+  body.lightMode footer {
+    background-color: var(--light-menu);
+    border-color: var(--roze1);
+    color: var(--base2);
+  }
+  
+  body.lightMode #contentBlok {
+    background-color: #b8e0d6;
+    border-color: var(--groen2);
+    color: var(--base2);
+  }
+  
+  body.lightMode #login input,
+  body.lightMode .filters h2,
+  body.lightMode .filters label {
+    color: var(--base2);
+  }
+  
+  body.lightMode .filters {
+    background-color: var(--sidebar);
+    border: 2px dashed var(--roze1);
+    color: var(--base2);
+  }
+  
+  body.lightMode .game {
+    background-color: #bbdcd3;
+    border-color: var(--groen2);
+    color: var(--base2);
+    box-shadow: 0 0 15px var(--groen3);
+    filter: none;
+  }
+  
+  body.lightMode .game img {
+    border: 2px solid var(--roze1);
+    filter: grayscale(30%);
+  }
+  
+  body.lightMode .game button {
+    background-color: var(--groen2);
+    color: #f0f0f0;
+  }
+  
+  body.lightMode .game button:hover {
+    background-color: var(--roze1);
+    box-shadow: 0 0 15px var(--roze1);
+  }
+  
+  .toggleMode {
     font-family: 'Press Start 2P', cursive;
     font-size: 10px;
-    background-color: #222;
-    color: #fff;
+    background-color: var(--base2);
+    color: var(--base1);
     padding: 0.7em 1em;
     border: none;
     border-radius: 5px;
@@ -311,90 +366,17 @@ header nav a {
     right: 1rem;
     z-index: 1000;
     cursor: pointer;
-    box-shadow: 0 0 8px #f6c;
-}
-
-body.lightMode {
-    background-color: #f6f9f8;
-    color: #222;
-}
-
-body.lightMode header {
-    background-color: #a4d8cc;
-    border-color: #f6c;
-    color: #0d0d0d;
-}
-
-body.lightMode menu {
-    background-color: #cde6e2;
-}
-
-body.lightMode .filters {
-    background-color: #3d9a89;
-    border: 2px dashed #f6c;
-    color: #0d0d0d;
-}
-
-body.lightMode main {
-    background-color: #daf1ea;
-    border-color: #f6c;
-    color: #0d0d0d;
-}
-
-body.lightMode footer {
-    background-color: #b2d6cc;
-    border-color: #3d9a89;
-    color: #0d0d0d;
-}
-
-body.lightMode #login {
-    background-color: #b8e0d6;
-    border-color: #3d9a89;
-    color: #222;
-}
-
-body.lightMode #login input {
-    color: #222;
-}
-
-body.lightMode .filters h2 {
-    color: #222;
-}
-
-body.lightMode .filters label {
-    color: #222;
-}
-
-body.lightMode .game {
-    background-color: #93cabc;
-    border-color: #3d9a89;
-    color: #1b1b1b;
-    box-shadow: 0 0 15px #4adc9d;
-    filter: none;
-}
-
-body.lightMode .game img {
-    border: 2px solid #f6c;
-    filter: grayscale(30%);
-}
-
-body.lightMode .game button {
-    background-color: #3d9a89;
-    color: #f0f0f0;
-}
-
-body.lightMode .game button:hover {
-    background-color: #f6c;
-}
-
-body.lightMode .toggleMode {
-    background-color: #3d9a89;
-    color: #fff;
-    box-shadow: 0 0 5px #3d9a89;
-}
-
-
-#overlay {
+    box-shadow: 0 0 8px var(--roze1);
+  }
+  
+  body.lightMode .toggleMode {
+    background-color: var(--base1);
+    color: var(--base2);
+    box-shadow: 0 0 15px var(--groen1);
+  }
+  
+  /* Overlay */
+  #overlay {
     display: none;
     position: fixed;
     top: 0;
@@ -409,7 +391,7 @@ body.lightMode .toggleMode {
   
   #overlayContent {
     background-color: white;
-    color: #000;
+    color: var(--base2);
     padding: 20px;
     border-radius: 10px;
     max-width: 500px;
@@ -422,7 +404,7 @@ body.lightMode .toggleMode {
     display: flex;
     justify-self: flex-end;
     top: -10px;
-    background-color: #f6c;
+    background-color: var(--roze1);
     border-radius: 3px;
     color: white;
     border: none;
@@ -430,23 +412,24 @@ body.lightMode .toggleMode {
     cursor: pointer;
   }
   
-#profiel {
+  /* Profielpagina */
+  #profiel {
     width: 100%;
     height: 100%;
     display: grid;
     grid-template: 1fr 1fr 1fr / 1fr;
-}
-
-#userData {
+  }
+  
+  #userData {
     display: grid;
     grid-template: 1fr / 1fr 1fr 4fr;
     padding: 1vw;
-}
-
-#userData div img {
+  }
+  
+  #userData div img {
     display: block;
     width: 60%;
     aspect-ratio: 1 / 1;
     border-radius: 50%;
     border: solid;
-}
+  }
