@@ -37,8 +37,8 @@ app.use(
       // Use secure cookies in production
       httpOnly: true,
       // Prevent client-side JavaScript from accessing cookies
-      maxAge: 1000 * 60 * 60 * 2,
-      // Session expires after 2 hours
+      maxAge: 1000 * 60 * 60 * 1,
+      // Session expires after 1 hours
     },
   })
 );
@@ -134,7 +134,9 @@ app.post('/login', async (req, res) => {
         }; // Store user info in session
         res.redirect('/profile')           // Naar de profiel pagina
     } else {
-        console.log("ongeldig email of wachtwoord")
+      let error2 = "Ongeldig email en of wachtwoord"
+        console.log(error2)
+        res.render("pages/login", { error2 })
     }
     })
 
@@ -142,10 +144,10 @@ app.post('/login', async (req, res) => {
 
 app.post('/voorkeuren', async (req, res) => {
   const user = req.session.user;      // De ingelogde gebruiker wordt even opgezocht uit de session
-  let voornaam = user.voornaam        // De Voornaam wordt hieruit genomen
+  let email = user.email              // De email wordt hieruit genomen
   let postData = req.body             // De gestuurde data van het form wordt opgehaald
   let addInUser = await db.collection('users').updateOne(   // De functie waarin het volgende gebeurt
-    { r_voornaam: voornaam },         // De gebruiker wordt opgezocht in de database via de voornaam
+    { r_email: email },               // De gebruiker wordt opgezocht in de database via de email
     { $set: postData }                // De data van het form wordt toegevoegd aan het document in de database van de bijbehorende gebruiker
   )
   console.log(addInUser)              // Er wordt gelogd wat er precies is gebeurt tijdens het toevoegen om te kunnen debuggen
@@ -156,27 +158,41 @@ app.post('/like', async (req, res) => {
   let postData = req.body
   let game_id = postData.game_id
   console.log(postData.game_id)
-  const voornaam = req.session.user.voornaam;
-  const gebruiker = await db.collection('users').findOne({ r_voornaam: voornaam });
-    if (gebruiker.games.includes(game_id)) {
-      console.log("De game is er al")
-      await db.collection('users').updateOne(
-      { r_voornaam: voornaam },
-      { $pull: { games: game_id } })
+  const email = req.session.user.email;
+  const gebruiker = await db.collection('users').findOne({ r_email: email });
+    if (Array.isArray(gebruiker.games) && gebruiker.games.includes(game_id)) {
+    console.log("De game is er al");
+    await db.collection('users').updateOne(
+    { r_email: email },
+    { $pull: { games: game_id } }
+    );
     } else {
-      console.log("De game is er nog niet")
-      await db.collection('users').updateOne(
-      { r_voornaam: voornaam },
-      { $addToSet: { games: game_id } })
-      req.session.user = {
-      ...req.session.user,
-      games: [...(req.session.user.games || []), game_id]
-      };
+    console.log("Nog geen games array of de game is er nog niet");
+    await db.collection('users').updateOne(
+    { r_email: email },
+    { $addToSet: { games: game_id } }
+    );
+    req.session.user = {
+    ...req.session.user,
+    games: [...(req.session.user.games || []), game_id]
+    };
     }
-    console.log(gebruiker.games)
     const user = req.session.user;
+    console.log(user.games)
     res.render("pages/games", { user });
 })
+
+app.post("/uitloggen", (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
+      console.error("Error destroying session:", err);
+      return res.status(500).send("Er is een fout opgetreden bij het uitloggen.");
+    }
+    console.log("Uitgelogd")
+    res.redirect("/login");
+
+  });
+});
 
 function toonLogin(req, res) {      // Als dit adress wordt ingevuld
     res.render("pages/login");
