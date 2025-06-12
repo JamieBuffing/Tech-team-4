@@ -75,14 +75,25 @@
     right: 0;
     padding: 10px;
     text-align: center;
-    border-radius: 0 0 0 2vw;
     border: var(--groen1);
     border-style: none none solid solid;
     -ms-overflow-style: none;
     scrollbar-width: none;
 }
 
-  #butInloggen:hover {
+#butInloggen a {
+    color: white;
+    text-decoration: none;
+}
+
+#butInloggen input {
+    background: none;
+    border: none;
+    color: white;
+    font: inherit;
+}
+
+ #butInloggen:hover {
     cursor: pointer;
     background-color: var(--roze1);
   }
@@ -313,15 +324,25 @@ body.lightMode h1 {
     background-color: var(--groen4);
     box-shadow: 0 0 15px var(--groen3);
   }
-  
-    /* Content blokken */
       
       #contentBlok #showpass,
       #contentBlok #rshowpass {
         width: auto;
         float: left;
       }
-        
+      
+      /* Inlog & registratie */
+      #login {
+        display: block;
+      }
+      
+      #registreren {
+        display: none;
+      }
+      
+      #login input {
+        color: #444242;
+      }
       
   /* Light mode */
   body.lightMode {
