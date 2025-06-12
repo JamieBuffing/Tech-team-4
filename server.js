@@ -88,12 +88,14 @@ app.get("/Clear_Database", ClearDatabase)
 app.get("/profile", isLoggedIn, (req, res) => {
   const user = req.session.user; // Retrieve user info from session
   res.render("pages/profile", { user }); // Pass user data to the view
+  console.log(user)
 });
+
 app.get("/filter", toonfilter)
+
 app.get("/hulp", isLoggedIn, (req, res) => {
   res.render("pages/hulp");
 });
-
         // Als er wordt geregistreerd dan wordt deze functie uitgevoerd
 app.post('/registreren', upload.single('avatar'), async (req, res) => {   
     let postData = req.body
@@ -191,6 +193,11 @@ function toonSettings(req, res) {
 function toonfilter(req, res) {
     res.render("pages/filter");
 }
+
+
+
+
+
 
         // Tijdelijke functie om de Database op te kunnen schonen. shhhh deze functie zouden wij nooit durven gebruiken
 function ClearDatabase() {
