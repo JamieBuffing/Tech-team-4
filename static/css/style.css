@@ -76,11 +76,22 @@
     right: 0;
     padding: 10px;
     text-align: center;
-    border-radius: 0 0 0 2vw;
     border: var(--groen1);
     border-style: none none solid solid;
     -ms-overflow-style: none;
     scrollbar-width: none;
+}
+
+#butInloggen a {
+    color: white;
+    text-decoration: none;
+}
+
+#butInloggen input {
+    background: none;
+    border: none;
+    color: white;
+    font: inherit;
 }
 
 #butInloggen::-webkit-scrollbar {
@@ -353,33 +364,6 @@ header nav a {
     background-color: var(--groen4);
     box-shadow: 0 0 15px var(--groen3);
   }
-  
-    /* Content blokken */
-    #contentBlok {
-        position: absolute;
-        width: 30vw;
-        height: 50vh;
-        margin-left: 34vw;
-        margin-top: 14vh;
-        padding: 2vw;
-        background-color: var(--achtergrond2);
-        border: solid var(--groen1);
-        border-radius: 2vw;
-      }
-      
-      #contentBlok form {
-        margin-left: 3vw;
-      }
-      
-      #contentBlok input {
-        width: 20vw;
-        color: var(--base2);
-      }
-      
-      #contentBlok h1 {
-        text-align: center;
-        margin-bottom: 50px;
-      }
       
       #contentBlok #showpass,
       #contentBlok #rshowpass {
@@ -398,23 +382,6 @@ header nav a {
       
       #login input {
         color: #444242;
-      }
-      
-      #butInloggen {
-        display: flex;
-        justify-self: flex-end;
-        padding: 0.5em 1em;
-        background-color: var(--button);
-        border-radius: 0 0 0 1em;
-        border: var(--groen1);
-        border-style: none none solid solid;
-        text-decoration: none;
-        color: var(--base2);
-      }
-
-      #butInloggen:hover {
-        cursor: pointer;
-        background-color: var(--roze1);
       }
       
   /* Light mode */

@@ -157,28 +157,40 @@ app.post('/voorkeuren', async (req, res) => {
 app.post('/like', async (req, res) => {
   let postData = req.body
   let game_id = postData.game_id
-  console.log(postData.game_id)
+  console.log(game_id)
   const email = req.session.user.email;
+  let newGames = ""
+  if (req.session.user && Array.isArray(req.session.user.games)) {
+  console.log('De gebruiker heeft een games-array');
+  newGames = req.session.user.games;
+  } else {
+  console.log('Geen games-array gevonden');
+  }
   const gebruiker = await db.collection('users').findOne({ r_email: email });
-    if (Array.isArray(gebruiker.games) && gebruiker.games.includes(game_id)) {
-    console.log("De game is er al");
-    await db.collection('users').updateOne(
-    { r_email: email },
-    { $pull: { games: game_id } }
-    );
-    } else {
-    console.log("Nog geen games array of de game is er nog niet");
-    await db.collection('users').updateOne(
-    { r_email: email },
-    { $addToSet: { games: game_id } }
-    );
-    req.session.user = {
-    ...req.session.user,
-    games: [...(req.session.user.games || []), game_id]
-    };
-    }
-    const user = req.session.user;
-    console.log(user.games)
+  
+
+  // console.log(postData.game_id)
+  // const email = req.session.user.email;
+  // const gebruiker = await db.collection('users').findOne({ r_email: email });
+  //   if (Array.isArray(gebruiker.games) && gebruiker.games.includes(game_id)) {
+  //   console.log("De game is er al");
+  //   await db.collection('users').updateOne(
+  //   { r_email: email },
+  //   { $pull: { games: game_id } }
+  //   );
+  //   } else {
+  //   console.log("Nog geen games array of de game is er nog niet");
+  //   await db.collection('users').updateOne(
+  //   { r_email: email },
+  //   { $addToSet: { games: game_id } }
+  //   );
+  //   req.session.user = {
+  //   ...req.session.user,
+  //   games: [...(req.session.user.games || []), game_id]
+  //   };
+  //   }
+  //   const user = req.session.user;
+  //   console.log(user.games)
     res.render("pages/games", { user });
 })
 
@@ -189,7 +201,7 @@ app.post("/uitloggen", (req, res) => {
       return res.status(500).send("Er is een fout opgetreden bij het uitloggen.");
     }
     console.log("Uitgelogd")
-    res.redirect("/login");
+    res.redirect("/");
 
   });
 });
