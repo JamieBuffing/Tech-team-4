@@ -76,8 +76,6 @@
 
     /* Navigatie */
 
-
-
     header nav li {
         list-style-type: none;
         display: inline-flex;
@@ -97,13 +95,18 @@
         box-shadow: 0 0 0.5em 0.2em var(--groen3);
       }
       
-
-      header h1 {
-        height: 10%;
+      header nav li:first-of-type {
+        float: right;
+        overflow: visible;
+        border-radius: 0;
+        background-color: transparent;
+        transition: none;
+        transform: none;
+        box-shadow: none;
       }
       
-      header h1 img {
-        width: 10%;
+      header nav h1 img {
+        height: 10vh;
       }
       
       header nav a {
