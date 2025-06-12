@@ -63,7 +63,18 @@
     border-style: solid none solid solid;
     border-color: var(--groen1);
     padding: 20px;
+} 
+
+.game form input{
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
 }
+
+header nav a {
+        text-decoration: none;
+        color: var(--base2);
+      }
 
 #butInloggen {
     z-index: 2;
@@ -100,13 +111,7 @@
 
 #butInloggen::-webkit-scrollbar {
   display: none;
-}   
-
-.game form input{
-    position: absolute;
-    right: 5px;
-    bottom: 5px;
-}
+}  
 
   footer {
     display: grid;
@@ -219,10 +224,7 @@ body.lightMode h1 {
 
       }
       
-      header nav a {
-        text-decoration: none;
-        color: var(--base2);
-      }
+      
   
   /* Games & filters */
 
@@ -329,20 +331,7 @@ body.lightMode h1 {
       #contentBlok #rshowpass {
         width: auto;
         float: left;
-      }
-      
-      /* Inlog & registratie */
-      #login {
-        display: block;
-      }
-      
-      #registreren {
-        display: none;
-      }
-      
-      #login input {
-        color: #444242;
-      }
+      }      
       
   /* Light mode */
   body.lightMode {
