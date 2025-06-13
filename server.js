@@ -190,43 +190,73 @@ app.post("/submit", async (req, res) => {
 });
 
 app.post('/like', async (req, res) => {
+  console.log("--------------------")
+  console.log("Like/unlike gestart")
+  console.log("--------------------")
+  // Het email adres van de ingelogde gebruiker er even bij pakken
+  const email = req.session.user.email;
+
+  // De gebruiker opzoeken en klaarzetten
+  const gebruiker = await db.collection('users').findOne({ r_email: email });
+
+  // Als eerste de game ID uit de postData halen
   let postData = req.body
   let game_id = postData.game_id
+  console.log("Game_ID")
   console.log(game_id)
-  const email = req.session.user.email;
+  console.log("--------------------")
+
+  // Alvast een let aanmaken waar de games inkomen
   let newGames = ""
+
+  // Opzoeken of de gebruiker al eerder een game heeft gelikt en hiermee al een game array heeft
   if (req.session.user && Array.isArray(req.session.user.games)) {
-  console.log('De gebruiker heeft een games-array');
+  console.log("De gebruiker heeft een games-array");
+
+  // Als de gebruiker al games heeft gelikt dan moeten die games even worden opgeslagen
   newGames = req.session.user.games;
   } else {
-  console.log('Geen games-array gevonden');
+  // Anders gebeurt er nog niks
+  console.log("Geen games-array gevonden/ nog geen games geliked");
   }
-  const gebruiker = await db.collection('users').findOne({ r_email: email });
-  
 
-  // console.log(postData.game_id)
-  // const email = req.session.user.email;
-  // const gebruiker = await db.collection('users').findOne({ r_email: email });
-  //   if (Array.isArray(gebruiker.games) && gebruiker.games.includes(game_id)) {
-  //   console.log("De game is er al");
-  //   await db.collection('users').updateOne(
-  //   { r_email: email },
-  //   { $pull: { games: game_id } }
-  //   );
-  //   } else {
-  //   console.log("Nog geen games array of de game is er nog niet");
-  //   await db.collection('users').updateOne(
-  //   { r_email: email },
-  //   { $addToSet: { games: game_id } }
-  //   );
-  //   req.session.user = {
-  //   ...req.session.user,
-  //   games: [...(req.session.user.games || []), game_id]
-  //   };
-  //   }
-  //   const user = req.session.user;
-  //   console.log(user.games)
-    res.render("pages/games", { user });
+  console.log("--------------------")
+
+  // De al eerder opgeslagen games en de nieuwe game opslaan in een array
+  if(!newGames.includes(game_id)) {
+    console.log("Game is nog niet geliked")
+    console.log("--------------------")
+    newGames.push(game_id)
+    console.log("newGames")
+    console.log(newGames)
+    console.log("--------------")
+      // Van de gebruiker die is ingelogd voeg de nieuwe volledige games lijst toe
+    await db.collection('users').updateOne(
+    { r_email: email },
+    { $addToSet: { games: game_id } }
+    );
+  } else {
+    console.log("Game is al geliked")
+    console.log("--------------------")
+    await db.collection('users').updateOne(
+    { r_email: email },
+    { $pull: { games: game_id } } // verwijdert game_id uit de array
+    );
+    // uit de newGames array sla alleen de waardes op die niet overeenkomen met game_id
+    newGames = newGames.filter(g => g !== game_id);
+    console.log("newGames")
+    console.log(newGames)
+  }
+  
+  // Voeg de volledige nieuwe lijst ook toe aan de session van de gebruiker
+  req.session.user.games = newGames
+
+  // Ga opnieuw naar de games pagina
+  let user = req.session.user;
+  console.log("--------------------")
+  console.log("Einde like/unlike")
+  console.log("--------------------")
+  res.render("pages/games", {user});
 })
 
 app.post("/uitloggen", (req, res) => {
