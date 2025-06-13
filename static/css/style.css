@@ -179,6 +179,41 @@ body.lightMode h1 {
     padding: 0 0.3em;
 }
 
+header nav li {
+    list-style-type: none;
+    display: inline-flex;
+    height: 5vh;
+    border-radius: 1em;
+    background-color: var(--groen4);
+    margin: 0 0.5em;
+    padding: 0.1em 1.5em;
+    align-items: center;
+    justify-content: center;
+}
+
+.list li {
+  padding: 0.5rem;
+  border-bottom: 1px solid #eee;
+}
+
+header nav li:last-of-type {
+    float: right;
+    overflow: visible;
+    border-radius: 0;
+    background-color: transparent;
+}
+
+header nav li img {
+    height: 210%;
+    aspect-ratio: inherit;
+}
+
+header nav a {
+    text-decoration: none;
+    color: #000;
+}
+
+.filtersContainer {
     /* Navigatie */
     header nav li {
         list-style-type: none;
@@ -470,7 +505,66 @@ body.lightMode h1 {
     display: grid;
     grid-template: 1fr / 1fr 1fr 4fr;
     padding: 1vw;
+}
+
+.genreItem {
+  text-align: center;
+  cursor: pointer;
+  border: 2px solid var(--groen1);
+  padding: 0.5rem;
+  border-radius: 10px;
+  transition: border 0.2s;
+  background-color: var(--achtergrond);
+}
+
+.land,
+.taal,
+.platform {
+  text-align: center;
+  cursor: pointer;
+  border: 2px solid var(--groen1);
+  padding: 0.5rem;
+  border-radius: 10px;
+  transition: border 0.2s;
+  background-color: var(--achtergrond);
+}
+
+.taal:hover,
+.land:hover,
+.platform:hover,
+.genreItem:hover {
+  border-color: var(--groen4);
+  background-color: var(--groen3);
+}
+
+.genreItem:has(input[name="selectedGames"]:checked),
+.taal:has(input[name="taal"]:checked),
+.land:has(input[name="land"]:checked),
+.genreItem:has(input[name="genres"]:checked),
+.platform:has(input[name="platform"]:checked) {
+  border-color: var(--groen3);
+  background-color: var(--groen1);
+}
+
+.genreItem img,
+.platform img {
+  width: 100%;
+  height: 150px;
+  border-radius: 8px;
+  display: block;
+  margin-bottom: 0.5rem;
+  object-fit: cover;
   }
+
+.land img,
+.taal img {
+  width: 100%;
+  height: 150px;
+  border-radius: 8px;
+  display: block;
+  margin-bottom: 0.5rem;
+  object-fit: cover;
+}
   
   #userData div img {
     display: block;
@@ -478,4 +572,287 @@ body.lightMode h1 {
     aspect-ratio: 1 / 1;
     border-radius: 50%;
     border: solid;
+}
+
+.matchingContainer {
+    width: 50vw;
+    height: 50vh;
+    margin-left: 25vw;
+    margin-top: 25vh;
+    border: solid var(--groen1);
+    padding: 2vw;
+    background-color: var(--achtergrond2);
+    border-radius: 2vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
+}
+
+.carousel {
+  overflow: hidden;
+  position: relative;
+  flex-grow: 1;
+}
+
+.slide {
+  display: none;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.slide.active {
+  display: block;
+}
+
+.grid {
+  display: grid;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.genreGrid {
+  grid-template-columns: repeat(5, 1fr);
+  max-height: 18.75rem;
+}
+
+.gameGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  padding: 1rem;
+  max-height: 18.75rem;
+  overflow-y: scroll;
+}
+
+
+.smallGrid {
+  grid-template-columns: repeat(5, 1fr);
+  overflow-y: scroll;
+  max-height: 18.75rem;
+}
+
+.search {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border-radius: 6px;
+  border: 1px solid var(--groen1);
+  background-color: var(--achtergrond);
+}
+
+.search::placeholder {
+  color: #ccc;
+}
+
+#gamesSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+
+#gameResults {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  overflow-y: auto;
+  max-height: 350px;
+  padding: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+#gameSearchInput {
+  width: 100%;
+  max-width: 400px;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  border: 2px solid var(--groen1);
+  background-color: var(--achtergrond);
+  color: var(--base1);
+  font-size: 1rem;
+  margin-bottom: .25rem;
+  margin-top: 1rem;
+  
+}
+
+.buttons button {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border: 2px solid var(--groen1);
+  background: var(--groen3);
+  color: var(--base2);
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.buttons button:hover {
+  background: var(--groen4);
+  border-color: var(--groen3);
+}
+
+
+#zoekGame {
+  padding: 0.75rem 1.25rem;
+  border-radius: 8px;
+  border-color: var(--groen1);
+  background-color: var(--groen3);
+  color: var(--base2);
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+#zoekGame:hover {
+  background-color: var(--groen4);
+  border-color: var(--groen2);
+}
+
+#gameSearchInput::placeholder {
+  color: #ccc;
+}
+
+
+.rangeContainer { 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 3rem;
+  margin-bottom: 2.5rem;
+}
+
+.rangeContainer input[type="range"] {
+  width: 100%;
+  margin-bottom: 0.5rem;
+}
+
+.rangeContainer div {
+  font-weight: bold;
+}
+
+.checkboxes {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.checkboxes ul {
+  display: flex;
+  flex-direction: column;
+  gap: .5em;
+  list-style-type: none;
+}
+
+.checkboxes label {
+  display: flex;
+  gap: 0.5rem;
+  font-size: 1rem;
+}
+
+.dualSearch {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-top: 2.5rem;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 0 0;  
+}
+
+.buttons .left,
+.buttons .right {
+  display: flex;
+  gap: 1rem;
+}
+
+
+.scrollable {
+  overflow-y: scroll;
+  max-height: 400px;
+}
+    
+.dualRange {
+position: relative;
+height: 30px;
+width: 40%;
+margin: 0 auto;
+display: flex;
+align-items: center;
+justify-content: center;
+z-index: 0;
+isolation: isolate;
+}
+
+.dualRange::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  width: 100%;
+  height: 6px;
+  background-color: #ccc;
+  border-radius: 3px;
+  z-index: 1;
+}
+
+.dualRange input[type="range"] {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  pointer-events: none;
+  appearance: none;
+  background: transparent;
+  z-index: 3;
+}
+
+.dualRange input[type="range"]::-webkit-slider-thumb {
+  pointer-events: all;
+  appearance: none;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background: var(--groen1);
+  border: none;
+  position: relative;
+  z-index: 100;
+  margin-top: -7px;
   }
+
+input[type="range"]:nth-of-type(1)::-webkit-slider-thumb {
+  z-index: 100;
+  position: relative;
+}
+
+input[type="range"]:nth-of-type(2)::-webkit-slider-thumb {
+  z-index: 4;
+  position: relative;
+}
+
+  .dualRange input[type="range"]::-webkit-slider-runnable-track {
+  height: 6px;
+  background: #ccc;
+  border-radius: 3px;
+  position: relative;
+  z-index: 1;
+}
+
+.dualRange input[type="range"]::-moz-range-thumb {
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background: var(--groen1);
+  border: none;
+}
+
+.dualRange input[type="range"]::-moz-range-track {
+  height: 6px;
+  background: #ccc;
+  border-radius: 3px;
+}

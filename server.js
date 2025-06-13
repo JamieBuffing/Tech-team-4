@@ -96,6 +96,23 @@ app.get("/filter", toonfilter)
 app.get("/hulp", isLoggedIn, (req, res) => {
   res.render("pages/hulp");
 });
+
+ //**connecten met de API om games te zoeken */
+// app.get('/api/games', async (req, res) => {
+//   const search = req.query.search;
+//   if (!search) return res.json({ results: [] });
+
+//   try {
+//     const response = await fetch(`https://api.rawg.io/api/games?key=${process.env.RAWG_API_KEY}&search=${encodeURIComponent(search)}&page_size=10`);
+//     const data = await response.json();
+//     res.json({ results: data.results });
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ error: 'API request failed' });
+//   }
+// });
+
+
         // Als er wordt geregistreerd dan wordt deze functie uitgevoerd
 app.post('/registreren', upload.single('avatar'), async (req, res) => {   
     let postData = req.body
@@ -154,6 +171,24 @@ app.post('/voorkeuren', async (req, res) => {
   console.log(postData)               // Er wordt nog even gelogd wat er precies is meegekomen van het form
 })
 
+app.post("/submit", async (req, res) => {
+  const user = req.session.user;
+
+  if (!user) {
+    return res.redirect("/login");
+  }
+
+  const postData = req.body;
+  console.log("Matchvoorkeuren ontvangen:", postData);
+
+  await db.collection("users").updateOne(
+    { r_voornaam: user.voornaam },
+    { $set: postData }
+  );
+
+  res.redirect("/profile");
+});
+
 app.post('/like', async (req, res) => {
   let postData = req.body
   let game_id = postData.game_id
@@ -211,8 +246,119 @@ function toonLogin(req, res) {      // Als dit adress wordt ingevuld
 }
  
 function toonMatchen(req, res) {
-    res.render("pages/matchen")
+  const genres = [
+    { name: "Actie", image: "/images/actie.jpeg" },
+    { name: "Indie", image: "/images/indie.jpeg" },
+    { name: "RPG", image: "/images/rpg.jpeg" },
+    { name: "Adventure", image: "/images/adventure.jpeg" },
+    { name: "Strategy", image: "/images/strategy.jpeg" },
+    { name: "Shooter", image: "/images/shooter.jpeg" },
+    { name: "Casual", image: "/images/casual.jpeg" },
+    { name: "Simulation", image: "/images/simulation.jpeg" },
+    { name: "Puzzle", image: "/images/puzzle.jpeg" },
+    { name: "Arcade", image: "/images/arcade.jpeg" },
+    { name: "Platformer", image: "/images/platformer.jpeg" },
+    { name: "Massively Multiplayer", image: "/images/massivelyMultiplayer.jpeg" },
+    { name: "Racing", image: "/images/racing.jpeg" },
+    { name: "Sports", image: "/images/sports.jpeg" },
+    { name: "Fighting", image: "/images/fighting.jpeg" },
+    { name: "Family", image: "/images/family.jpeg" },
+    { name: "Board Games", image: "/images/boardGames.jpeg" },
+    { name: "Card", image: "/images/card.jpeg" },
+    { name: "Educational", image: "/images/educational.jpeg" },
+  ];
+
+  const platform = [
+    {name: "PC", image:"/images/pc.jpeg"},
+    {name: "PlayStation 5", image:"/images/playStation5.jpeg"},
+    {name: "Xbox One", image:"/images/xboxOne.jpeg"},
+    {name: "PlayStation 4", image:"/images/playStation4.jpeg"},
+    {name: "Xbox Series S/X", image:"/images/xboxSeries.jpeg"},
+    {name: "Nintendo Switch", image:"/images/nintendoSwitch.jpeg"},
+    {name: "iOS", image:"/images/ios.jpeg"},
+    {name: "Android", image:"/images/android.jpeg"},
+    {name: "Nintendo 3DS", image:"/images/nintendo3DS.jpeg"},
+    {name: "Nintendo DS", image:"/images/nintendoDS.jpeg"},
+    {name: "Nintendo DSi", image:"/images/nintendoDSi.jpeg"},
+    {name: "macOS", image:"/images/actie.jpeg"},
+    {name: "Linux", image:"/images/linux.jpeg"},
+    {name: "Xbox 360", image:"/images/xbox360.jpeg"},
+    {name: "Xbox", image:"/images/xbox.jpeg"},
+    {name: "PlayStation 3", image:"/images/playStation3.jpeg"},
+    {name: "PlayStation 2", image:"/images/playStation2.jpeg"},
+    {name: "PlayStation", image:"/images/playStation.jpeg"},
+    {name: "PS Vita", image:"/images/psVita.jpeg"},
+    {name: "PSP", image:"/images/psp.jpeg"},
+    {name: "Wii U", image:"/images/wiiU.jpeg"},
+    {name: "Wii", image:"/images/wii.jpeg"},
+    {name: "GameCube", image:"/images/gameCube.jpeg"},
+    {name: "Nintendo 64", image:"/images/nintendo64.jpeg"},
+    {name: "Game Boy Advance", image:"/images/gameBoyAdvance.jpeg"},
+    {name: "Game Boy Color", image:"/images/gameBoyColor.jpeg"},
+    {name: "Game Boy", image:"/images/gameBoy.jpeg"},
+    {name: "SNES", image:"/images/snes.jpeg"},
+    {name: "NES", image:"/images/nes.jpeg"},
+    {name: "Classic Macintosh", image:"/images/classicMacintosh.jpeg"},
+    {name: "Apple II", image:"/images/apple2.jpeg"},
+    {name: "Commodore / Amiga", image:"/images/commodereAmiga.jpeg"},
+    {name: "Atari 7800", image:"/images/atari7800.jpeg"},
+    {name: "Atari 5200", image:"/images/atari5200.jpeg"},
+    {name: "Atari 2600", image:"/images/atari2600.jpeg"},
+    {name: "Atari Flashback", image:"/images/atariFlashback.jpeg"},
+    {name: "Atari 8-bit", image:"/images/atari8bit.jpeg"},
+    {name: "Atari ST", image:"/images/atariST.jpeg"},
+    {name: "Atari Lynx", image:"/images/atariLynx.jpeg"},
+    {name: "Atari XEGS", image:"/images/atariXEGS.jpeg"},
+    {name: "Genesis", image:"/images/genesis.jpeg"},
+    {name: "SEGA Saturn", image:"/images/segaSaturn.jpeg"},
+    {name: "SEGA CD", image:"/images/segaCD.jpeg"},
+    {name: "SEGA 32X", image:"/images/sega32X.jpeg"},
+    {name: "SEGA Master System", image:"/images/segaMasterSystem.jpeg"},
+    {name: "Dreamcast", image:"/images/dreamcast.jpeg"},
+    {name: "3DO", image:"/images/3do.jpeg"},
+    {name: "Jaguar", image:"/images/jaguar.jpeg"},
+    {name: "Game Gear", image:"/images/gameGear.jpeg"},
+    {name: "Neo Geo", image:"/images/neoGeo.jpeg"},
+    {name: "Web", image:"/images/web.jpeg"},
+  ]
+
+  const land = [
+    {name: "Nederland", image:"/images/nederland.jpg"},
+    {name: "Duitsland", image:"/images/duitsland.jpg"},
+    {name: "Verenigd Koninkrijk", image:"/images/uk.jpg"},
+    {name: "Frankrijk", image:"/images/france.jpg"},
+    {name: "Spanje", image:"/images/spanje.jpg"},
+    {name: "Italië", image:"/images/italie.jpg"},
+    {name: "Rusland", image:"/images/rusland.jpg"},
+    {name: "China", image:"/images/china.jpg"},
+    {name: "Japan", image:"/images/japan.jpg"},
+    {name: "Verenigde staten", image:"/images/us.jpg"},
+    {name: "België", image:"/images/belgium.jpg"},
+    {name: "Portugal", image:"/images/portugal.jpg"},
+    {name: "Mexico", image:"/images/mexico.jpg"},
+    {name: "Brazilië", image:"/images/brasil.jpg"},
+    {name: "Kroatië", image:"/images/kroatie.jpg"},
+    {name: "Hongarije", image:"/images/hongarije.jpg"},
+  ]
+
+  const taal = [
+    {name: "Nederlands", image:"/images/nederland.jpg"},
+    {name: "Duits", image:"/images/duitsland.jpg"},
+    {name: "Engels", image:"/images/uk.jpg"},
+    {name: "Frans", image:"/images/france.jpg"},
+    {name: "Spaans", image:"/images/spanje.jpg"},
+    {name: "Italiaans", image:"/images/italie.jpg"},
+    {name: "Russisch", image:"/images/rusland.jpg"},
+    {name: "Chinees", image:"/images/china.jpg"},
+    {name: "Japans", image:"/images/japan.jpg"},
+    {name: "Portugees", image:"/images/portugal.jpg"},
+    {name: "Hongaars", image:"/images/hongarije.jpg"},
+    {name: "Kroatisch", image:"/images/kroatie.jpg"},
+  ]
+
+    res.render("pages/matchen", {genres, platform, land, taal});
 }
+
  
 function toonSettings(req, res) {
     res.render("pages/settings")
