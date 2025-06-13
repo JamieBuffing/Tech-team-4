@@ -65,16 +65,16 @@
     padding: 20px;
 } 
 
+header nav a {
+    text-decoration: none;
+    color: #000;
+}
+
 .game form input{
     position: absolute;
     right: 5px;
     bottom: 5px;
 }
-
-header nav a {
-        text-decoration: none;
-        color: var(--base2);
-      }
 
 #butInloggen {
     z-index: 2;
@@ -191,6 +191,17 @@ header nav li {
     justify-content: center;
 }
 
+.buttons button {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border: 2px solid var(--groen1);
+  background: var(--groen3);
+  color: var(--base2);
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+
 .list li {
   padding: 0.5rem;
   border-bottom: 1px solid #eee;
@@ -207,25 +218,6 @@ header nav li img {
     height: 210%;
     aspect-ratio: inherit;
 }
-
-header nav a {
-    text-decoration: none;
-    color: #000;
-}
-
-.filtersContainer {
-    /* Navigatie */
-    header nav li {
-        list-style-type: none;
-        display: inline-flex;
-        height: 5vh;
-        border-radius: 1em;
-        background-color: var(--groen3);
-        margin: 0 0.5em;
-        padding: 0.1em 1.5em;
-        align-items: center;
-        transition: 0.5s;
-      }
 
       header nav {
         display: flex;
@@ -253,13 +245,6 @@ header nav a {
         transform: none;
         box-shadow: none;
       }
-      
-      header nav li img {
-        height: 5em;
-
-      }
-      
-      
   
   /* Games & filters */
 
@@ -366,8 +351,39 @@ header nav a {
       #contentBlok #rshowpass {
         width: auto;
         float: left;
-      }      
+      }    
       
+.buttons button:hover {
+  background: var(--groen4);
+  border-color: var(--groen3);
+}
+      
+.genreItem img,
+.platform img {
+  width: 100%;
+  height: 150px;
+  border-radius: 8px;
+  display: block;
+  margin-bottom: 0.5rem;
+  object-fit: cover;
+  }
+
+.land img,
+.taal img {
+  width: 100%;
+  height: 150px;
+  border-radius: 8px;
+  display: block;
+  margin-bottom: 0.5rem;
+  object-fit: cover;
+}
+
+.checkboxes label {
+  display: flex;
+  gap: 0.5rem;
+  font-size: 1rem;
+}
+
   /* Light mode */
   body.lightMode {
     background-color: #f6f9f8;
@@ -545,26 +561,6 @@ header nav a {
   border-color: var(--groen3);
   background-color: var(--groen1);
 }
-
-.genreItem img,
-.platform img {
-  width: 100%;
-  height: 150px;
-  border-radius: 8px;
-  display: block;
-  margin-bottom: 0.5rem;
-  object-fit: cover;
-  }
-
-.land img,
-.taal img {
-  width: 100%;
-  height: 150px;
-  border-radius: 8px;
-  display: block;
-  margin-bottom: 0.5rem;
-  object-fit: cover;
-}
   
   #userData div img {
     display: block;
@@ -676,22 +672,6 @@ header nav a {
   
 }
 
-.buttons button {
-  padding: 0.75rem 1.5rem;
-  font-size: 1rem;
-  border: 2px solid var(--groen1);
-  background: var(--groen3);
-  color: var(--base2);
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-.buttons button:hover {
-  background: var(--groen4);
-  border-color: var(--groen3);
-}
-
-
 #zoekGame {
   padding: 0.75rem 1.25rem;
   border-radius: 8px;
@@ -743,12 +723,6 @@ header nav a {
   flex-direction: column;
   gap: .5em;
   list-style-type: none;
-}
-
-.checkboxes label {
-  display: flex;
-  gap: 0.5rem;
-  font-size: 1rem;
 }
 
 .dualSearch {
