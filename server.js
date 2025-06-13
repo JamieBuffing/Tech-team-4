@@ -37,8 +37,8 @@ app.use(
       // Use secure cookies in production
       httpOnly: true,
       // Prevent client-side JavaScript from accessing cookies
-      maxAge: 1000 * 60 * 60 * 2,
-      // Session expires after 2 hours
+      maxAge: 1000 * 60 * 60 * 1,
+      // Session expires after 1 hours
     },
   })
 );
@@ -77,7 +77,10 @@ app.get('/', function(req, res) {   // Als er niks is ingevuld of gewoon de home
 });
 
 app.get("/login", toonLogin)
-app.get("/games", toonGames)
+app.get("/games", isLoggedIn, (req, res) => {
+  const user = req.session.user; // Retrieve user info from session
+  res.render("pages/games", { user }); // Pass user data to the view
+});
 app.get("/matchen", toonMatchen)
 app.get("/settings", toonSettings)
 app.get("/login", toonLogin)
@@ -85,8 +88,11 @@ app.get("/Clear_Database", ClearDatabase)
 app.get("/profile", isLoggedIn, (req, res) => {
   const user = req.session.user; // Retrieve user info from session
   res.render("pages/profile", { user }); // Pass user data to the view
+  console.log(user)
 });
+
 app.get("/filter", toonfilter)
+
 app.get("/hulp", isLoggedIn, (req, res) => {
   res.render("pages/hulp");
 });
@@ -105,7 +111,6 @@ app.get("/hulp", isLoggedIn, (req, res) => {
 //     res.status(500).json({ error: 'API request failed' });
 //   }
 // });
-
 
 
         // Als er wordt geregistreerd dan wordt deze functie uitgevoerd
@@ -137,10 +142,18 @@ app.post('/login', async (req, res) => {
     if (result) {
         console.log("Wachtwoord komt overeen")
         req.session.isLoggedIn = true; // Set session variable
-        req.session.user = { id: user._id, email: user.r_email, voornaam: user.r_voornaam, avatar: user.avatar}; // Store user info in session
+        req.session.user = { 
+          id: user._id, 
+          email: user.r_email, 
+          voornaam: user.r_voornaam, 
+          avatar: user.avatar,
+          games: user.games
+        }; // Store user info in session
         res.redirect('/profile')           // Naar de profiel pagina
     } else {
-        console.log("ongeldig email of wachtwoord")
+      let error2 = "Ongeldig email en of wachtwoord"
+        console.log(error2)
+        res.render("pages/login", { error2 })
     }
     })
 
@@ -148,10 +161,10 @@ app.post('/login', async (req, res) => {
 
 app.post('/voorkeuren', async (req, res) => {
   const user = req.session.user;      // De ingelogde gebruiker wordt even opgezocht uit de session
-  let voornaam = user.voornaam        // De Voornaam wordt hieruit genomen
+  let email = user.email              // De email wordt hieruit genomen
   let postData = req.body             // De gestuurde data van het form wordt opgehaald
   let addInUser = await db.collection('users').updateOne(   // De functie waarin het volgende gebeurt
-    { r_voornaam: voornaam },         // De gebruiker wordt opgezocht in de database via de voornaam
+    { r_email: email },               // De gebruiker wordt opgezocht in de database via de email
     { $set: postData }                // De data van het form wordt toegevoegd aan het document in de database van de bijbehorende gebruiker
   )
   console.log(addInUser)              // Er wordt gelogd wat er precies is gebeurt tijdens het toevoegen om te kunnen debuggen
@@ -176,13 +189,60 @@ app.post("/submit", async (req, res) => {
   res.redirect("/profile");
 });
 
+app.post('/like', async (req, res) => {
+  let postData = req.body
+  let game_id = postData.game_id
+  console.log(game_id)
+  const email = req.session.user.email;
+  let newGames = ""
+  if (req.session.user && Array.isArray(req.session.user.games)) {
+  console.log('De gebruiker heeft een games-array');
+  newGames = req.session.user.games;
+  } else {
+  console.log('Geen games-array gevonden');
+  }
+  const gebruiker = await db.collection('users').findOne({ r_email: email });
+  
+
+  // console.log(postData.game_id)
+  // const email = req.session.user.email;
+  // const gebruiker = await db.collection('users').findOne({ r_email: email });
+  //   if (Array.isArray(gebruiker.games) && gebruiker.games.includes(game_id)) {
+  //   console.log("De game is er al");
+  //   await db.collection('users').updateOne(
+  //   { r_email: email },
+  //   { $pull: { games: game_id } }
+  //   );
+  //   } else {
+  //   console.log("Nog geen games array of de game is er nog niet");
+  //   await db.collection('users').updateOne(
+  //   { r_email: email },
+  //   { $addToSet: { games: game_id } }
+  //   );
+  //   req.session.user = {
+  //   ...req.session.user,
+  //   games: [...(req.session.user.games || []), game_id]
+  //   };
+  //   }
+  //   const user = req.session.user;
+  //   console.log(user.games)
+    res.render("pages/games", { user });
+})
+
+app.post("/uitloggen", (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
+      console.error("Error destroying session:", err);
+      return res.status(500).send("Er is een fout opgetreden bij het uitloggen.");
+    }
+    console.log("Uitgelogd")
+    res.redirect("/");
+
+  });
+});
 
 function toonLogin(req, res) {      // Als dit adress wordt ingevuld
     res.render("pages/login");
-}
-
-function toonGames(req, res) {
-    res.render("pages/games")
 }
  
 function toonMatchen(req, res) {
