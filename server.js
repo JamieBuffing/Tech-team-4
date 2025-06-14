@@ -151,9 +151,9 @@ app.post('/login', async (req, res) => {
         }; // Store user info in session
         res.redirect('/profile')           // Naar de profiel pagina
     } else {
-      let error2 = "Ongeldig email en of wachtwoord"
-        console.log(error2)
-        res.render("pages/login", { error2 })
+      let error = "Ongeldig email en of wachtwoord"
+        console.log(error)
+        res.render("pages/login", { error })
     }
     })
 
@@ -272,7 +272,8 @@ app.post("/uitloggen", (req, res) => {
 });
 
 function toonLogin(req, res) {      // Als dit adress wordt ingevuld
-    res.render("pages/login");
+  let error = ""
+  res.render("pages/login", { error })
 }
  
 function toonMatchen(req, res) {
