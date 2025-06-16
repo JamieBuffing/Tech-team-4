@@ -53,16 +53,16 @@ async function Data(games) {
         input.width = 24;
         input.height = 24;
         input.classList.add("heart");
-        input.id = game.id;
+        input.id = game;
         
         const input_hidden = document.createElement('input'); // voegt een input toe die niet zichtbaar is met de game id
         input_hidden.type = "hidden"
         input_hidden.name = "game_id"
-        input_hidden.value = game.id;
-
-        const gameContainer = document.createElement('li'); // Maak een li aan voor elke game
-        gameContainer.classList.add("liked"); // een class voor styling
-        gameContainer.id = game.id; // Voeg een id toe dat overeenkomt met het id van de game
+        input_hidden.value = game;
+      
+        const gameContainer = document.createElement('li'); // Maak een div aan voor elke game
+        gameContainer.classList.add("Liked"); // een class voor styling
+        gameContainer.id = game; // Voeg een id toe dat overeenkomt met het id van de game
 
         form.append(input_hidden, input);
         gameContainer.append(form, title, img, genres, platforms, button);

@@ -4,18 +4,36 @@
     <%- include('../partials/head'); %>
     <title>Home</title>
 </head>
-<body>
+<body id="home">
 <header>
     <%- include('../partials/header'); %>
 </header>
 <menu>
-    <%- include('../partials/menu'); %>
+    <p><b>Welkom bij PixelPair</b> <br>
+        Jij brengt de controller, wij brengen de connectie!
+    </p>
+<ul>
+    <li><a href="/login">Maak account aan</a></li>
+    <li><a href="/games">Bekijk games</a></li>
+</ul>
 </menu>
-<main>    
+<main>
+    <div class="bannerWrapper">
+      <!-- Ondergrond afbeelding (het hele voorblad met nepknop) -->
+      <img src="/images/voorbladIMG.png" alt="..." class="banner">
+  
+      <!-- Losse afbeelding van de echte klikbare knop -->
+      <a href="/login" class="joinButton">
+        <img src="/images/homeButton.png" alt="Join Now knop">
+      </a>
+    </div>
+  
     <a href="/hulp">Hulp pagina</a>
-</main>
+  </main>
+  
 <footer>
     <%- include('../partials/footer'); %>
 </footer>
+<script src="/darkLight.js"></script>
 </body>
 </html>
