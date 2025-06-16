@@ -2,19 +2,21 @@
 <head>
 <title>Inloggen/Registreren</title>
 <link href="/css/style.css" rel="stylesheet" type="text/css">
+<script src="/darkLight.js"></script>
 </head>
 
 <body>
     <div id="contentBlok">
         <h1>Log in bij uw account</h1>
         <hr>
+        <p id="melding"></p>
         <section>
         <%- include('../partials/inloggen'); %>
         <%- include('../partials/registreren'); %>
         </section>
         <hr>
         <form id="other">
-            <label id="label" for="change">Nog geen account?</label>
+            <label id="label" for="change">Nog geen account?</label><br>
             <input
                 type="button"
                 value="Registreren"
@@ -23,7 +25,7 @@
     </div>
 </body>
 
-
+<script src="/darkLight.js"></script>
 <script>
     const showpass = document.getElementById("showpass")
     const r_showpass = document.getElementById("rshowpass")
