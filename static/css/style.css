@@ -45,7 +45,7 @@
   }
   
   menu {
-    display: grid;
+    position: relative;
     grid-area: 2 / 1 / 4 / 2;
     flex-direction: column;
     align-items: flex-start;
@@ -53,6 +53,7 @@
     border-style: none solid none none;
     border-color: var(--groen1);
     padding: 10px;
+    overflow-wrap: anywhere;
   }
   
   main {
@@ -142,6 +143,11 @@ header nav a {
 #contentBlok input {
     width: -webkit-fill-available;
     color: var(--base2);
+}
+
+#contentBlok input[type="radio"] {
+    width: auto; /* radios usually don't need width set */
+    accent-color: var(--base2); /* modern way to set radio color */
 }
 
 #contentBlok #showpass {
@@ -566,6 +572,7 @@ header nav li img {
     display: block;
     width: 60%;
     aspect-ratio: 1 / 1;
+    object-fit: cover;
     border-radius: 50%;
     border: solid;
 }
@@ -692,7 +699,6 @@ header nav li img {
 #gameSearchInput::placeholder {
   color: #ccc;
 }
-
 
 .rangeContainer { 
   display: flex;
@@ -829,4 +835,18 @@ input[type="range"]:nth-of-type(2)::-webkit-slider-thumb {
   height: 6px;
   background: #ccc;
   border-radius: 3px;
+}
+
+menu summary {
+  width: 100%;
+  padding: 5px;
+  border-radius: 10px;
+  background-color: var(--groen4);
+}
+
+menu details {
+  width: 90%;
+  margin: 25px auto 0;
+  position: static;
+  height: fit-content;
 }
