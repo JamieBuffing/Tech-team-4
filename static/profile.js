@@ -59,7 +59,7 @@ async function Data(games) {
         input_hidden.type = "hidden"
         input_hidden.name = "game_id"
         input_hidden.value = game;
-
+      
         const gameContainer = document.createElement('li'); // Maak een div aan voor elke game
         gameContainer.classList.add("Liked"); // een class voor styling
         gameContainer.id = game; // Voeg een id toe dat overeenkomt met het id van de game
@@ -110,3 +110,8 @@ async function openOverlay(game) {
   // Toon overlay
   overlay.style.display = 'flex';
 }
+
+// Sluitknop eventlistener
+document.getElementById('sluitOverlay').addEventListener('click', () => {
+  document.getElementById('overlay').style.display = 'none';
+});
