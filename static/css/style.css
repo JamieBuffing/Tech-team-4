@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Chivo:ital,wght@0,100..900;1,100..900&family=Silkscreen:wght@400;700&display=swap');
+
 :root {
   --achtergrond: #484848;
   --achtergrond2: #919191;
@@ -7,6 +9,7 @@
   --groen2: #56BF8E;
   --groen3: #5AC99E;
   --groen4: #9CE8CE;
+  
 }
 
 * {
@@ -15,6 +18,7 @@
     color: var(--base1);
     color: #FFFF;
 }
+
 
 body {
     background-color: var(--achtergrond);
@@ -320,12 +324,21 @@ header nav a {
     display: flex;
     flex-direction: column;
     justify-content: space-between; 
+    position: relative;
 }
 
 .carousel {
   overflow: hidden;
   position: relative;
   flex-grow: 1;
+}
+
+.carousel h2 {
+  font-family: Silkscreen, sans-serif;
+}
+
+.carousel span {
+  font-family: Chivo, sans-serif;
 }
 
 .slide {
@@ -418,6 +431,7 @@ header nav a {
   color: var(--base2);
   border-radius: 6px;
   cursor: pointer;
+  align-items: center;
 }
 
 .buttons button:hover {
@@ -485,6 +499,31 @@ header nav a {
   font-size: 1rem;
 }
 
+.checkboxes input[type="checkbox"] {
+  appearance: none;
+  background-color: var(--groen1);
+  border: 2px solid var(--groen2);
+  padding: 8px;
+  border-radius: 4px;
+  display: inline-block;
+  position: relative;
+  width: 18px;
+  height: 18px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.checkboxes input[type="checkbox"]:checked::after {
+  content: "✔";
+  color: var(--groen4);
+  position: absolute;
+  top: 0;
+  left: 4px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+
 .dualSearch {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -496,6 +535,10 @@ header nav a {
   display: flex;
   justify-content: space-between;
   padding: 1rem 0 0;  
+  position: absolute;
+  bottom: 2rem;
+  right: 2rem;
+  left: 2rem;
 }
 
 .buttons .left,
@@ -504,6 +547,9 @@ header nav a {
   gap: 1rem;
 }
 
+.buttons .right {
+  right: 90%;
+}
 
 .scrollable {
   overflow-y: scroll;
@@ -511,18 +557,22 @@ header nav a {
 }
     
 .dualRange {
-position: relative;
-height: 30px;
-width: 40%;
-margin: 0 auto;
-display: flex;
-align-items: center;
-justify-content: center;
-z-index: 0;
-isolation: isolate;
+  position: relative;
+  width: 40%;
+  height: 30px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.dualRange::before {
+.sliderContainer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.sliderContainer::before {
   content: '';
   position: absolute;
   top: 50%;
@@ -535,58 +585,36 @@ isolation: isolate;
   z-index: 1;
 }
 
-.dualRange input[type="range"] {
+.sliderContainer input[type="range"] {
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
   width: 100%;
-  pointer-events: none;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%) translateY(1px);
   appearance: none;
   background: transparent;
-  z-index: 3;
+  pointer-events: none;
+  z-index: 2;
 }
 
-.dualRange input[type="range"]::-webkit-slider-thumb {
-  pointer-events: all;
+.sliderContainer input[type="range"]::-webkit-slider-thumb {
   appearance: none;
   height: 20px;
   width: 20px;
-  border-radius: 50%;
   background: var(--groen1);
-  border: none;
-  position: relative;
-  z-index: 100;
-  margin-top: -7px;
-  }
-
-input[type="range"]:nth-of-type(1)::-webkit-slider-thumb {
-  z-index: 100;
-  position: relative;
-}
-
-input[type="range"]:nth-of-type(2)::-webkit-slider-thumb {
-  z-index: 4;
-  position: relative;
-}
-
-  .dualRange input[type="range"]::-webkit-slider-runnable-track {
-  height: 6px;
-  background: #ccc;
-  border-radius: 3px;
-  position: relative;
-  z-index: 1;
-}
-
-.dualRange input[type="range"]::-moz-range-thumb {
-  height: 20px;
-  width: 20px;
   border-radius: 50%;
-  background: var(--groen1);
   border: none;
+  z-index: 2;
+  position: relative;
+  margin-top: -0.438rem;
+  pointer-events: auto;
 }
 
-.dualRange input[type="range"]::-moz-range-track {
+.sliderContainer input[type="range"]::-webkit-slider-runnable-track {
   height: 6px;
-  background: #ccc;
-  border-radius: 3px;
+  background: transparent;
 }
+
+
+
+
