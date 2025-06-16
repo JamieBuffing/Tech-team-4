@@ -235,10 +235,258 @@ header nav a {
     padding: 1vw;
 }
 
+.genreItem img,
+.platform img,
+.land img,
+.taal img {
+  width: 100%;
+  height: 150px;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+  object-fit: cover;
+}
+
 #userData div img {
     display: block;
     width: 60%;
     aspect-ratio: 1 / 1;
     border-radius: 50%;
     border: solid;
+}
+
+.matchingContainer {
+  width: 50vw;
+  height: 75vh;
+  margin: 5vh auto;
+  padding: 2vw;
+  border-radius: 2vw;
+  background-color: var(--achtergrond2);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: solid var(--groen1);
+  position: relative;
+  overflow: hidden;
+}
+
+.carousel {
+  overflow: hidden;
+  flex-grow: 1;
+  padding-bottom: 5rem;
+}
+
+.slide {
+  display: none;
+  text-align: center;
+}
+
+.slide.active {
+  display: block;
+}
+
+.carousel h2 {
+  font-family: Silkscreen, sans-serif;
+  margin-bottom: 1rem;
+}
+
+.carousel span {
+  font-family: Chivo, sans-serif;
+}
+
+.grid {
+  display: grid;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.genreGrid {
+  grid-template-columns: repeat(5, 1fr);
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.smallGrid {
+  grid-template-columns: repeat(5, 1fr);
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.gameGrid,
+#gameResults {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  padding: 1rem;
+  max-height: 350px;
+  overflow-y: auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.genreItem,
+.platform,
+.land,
+.taal {
+  text-align: center;
+  cursor: pointer;
+  border: 2px solid var(--groen1);
+  padding: 0.5rem;
+  border-radius: 10px;
+  transition: all 0.2s ease;
+  background-color: var(--achtergrond);
+}
+
+.genreItem:hover,
+.platform:hover,
+.land:hover,
+.taal:hover {
+  border-color: var(--groen4);
+  background-color: var(--groen3);
+}
+
+.genreItem:has(input:checked),
+.platform:has(input:checked),
+.land:has(input:checked),
+.taal:has(input:checked) {
+  border-color: var(--groen3);
+  background-color: var(--groen1);
+}
+
+#gameSearchInput {
+  width: 100%;
+  max-width: 400px;
+  padding: 0.75rem 1rem;
+  margin: 1rem auto 0.5rem;
+  display: block;
+  border-radius: 8px;
+  border: 2px solid var(--groen1);
+  background-color: var(--achtergrond);
+  color: var(--base1);
+}
+
+#zoekGame {
+  padding: 0.75rem 1.25rem;
+  border-radius: 8px;
+  background-color: var(--groen3);
+  border: 2px solid var(--groen1);
+  color: var(--base2);
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#zoekGame:hover {
+  background-color: var(--groen4);
+  border-color: var(--groen2);
+}
+
+.rangeContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.dualRange {
+  position: relative;
+  width: 40%;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sliderContainer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.sliderContainer::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  width: 100%;
+  height: 6px;
+  background-color: #ccc;
+  border-radius: 3px;
+  z-index: 1;
+}
+
+.sliderContainer input[type="range"] {
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  appearance: none;
+  background: transparent;
+  pointer-events: all;
+  z-index: 2;
+}
+
+.sliderContainer input[type="range"]::-webkit-slider-thumb {
+  appearance: none;
+  height: 20px;
+  width: 20px;
+  background: var(--groen1);
+  border-radius: 50%;
+  border: none;
+  position: relative;
+  z-index: 3;
+}
+
+.sliderContainer input[type="range"]::-webkit-slider-runnable-track {
+  height: 6px;
+  background: transparent;
+}
+
+#rangeMin,
+#rangeMax {
+  z-index: 10000;
+}
+
+.checkboxes {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 1rem;
+}
+
+.checkboxes ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.checkboxes label {
+  display: flex;
+  gap: 0.5rem;
+  font-size: 1rem;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background-color: var(--achtergrond2);
+}
+
+.buttons button {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border: 2px solid var(--groen1);
+  background: var(--groen3);
+  color: var(--base2);
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.buttons button:hover {
+  background: var(--groen4);
 }
