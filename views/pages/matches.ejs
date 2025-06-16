@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head'); %>
+    <title>Home</title>
+</head>
+<body>
+<header>
+    <%- include('../partials/header'); %>
+</header>
+<menu>
+    <details open>
+        <summary>Mijn voorkeuren</summary>
+        voornaam = <%= gebruiker.r_voornaam %><br><hr>
+        email = <%= gebruiker.r_email %><br><hr>
+        avatar = <%= gebruiker.avatar %><br><hr>
+        id = <%= gebruiker._id %><br><hr>
+        games = <%= gebruiker.games %><br><hr>
+        audiance = <%= gebruiker.audiance %><br><hr>
+        genres = <%= gebruiker.genres %><br><hr>
+        land = <%= gebruiker.land %><br><hr>
+        maxAge = <%= gebruiker.maxAge %><br><hr>
+        minAge = <%= gebruiker.minAge %><br><hr>
+        platform = <%= gebruiker.platform %><br><hr>
+        taal = <%= gebruiker.taal %><br><hr>
+    </details>
+    <details open>
+        <summary>Mijn matches</summary>
+        Test
+    </details>
+</menu>
+<main>
+    
+</main>
+<footer>
+    <%- include('../partials/footer'); %>
+</footer>
+<script src="/darkLight.js"></script>
+</body>
+</html>

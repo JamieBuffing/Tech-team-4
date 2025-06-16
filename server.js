@@ -77,10 +77,7 @@ app.get('/', function(req, res) {   // Als er niks is ingevuld of gewoon de home
 });
 
 app.get("/login", toonLogin)
-app.get("/games", isLoggedIn, (req, res) => {
-  const user = req.session.user; // Retrieve user info from session
-  res.render("pages/games", { user }); // Pass user data to the view
-});
+app.get("/games", toonGames)
 app.get("/matchen", toonMatchen)
 app.get("/settings", toonSettings)
 app.get("/login", toonLogin)
@@ -88,11 +85,7 @@ app.get("/Clear_Database", ClearDatabase)
 app.get("/profile", isLoggedIn, (req, res) => {
   const user = req.session.user; // Retrieve user info from session
   res.render("pages/profile", { user }); // Pass user data to the view
-  console.log(user)
 });
-
-app.get("/filter", toonfilter)
-
 app.get("/hulp", isLoggedIn, (req, res) => {
   res.render("pages/hulp");
 });
@@ -116,6 +109,9 @@ app.get("/hulp", isLoggedIn, (req, res) => {
         // Als er wordt geregistreerd dan wordt deze functie uitgevoerd
 app.post('/registreren', upload.single('avatar'), async (req, res) => {   
     let postData = req.body
+    if (postData.r_leeftijd) {
+        postData.r_leeftijd = parseInt(postData.r_leeftijd)
+    }
     let hashWord = bcrypt.hashSync(postData.r_password, 10)       // Het wachtwoord hashen
     postData.r_password = hashWord
     if (req.file) {                                 // Alleen als er een afbeelding is geupload dan....
@@ -125,7 +121,9 @@ app.post('/registreren', upload.single('avatar'), async (req, res) => {
     }
     console.log(postData)
     await db.collection('users').insertOne(postData)
-        res.redirect('/profile')           // Naar de profiel pagina
+        let error = "Account aangemaakt, log hier in."
+        console.log(error)
+        res.render("pages/login", { error })         // Naar de profiel pagina
 })
 
 app.post('/login', async (req, res) => {
@@ -134,7 +132,13 @@ app.post('/login', async (req, res) => {
     let user = await db.collection('users').findOne({
     r_email: email
     })
+    if (!user) {
+        let error = "Account niet gevonden";
+        console.log("Gebruiker niet gevonden:", email);
+        return res.render("pages/login", { error });
+    }
     console.log(user)
+
     bcrypt.compare(postData.password, user.r_password, function(err, result) {
     if (err) {
         console.log("fout tijdens wachtwoord check")
@@ -151,7 +155,7 @@ app.post('/login', async (req, res) => {
         }; // Store user info in session
         res.redirect('/profile')           // Naar de profiel pagina
     } else {
-      let error = "Ongeldig email en of wachtwoord"
+      let error = "Wachtwoord onjuist"
         console.log(error)
         res.render("pages/login", { error })
     }
@@ -179,6 +183,12 @@ app.post("/submit", async (req, res) => {
   }
 
   const postData = req.body;
+  if (postData.minAge) {
+        postData.minAge = parseInt(postData.minAge)
+  }
+  if (postData.maxAge) {
+        postData.maxAge = parseInt(postData.maxAge)
+  }
   console.log("Matchvoorkeuren ontvangen:", postData);
 
   await db.collection("users").updateOne(
@@ -207,7 +217,7 @@ app.post('/like', async (req, res) => {
   console.log("--------------------")
 
   // Alvast een let aanmaken waar de games inkomen
-  let newGames = ""
+  let newGames = []
 
   // Opzoeken of de gebruiker al eerder een game heeft gelikt en hiermee al een game array heeft
   if (req.session.user && Array.isArray(req.session.user.games)) {
@@ -276,7 +286,7 @@ function toonLogin(req, res) {      // Als dit adress wordt ingevuld
   res.render("pages/login", { error })
 }
  
-function toonMatchen(req, res) {
+async function toonMatchen(req, res) {
   const genres = [
     { name: "Actie", image: "/images/actie.jpeg" },
     { name: "Indie", image: "/images/indie.jpeg" },
@@ -387,7 +397,67 @@ function toonMatchen(req, res) {
     {name: "Kroatisch", image:"/images/kroatie.jpg"},
   ]
 
-    res.render("pages/matchen", {genres, platform, land, taal});
+  let email = req.session.user.email;
+
+  const gebruiker = await db.collection('users').findOne({r_email: email})
+
+  if(gebruiker && (gebruiker.audience !== undefined || gebruiker.platform !== undefined)) {   // ALs de gebruiker al matches heeft opgegeven
+    let voornaam = gebruiker.r_voornaam;
+    let geslacht = gebruiker.Geslacht;
+    let leeftijd = gebruiker.r_leeftijd;
+    let platform = gebruiker.genres;
+    let genres = gebruiker.genres;
+    let audience = gebruiker.audiance;
+    let minAge = gebruiker.minAge;
+    let maxAge = gebruiker.maxAge;
+    let land = gebruiker.land;
+
+    await db.collection('users').updateMany(
+    { },
+    [{ $set: { r_leeftijd: { $toInt: "$r_leeftijd" } } }]
+    );
+    await db.collection('users').updateMany(
+    { },
+    [{ $set: { maxAge: { $toInt: "$maxAge" } } }]
+    );
+    await db.collection('users').updateMany(
+    { },
+    [{ $set: { minAge: { $toInt: "$minAge" } } }]
+    );
+
+    const matches = await db.collection('users')
+    .find(
+        { r_leeftijd: { $gt: 19, $lte: 40 } },
+        { projection: { r_password: 0 } } // r_password uitsluiten
+    )
+    .toArray();
+    console.log("Matches")
+    console.log(matches);
+
+    console.log("------------------------------------------------------------------------")
+    console.log(req.session.user.email)
+    console.log("------------------------------------------------------------------------")
+    const deGebruiker = matches.find(u => u.r_email === req.session.user.email);
+
+    if (deGebruiker) {
+      const index = matches.indexOf(deGebruiker);
+      if (index !== -1) {
+        matches.splice(index, 1);
+      }
+    }
+
+    console.log("Matches new")
+    console.log(matches);
+
+    matches.forEach(match => {
+      console.log(match.r_voornaam)
+      
+    });
+
+    res.render("pages/matches", { gebruiker });
+  }else {             // Als de gebruiker nog geen matches heeft opgegeven
+    res.render("pages/voorkeuren", {genres, platform, land, taal}); 
+  }
 }
 
  
@@ -395,8 +465,13 @@ function toonSettings(req, res) {
     res.render("pages/settings")
 }
 
-function toonfilter(req, res) {
-    res.render("pages/filter");
+function toonGames(req, res) {
+  const user = req.session.user; // Retrieve user info from session
+  if (user === null || user === undefined) {
+    res.render("pages/gamesNoLogin");
+  }else {
+    res.render("pages/games", { user }); // Pass user data to the view
+  }
 }
 
 

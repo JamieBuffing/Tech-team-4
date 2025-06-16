@@ -45,7 +45,7 @@
   }
   
   menu {
-    display: grid;
+    position: relative;
     grid-area: 2 / 1 / 4 / 2;
     flex-direction: column;
     align-items: flex-start;
@@ -53,6 +53,7 @@
     border-style: none solid none none;
     border-color: var(--groen1);
     padding: 10px;
+    overflow-wrap: anywhere;
   }
 
   menu p b {
@@ -138,6 +139,12 @@ menu ul li {
     bottom: 5px;
 }
 
+header nav a, #uitloggen input {
+        text-decoration: none;
+        color: var(--base2);
+        font-size: 1em;
+      }
+
 #butInloggen {
     z-index: 2;
     background-color: #2e2e2e;
@@ -204,6 +211,11 @@ menu ul li {
 #contentBlok input {
     width: -webkit-fill-available;
     color: var(--base2);
+}
+
+#contentBlok input[type="radio"] {
+    width: auto; /* radios usually don't need width set */
+    accent-color: var(--base2); /* modern way to set radio color */
 }
 
 #contentBlok #showpass {
@@ -294,19 +306,32 @@ header nav li img {
       }
 
       header nav li:hover, ul li:hover {
-        transform: scale(1.10);
-        background-color: var(--groen4);
-        box-shadow: 0 0 0.5em 0.2em var(--groen3);
+      header nav li:hover {
+      cursor: pointer;
+      transform: scale(1.10);
+      background-color: var(--roze1);
+      box-shadow: 0 0 15px var(--roze1);
       }
       
-      header nav li:first-of-type {
-        overflow: visible;
-        border-radius: 0;
-        background-color: transparent;
-        transition: none;
-        transform: none;
-        box-shadow: none;
+      header nav img {
+        height: 3em;
+        margin: 0.3em;
       }
+
+      header nav h1 {
+        margin-right: auto;
+      }
+
+      header nav h1:hover {
+        transform: scale(1.05);
+        cursor: pointer;
+      }
+      
+      #uitloggen input {
+        background: none;
+        border: none;
+      }
+     
   
   /* Games & filters */
 
@@ -627,6 +652,7 @@ header nav li img {
     display: block;
     width: 60%;
     aspect-ratio: 1 / 1;
+    object-fit: cover;
     border-radius: 50%;
     border: solid;
 }
@@ -753,7 +779,6 @@ header nav li img {
 #gameSearchInput::placeholder {
   color: #ccc;
 }
-
 
 .rangeContainer { 
   display: flex;
@@ -890,4 +915,18 @@ input[type="range"]:nth-of-type(2)::-webkit-slider-thumb {
   height: 6px;
   background: #ccc;
   border-radius: 3px;
+}
+
+menu summary {
+  width: 100%;
+  padding: 5px;
+  border-radius: 10px;
+  background-color: var(--groen4);
+}
+
+menu details {
+  width: 90%;
+  margin: 25px auto 0;
+  position: static;
+  height: fit-content;
 }
