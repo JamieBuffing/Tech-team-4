@@ -306,7 +306,6 @@ header nav li img {
       }
 
       header nav li:hover, ul li:hover {
-      header nav li:hover {
       cursor: pointer;
       transform: scale(1.10);
       background-color: var(--roze1);
