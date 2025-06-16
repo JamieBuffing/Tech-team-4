@@ -596,7 +596,6 @@ header nav li img {
 .genreGrid {
   grid-template-columns: repeat(5, 1fr);
   max-height: 300px;
-  overflow-y: auto;
 }
 
 .smallGrid {
