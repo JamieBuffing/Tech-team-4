@@ -4,7 +4,7 @@
     <%- include('../partials/head'); %>
     <title>Profile</title>
 </head>
-<body>
+<body data-user-games="<%= user.games %>">
 <header>
     <%- include('../partials/header'); %>
 </header>
@@ -28,6 +28,16 @@
             </div>
         </section>
         <section id="">
+            <ul id="likedGames">
+
+            </ul>
+
+            <div id="overlay">
+                <div id="overlayContent">
+                    <button id="sluitOverlay">Sluiten</button>
+                    <div id="overlayInfo"></div>
+                </div>
+            </div>
         </section>
         <section id="">
             
@@ -38,6 +48,6 @@
     <%- include('../partials/footer'); %>
 </footer>
 <script src="/darkLight.js"></script>
-<script src="/likedGames.js"></script>
+<script src="/profile.js"></script>
 </body>
 </html>

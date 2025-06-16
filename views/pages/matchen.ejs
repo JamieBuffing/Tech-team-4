@@ -1,22 +1,203 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
+
 <head>
     <%- include('../partials/head'); %>
-    <title>Matchen</title>
+        <title>Matchen</title>
 </head>
+
 <body>
-<header>
-    <%- include('../partials/header'); %>
-</header>
-<menu>
-    <%- include('../partials/menu'); %>
-</menu>
-<main>
-    
-</main>
-<footer>
-    <%- include('../partials/footer'); %>
-</footer>
-<script src="/darkLight.js"></script>
+    <div class="matchingContainer">
+        <form id="carouselForm" method="POST" action="/submit">
+            <div class="carousel">
+                <!-- Slide 1: Genre selectie -->
+                <div class="slide active scrollable">
+                    <h2>Selecteer je favoriete genres!</h2>
+                    <div class="grid genreGrid">
+                        <% genres.forEach((genre, index)=> { %>
+                            <label class="genreItem">
+                                <input type="checkbox" name="genres" value="<%= genre.name %>" hidden />
+                                <img src="<%= genre.image %>" alt="<%= genre.name %>" />
+                                <span>
+                                    <%= genre.name %>
+                                </span>
+                            </label>
+                            <% }) %>
+                    </div>
+                </div>
+                <!-- Slide 2: Platform selectie -->
+                <div class="slide">
+                    <h2>Selecteer je platforms</h2>
+                    <div class="grid smallGrid">
+                        <% platform.forEach((genre, index)=> { %>
+                            <label class="platform">
+                                <input type="checkbox" name="platform" value="<%= genre.name %>" hidden />
+                                <img src="<%= genre.image %>" alt="<%= genre.name %>" />
+                                <span>
+                                    <%= genre.name %>
+                                </span>
+                            </label>
+                            <% }) %>
+                    </div>
+                </div>
+
+                <!-- Slide 3: Game search -->
+                <!-- <div class="slide">
+                    <h2>Selecteer je favoriete games</h2>
+                    <div id="gameSearchForm">
+                        <input type="text" id="gameSearchInput" placeholder="Zoek een game..." />
+                        <button id="zoekGame" type="submit">Zoek</button>
+                    </div>
+
+                     Game resultaten -->
+                    <!-- <div class="grid gameGrid" id="gameResults"></div> 
+                </div> --> 
+                <!-- Slide 4: Leeftijd en geslacht kiezen -->
+                <div class="slide">
+                    <h2>Kies een leeftijdsklasse</h2>
+                    <div class="rangeContainer">
+                        <div class="dualRange">
+                            <input type="range" id="rangeMin" name="minAge" min="18" max="100" value="18"
+                                oninput="updateRange()">
+                            <input type="range" id="rangeMax" name="maxAge" min="18" max="100" value="100"
+                                oninput="updateRange()">
+                        </div>
+                        <div>Leeftijdsklasse: <span id="ageRange">18 - 100</span></div>
+                    </div>
+                    <div class="checkboxes">
+                        <ul>
+                        <li><label><input type="checkbox" name="audience[]" value="Man" /> Man</label></li>
+                        <li><label><input type="checkbox" name="audience[]" value="Vrouw" /> Vrouw</label></li>
+                        <li><label><input type="checkbox" name="audience[]" value="Anders" /> Anders</label></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Slide 5: Land kiezen -->
+                <div class="slide">
+                    <h2>Kies het land waar je vandaan komt</h2>
+                    <div class="grid smallGrid">
+                        <% land.forEach((genre, index)=> { %>
+                            <label class="land">
+                                <input type="radio" name="land" value="<%= genre.name %>" hidden />
+                                <img src="<%= genre.image %>" alt="<%= genre.name %>" />
+                                <span>
+                                    <%= genre.name %>
+                                </span>
+                            </label>
+                            <% }) %>
+                    </div>
+                </div>
+                <!--Slide 6: gesproken talen kiezen -->
+                <div class="slide">
+                    <h2>Kies de talen die je spreekt</h2>
+                    <div class="grid smallGrid">
+                        <% taal.forEach((genre, index)=> { %>
+                            <label class="taal">
+                                <input type="checkbox" name="taal" value="<%= genre.name %>" hidden />
+                                <img src="<%= genre.image %>" alt="<%= genre.name %>" />
+                                <span>
+                                    <%= genre.name %>
+                                </span>
+                            </label>
+                            <% }) %>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Carousel nav buttons -->
+            <div class="buttons">
+                <div class="left">
+                    <button type="button" id="prevBtn" style="display: none;">Previous</button>
+                </div>
+                <div class="right">
+                    <button type="button" id="nextBtn">Next</button>
+                </div>
+                <button type="submit" id="submitBtn" style="display: none;">Save</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll(".slide");
+        const nextBtn = document.getElementById("nextBtn");
+        const prevBtn = document.getElementById("prevBtn");
+        const submitBtn = document.getElementById("submitBtn");
+
+        function updateSlides() {
+            slides.forEach((slide, index) => {
+                slide.classList.toggle("active", index === currentSlide);
+            });
+            prevBtn.style.display = currentSlide === 0 ? "none" : "inline-block";
+            nextBtn.style.display = currentSlide === slides.length - 1 ? "none" : "inline-block";
+            submitBtn.style.display = currentSlide === slides.length - 1 ? "inline-block" : "none";
+        }
+
+        nextBtn.addEventListener("click", () => {
+            if (currentSlide < slides.length - 1) {
+                currentSlide++;
+                updateSlides();
+            }
+        });
+
+        prevBtn.addEventListener("click", () => {
+            if (currentSlide > 0) {
+                currentSlide--;
+                updateSlides();
+            }
+        });
+
+        function updateRange() {
+            const min = document.getElementById("rangeMin");
+            const max = document.getElementById("rangeMax");
+            const label = document.getElementById("ageRange");
+            let minVal = parseInt(min.value);
+            let maxVal = parseInt(max.value);
+            if (minVal > maxVal) {
+                [min.value, max.value] = [max.value, min.value];
+                [minVal, maxVal] = [maxVal, minVal];
+            }
+            label.textContent = `${minVal} - ${maxVal}`;
+        }
+        updateRange();
+
+        new List('games', { valueNames: ['name'] });
+        updateSlides();
+
+    </script>
+
+    <!-- <script>
+
+        document.getElementById('gameSearchForm').addEventListener('click', async function (e) {
+            e.preventDefault();
+            const query = document.getElementById('gameSearchInput').value;
+            const resultsDiv = document.getElementById('gameResults');
+            resultsDiv.innerHTML = "Laden...";
+
+            try {
+                const res = await fetch(`/api/games?search=${encodeURIComponent(query)}`);
+                const data = await res.json();
+                resultsDiv.innerHTML = '';
+
+                if (data.results && data.results.length > 0) {
+                    data.results.forEach(game => {
+                        const label = document.createElement('label');
+                        label.classList.add('genreItem'); // zelfde styling als genres
+                        label.innerHTML = `
+            <input type="checkbox" name="selectedGames" value="${game.id}" hidden />
+            <img src="${game.background_image}" alt="${game.name}" />
+            <span>${game.name}</span>
+          `;
+                        resultsDiv.appendChild(label);
+                    });
+                } else {
+                    resultsDiv.innerHTML = 'Geen resultaten gevonden.';
+                }
+            } catch (err) {
+                console.error(err);
+                resultsDiv.innerHTML = 'Fout bij het ophalen van games.';
+            }
+        });
+    </script> -->
 </body>
 </html>
