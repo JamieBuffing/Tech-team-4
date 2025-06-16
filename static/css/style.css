@@ -8,7 +8,7 @@
     --groen2: #56BF8E;
     --groen3: #5AC99E;
     --groen4: #3cb389;
-    --roze1: #ff66cc;
+    --roze1: #f6c;
     --button: #EFBADE;
     --light-menu: #a4d8cc;
     --sidebar: #62bfa8;
@@ -578,6 +578,8 @@ header nav li img {
     border-radius: 10px;
     max-width: 500px;
     width: 90%;
+    height: 90vh;
+    overflow-y: scroll;
     position: relative;
     text-align: center;
   }
