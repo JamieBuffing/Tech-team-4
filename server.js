@@ -207,7 +207,7 @@ app.post('/like', async (req, res) => {
   console.log("--------------------")
 
   // Alvast een let aanmaken waar de games inkomen
-  let newGames = ""
+  let newGames = []
 
   // Opzoeken of de gebruiker al eerder een game heeft gelikt en hiermee al een game array heeft
   if (req.session.user && Array.isArray(req.session.user.games)) {
