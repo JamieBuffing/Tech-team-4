@@ -77,6 +77,15 @@ header nav a {
     bottom: 5px;
 }
 
+<<<<<<< header-upgrade2
+header nav a, #uitloggen input {
+        text-decoration: none;
+        color: var(--base2);
+        font-size: 1em;
+      }
+
+=======
+>>>>>>> dev
 #butInloggen {
     z-index: 2;
     background-color: #2e2e2e;
@@ -238,19 +247,34 @@ header nav li img {
       }
 
       header nav li:hover {
+        cursor: pointer;
         transform: scale(1.10);
-        background-color: var(--groen4);
-        box-shadow: 0 0 0.5em 0.2em var(--groen3);
+        background-color: var(--roze1);
+        box-shadow: 0 0 15px var(--roze1);
       }
       
-      header nav li:first-of-type {
-        overflow: visible;
-        border-radius: 0;
-        background-color: transparent;
-        transition: none;
-        transform: none;
-        box-shadow: none;
+      header nav img {
+        height: 3em;
+        margin: 0.3em;
       }
+
+      header nav h1 {
+        margin-right: auto;
+      }
+<<<<<<< header-upgrade2
+
+      header nav h1:hover {
+        transform: scale(1.05);
+        cursor: pointer;
+      }
+      
+      #uitloggen input {
+        background: none;
+        border: none;
+      }
+      
+=======
+>>>>>>> dev
   
   /* Games & filters */
 
