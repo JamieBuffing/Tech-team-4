@@ -95,22 +95,24 @@ function hartjes() { // de functie om de hartjes per game toe te voegen.
 }
 
 // Functie om overlay te vullen en tonen
-function openOverlay(game) {
+async function openOverlay(game) {
   const overlay = document.getElementById('overlay');
   const overlayInfo = document.getElementById('overlayInfo');
 
-  // Vul overlay met gewenste info van de game
+  // Haal de volledige game info op via detail endpoint
+  const response = await fetch(`https://api.rawg.io/api/games/${game.id}?key=${apiKey}`);
+  const data = await response.json();
+
   overlayInfo.innerHTML = `
-    <h2>${game.name}</h2>
-    <img src="${game.background_image || 'https://via.placeholder.com/400x200?text=No+Image'}" alt="${game.name}" style="width: 100%; max-width: 400px;"/>
-    <p><strong>Genres:</strong> ${game.genres.map(g => g.name).join(', ')}</p>
-    <p><strong>Platforms:</strong> ${game.platforms.map(p => p.platform.name).join(', ')}</p>
-    <p><strong>Releasedatum:</strong> ${game.released || 'Onbekend'}</p>
-    <p><strong>Rating:</strong> ${game.rating} / 5 (${game.ratings_count || '0'} reviews)</p>
-    <p><strong>Beschrijving:</strong> ${game.description_raw || 'Geen beschrijving beschikbaar.'}</p>
+    <h2>${data.name}</h2>
+    <img src="${data.background_image || 'https://via.placeholder.com/400x200?text=No+Image'}" alt="${data.name}" style="width: 100%; max-width: 400px;"/>
+    <p><strong>Genres:</strong> ${data.genres.map(g => g.name).join(', ')}</p>
+    <p><strong>Platforms:</strong> ${data.platforms.map(p => p.platform.name).join(', ')}</p>
+    <p><strong>Releasedatum:</strong> ${data.released || 'Onbekend'}</p>
+    <p><strong>Rating:</strong> ${data.rating} / 5 (${data.ratings_count || '0'} reviews)</p>
+    <p><strong>Beschrijving:</strong> ${data.description_raw || 'Geen beschrijving beschikbaar.'}</p>
   `;
 
-  // Toon overlay
   overlay.style.display = 'flex';
 }
 

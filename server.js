@@ -42,6 +42,12 @@ app.use(
     },
   })
 );
+
+app.use((req, res, next) => {
+  res.locals.user = req.session.user || null;   // Als er geen ingelogde gebruiker is, zet user op null
+  next();
+});
+
 app.set('view engine', 'ejs');
 app.listen(3000);   
 
@@ -72,15 +78,19 @@ async function connectDB() {        // De functie om te verbinden met de databas
 
 connectDB()                         // Verbinden met de database
 
+app.use((req, res, next) => {
+  res.locals.user = req.session.user || null;
+  next();
+});
+
 app.get('/', function(req, res) {   // Als er niks is ingevuld of gewoon de home url. Toon dan index.ejs
     res.render('pages/index');
 });
 
 app.get("/login", toonLogin)
 app.get("/games", toonGames)
-app.get("/matchen", toonMatchen)
+app.get("/matchen", isLoggedIn, toonMatchen)
 app.get("/settings", toonSettings)
-app.get("/login", toonLogin)
 app.get("/Clear_Database", ClearDatabase)
 app.get("/profile", isLoggedIn, (req, res) => {
   const user = req.session.user; // Retrieve user info from session
@@ -454,7 +464,7 @@ async function toonMatchen(req, res) {
       
     });
 
-    res.render("pages/matches", { gebruiker });
+    res.render("pages/matches", { gebruiker, user: gebruiker });
   }else {             // Als de gebruiker nog geen matches heeft opgegeven
     res.render("pages/voorkeuren", {genres, platform, land, taal}); 
   }
