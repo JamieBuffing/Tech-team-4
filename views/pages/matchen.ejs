@@ -7,6 +7,10 @@
 </head>
 
 <body>
+    <header>
+        <%- include('../partials/header'); %>
+    </header>
+
     <div class="matchingContainer">
         <form id="carouselForm" method="POST" action="/submit">
             <div class="carousel">
@@ -41,29 +45,17 @@
                     </div>
                 </div>
 
-                <!-- Slide 3: Game search -->
-                <!-- <div class="slide">
-                    <h2>Selecteer je favoriete games</h2>
-                    <div id="gameSearchForm">
-                        <input type="text" id="gameSearchInput" placeholder="Zoek een game..." />
-                        <button id="zoekGame" type="submit">Zoek</button>
-                    </div>
-
-                     Game resultaten -->
-                <!-- <div class="grid gameGrid" id="gameResults"></div> 
-                </div> -->
-                <!-- Slide 4: Leeftijd en geslacht kiezen -->
                 <div class="slide">
                     <h2>Kies een leeftijdsklasse</h2>
                     <div class="rangeContainer">
                         <div class="dualRange">
                             <div class="sliderContainer">
-                            <input type="range" id="rangeMin" name="minAge" min="18" max="100" value="18"
-                                oninput="updateRange()">
-                                
-                            <input type="range" id="rangeMax" name="maxAge" min="18" max="100" value="100"
-                                oninput="updateRange()">
-                                </div>
+                                <input type="range" id="rangeMin" name="minAge" min="18" max="100" value="18"
+                                    oninput="updateRange()">
+
+                                <input type="range" id="rangeMax" name="maxAge" min="18" max="100" value="100"
+                                    oninput="updateRange()">
+                            </div>
                         </div>
                         <div><span>Leeftijdsklasse:</span> <span id="ageRange">18 - 100</span></div>
                     </div>
@@ -112,12 +104,12 @@
 
             <!-- Carousel nav buttons -->
             <div class="buttons">
-                    <div class="left">
-                        <button type="button" id="prevBtn" style="display: none;">Previous</button>
-                    </div>
-                    <div class="right">
-                        <button type="button" id="nextBtn">Next</button>
-                    </div>
+                <div class="left">
+                    <button type="button" id="prevBtn" style="display: none;">Previous</button>
+                </div>
+                <div class="right">
+                    <button type="button" id="nextBtn">Next</button>
+                </div>
                 <button type="submit" id="submitBtn" style="display: none;">Save</button>
             </div>
         </form>
@@ -171,28 +163,28 @@
         updateSlides();
 
     </script>
-    
+
     <script>
         document.getElementById('carouselForm').addEventListener('submit', function (e) {
-    // Haal alle checkboxgroepen op
-    const genres = document.querySelectorAll('input[name="genres"]:checked');
-    const platforms = document.querySelectorAll('input[name="platform"]:checked');
-    const genders = document.querySelectorAll('input[name="audience[]"]:checked');
-    const land = document.querySelector('input[name="land"]:checked');
-    const languages = document.querySelectorAll('input[name="taal"]:checked');
+            // Haal alle checkboxgroepen op
+            const genres = document.querySelectorAll('input[name="genres"]:checked');
+            const platforms = document.querySelectorAll('input[name="platform"]:checked');
+            const genders = document.querySelectorAll('input[name="audience[]"]:checked');
+            const land = document.querySelector('input[name="land"]:checked');
+            const languages = document.querySelectorAll('input[name="taal"]:checked');
 
-    // Check of iets ontbreekt
-    if (
-        genres.length === 0 ||
-        platforms.length === 0 ||
-        genders.length === 0 ||
-        !land ||
-        languages.length === 0
-    ) {
-        e.preventDefault(); // blokkeer submit
-        alert("Vul alle velden in voordat je verdergaat.");
-    }
-});
+            // Check of iets ontbreekt
+            if (
+                genres.length === 0 ||
+                platforms.length === 0 ||
+                genders.length === 0 ||
+                !land ||
+                languages.length === 0
+            ) {
+                e.preventDefault(); // blokkeer submit
+                alert("Vul alle velden in voordat je verdergaat.");
+            }
+        });
     </script>
     <script src="/darkLight.js">
     </script>
