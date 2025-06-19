@@ -54,6 +54,7 @@
     border-color: var(--groen1);
     padding: 10px;
     overflow-wrap: anywhere;
+    overflow-y: scroll;
   }
  
   menu p b {
@@ -87,6 +88,7 @@ header nav a, header ul li a{ /* aangepast zodat de ul voor de gelikte games wer
  
 #home main {
   padding: 0;
+  text-align: center;
 }
  
 #home main>img:nth-of-type(1){
@@ -95,38 +97,196 @@ header nav a, header ul li a{ /* aangepast zodat de ul voor de gelikte games wer
   display: block;
   z-index: 1;
 }
- 
+
+.features {
+  display: flex;
+  gap: 2rem;
+  margin: 1em;
+  margin-top: -8em;
+}
+
+.featureItem {
+  flex: 1;
+  background: var(--groen2);
+  padding: 0.5em;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.featureItem img {
+  width: 3em;
+}
+
+.features .featureItem:nth-child(2) img, .features .featureItem:nth-child(1) img  {
+  width: 4.5em;
+}
+
+.featureItem img:hover {
+  transform: scale(1.1);
+  filter: drop-shadow(0 0 8px var(--roze1)) drop-shadow(0 0 8px var(--groen3));
+}
+
+.overOns {
+  margin: 2em;
+  width: 70%;
+  flex-direction: column;
+  display: flex;
+  justify-self: center;
+}
+
 .bannerWrapper {
   position: relative;
   width: 100%;
+  height: 80%;
   margin: 0 auto;
 }
  
 .bannerWrapper img.banner {
   width: 100%;
-  height: 80%;
+  height: 100%;
   display: block;
 }
  
 .joinButton {
   position: absolute;
-  top: 30%;  
+  top: 35%;  
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 39%;  
+  width: 38%;  
 }
  
 .joinButton img {
   width: 100%;
   height: 60%;
   display: block;
+  transition: transform 0.2s ease;
 }
  
 .joinButton img:hover {
   cursor: pointer;
-  scale: 1.05;
+  animation: jump 0.5s ease;
 }
- 
+
+@keyframes jump {
+  0%   { transform: translateY(0); }
+  30%  { transform: translateY(-8px); }
+  60%  { transform: translateY(0); }
+  100% { transform: translateY(-4px); }
+}
+
+.floatingIcon {
+  position: absolute;
+  top: 23%;
+  left: 35%;
+  animation: float 8s ease-in-out infinite;
+  z-index: 1;
+}
+
+.floatingIcon img {
+  width: 4em;
+}
+
+@keyframes float {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(-80px); }
+  100% { transform: translateY(0); }
+}
+
+.pixelArrow {
+  position: absolute;
+  top: 64.5%;
+  left: 39%;
+  width: 4em;
+  height: 4em;
+  background: url('/images/arrowHome.png') no-repeat center/contain;
+  animation: blink 2s steps(1) infinite;
+  z-index: 5;
+}
+
+@keyframes blink {
+  0%, 50%, 100% { opacity: 1; }
+  25%, 75% { opacity: 0; }
+}
+
+.pixelFloatZone {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 20vw;
+  height: 100vh;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+
+.pixel {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  opacity: 0.8;
+  animation: float-up 8s linear infinite;
+}
+
+
+.pixel1 {
+  left: 10%;
+  bottom: 0;
+  background-color: var(--groen2);
+  animation-delay: 0s;
+}
+
+.pixel2 {
+  left: 30%;
+  bottom: 20px;
+  background-color: var(--roze1);
+  animation-delay: 1s;
+}
+
+.pixel3 {
+  left: 50%;
+  bottom: 10px;
+  background-color: var(--groen3);
+  animation-delay: 2s;
+}
+
+.pixel4 {
+  left: 70%;
+  bottom: 30px;
+  background-color: #ffb6e6;
+  animation-delay: 3s;
+}
+
+.pixel5 {
+  left: 20%;
+  bottom: 5px;
+  background-color: var(--groen1);
+  animation-delay: 1.5s;
+}
+
+.pixel6 {
+  left: 80%;
+  bottom: 15px;
+  background-color: #ffaada;
+  animation-delay: 2.5s;
+}
+
+@keyframes float-up {
+  0% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  
+  30% {
+    opacity: 1;
+  }
+  
+  100% { 
+    transform: translateY(-120px);
+    opacity: 0;
+  }
+}
+
 menu ul li {
   display: flex;
   flex-direction: column;
@@ -252,9 +412,24 @@ body.lightMode h1 {
 #contentblok h1 {
     padding: 0 0.3em;
 }
+
+.overOns a {
+  width: 8vw;
+  padding: 0.8em;
+  display: flex;
+  align-self: center;
+  margin-top: 1em;
+  border-radius: 1em;
+  background-color: var(--groen4);
+  justify-content: center;
+  text-decoration: none;
+  color: #1a1a1a;
+  box-shadow: 0 0 10px var(--groen4);
+}
  
 header nav li, header ul li { /* aangepast zodat de ul van de gelikte games werkt */
     list-style-type: none;
+    color: #1a1a1a;
     display: inline-flex;
     height: 5vh;
     border-radius: 1em;
@@ -264,6 +439,50 @@ header nav li, header ul li { /* aangepast zodat de ul van de gelikte games werk
     align-items: center;
     justify-content: center;
 }
+
+.profielFoto:hover {
+  cursor: pointer;
+  box-shadow: 0 0 15px var(--roze1);
+}
+
+.profielContainer {
+  position: relative;
+  display: inline-block;
+}
+
+.profielFoto {
+  aspect-ratio: 1 / 1;
+  width: 5em; 
+  height: auto;
+  border-radius: 50%;
+  border: 1px solid var(--roze1);
+  object-fit: cover;
+  margin: 0.5em 1.5em;
+}
+
+#uitloggen {
+  display: none;
+  position: absolute;
+  top: 100%; 
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: white;
+  border: 1px solid var(--roze1);
+  padding: 0.5rem;
+  z-index: 10;
+  border-radius: 8px;
+  white-space: nowrap;
+}
+
+#uitloggen:hover {
+  cursor: pointer;
+  background-color: var(--roze1);
+} 
+
+.profielContainer:hover #uitloggen {
+  display: block;
+}
+
  
 .buttons button {
   padding: 0.75rem 1.5rem;
@@ -279,13 +498,6 @@ header nav li, header ul li { /* aangepast zodat de ul van de gelikte games werk
 .list li {
   padding: 0.5rem;
   border-bottom: 1px solid #eee;
-}
- 
-header nav li:last-of-type {
-    float: right;
-    overflow: visible;
-    border-radius: 0;
-    background-color: transparent;
 }
  
 header nav li img {
@@ -305,7 +517,9 @@ header nav li img {
         align-content: center;
       }
  
+
       header nav li:hover, header ul li:hover { /* aangepast zodat de ul voor de gelikte games werkt */
+
       cursor: pointer;
       transform: scale(1.10);
       background-color: var(--roze1);
@@ -367,7 +581,7 @@ header nav li img {
     margin: 0.5em 0 1em;
   }
  
-  #games {
+  #games, #populaireGames {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     padding: 1em;
@@ -476,10 +690,14 @@ header nav li img {
   }
  
   body.lightMode header,
-  body.lightMode menu {
+  body.lightMode menu  {
     background-color: var(--light-menu);
     border-color: var(--roze1);
     color: var(--base2);
+  }
+
+  input[type="checkbox" i] {
+    accent-color: var(--roze1);
   }
  
   body.lightMode main {
@@ -588,6 +806,8 @@ header nav li img {
     border-radius: 10px;
     max-width: 500px;
     width: 90%;
+    height: 90vh;
+    overflow-y: scroll;
     position: relative;
     text-align: center;
   }
@@ -655,7 +875,7 @@ header nav li img {
   background-color: var(--groen1);
 }
  
-  #userData div img {
+  #userData div img{
     display: block;
     width: 60%;
     aspect-ratio: 1 / 1;
@@ -1043,4 +1263,247 @@ menu details {
   position: static;
   height: fit-content;
 }
- 
+
+#matches {
+  top: 10vh;
+  width: 100%;
+  height: 40%;
+  min-height: 300px;
+  position: absolute;
+  border-style: solid none;
+  overflow: auto hidden;
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  padding: 16px;
+  box-sizing: border-box;
+  align-items: center;
+}
+
+.match {
+  flex: 0 0 auto;
+  height: 90%;
+  aspect-ratio: 1 / 1;
+  background-color: #797979;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  filter: grayscale(50%);
+  border-radius: 8px;
+}
+
+.match h3 {
+  position: absolute;
+  top: 2%;
+  left: 2%;
+  width: 82%;
+  height: auto;
+  margin-right: 10px;
+  overflow: hidden;
+  text-align: left;
+  background-color: var(--groen4);
+  border-radius: 8px;
+  padding-left: 8px;
+  display: flex;
+  align-items: center;
+}
+
+.addMatch {
+  position: absolute;
+  height: 12%;
+  width: 12%;
+  top: 2%;
+  right: 2%;
+  background-color: var(--groen4);
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.add {
+  padding: 5px;
+}
+
+.mtaal {
+  overflow-wrap: anywhere;
+  position: absolute;
+  top: 16%;
+  left: 2%;
+}
+
+details.mtaal > summary {
+  order: 1;
+  list-style: none; /* standaard marker weg */
+  position: relative;
+  padding-left: 20px;
+  cursor: pointer;
+}
+
+details.mtaal > summary::before {
+  content: "▶"; /* pijl naar rechts */
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%) rotate(0deg);
+  transition: transform 0.3s ease;
+  font-size: 0.8em;
+  color: var(--base1);
+}
+
+details.mtaal[open] > summary::before {
+  transform: translateY(-50%) rotate(90deg); /* draait pijl naar beneden */
+}
+
+.mgenres {
+  overflow-wrap: anywhere;
+  position: absolute;
+  bottom: 2%;
+  left: 2%;
+}
+
+details.mgenres {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+details.mgenres > summary {
+  order: 1;
+  list-style: none; /* standaard marker weg */
+  position: relative;
+  padding-left: 20px;
+  cursor: pointer;
+}
+
+details.mgenres[open] > summary {
+  order: 0;
+}
+
+details.mgenres > summary::before {
+  content: "▶"; /* pijl naar rechts */
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%) rotate(0deg);
+  transition: transform 0.3s ease;
+  font-size: 0.8em;
+  color: var(--base1);
+}
+
+details.mgenres[open] > summary::before {
+  transform: translateY(-50%) rotate(-90deg); /* draait pijl naar beneden */
+}
+
+details.mgenres[open] ::-webkit-details-marker {
+    transform: rotate(180deg);
+}
+
+.itemsgenre, .itemstaal {
+  color: var(--base1);
+}
+
+.itemsgenre p, .itemstaal p {
+  margin: 0 0 5px;
+  background-color: var(--groen4);
+  width: fit-content;
+  padding: 0 20px 0 5px;
+  text-align: left;
+  border-radius: 5px;
+}
+
+#hiddenChange {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 40%;
+  aspect-ratio: 1.5 / 1;
+  height: auto;
+  content: "";
+  background-color: var(--achtergrond);
+  border-style: none solid solid none;
+  border-color: var(--base1);
+  padding: 20px;
+}
+
+#closeChange {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding: 5px;
+}
+
+.inline {
+  display: inline;
+  margin-left: 10px;
+}
+
+.inline button {
+  padding: 0 6px;
+  font-size: 0.9em;
+  float: right;
+}
+
+#gestuurdeInvites article {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 50px;
+  width: 100%;
+  background-color: var(--groen4);
+  margin-top: 5px;
+  border-radius: 10px;
+}
+
+#gestuurdeInvites article p {
+  margin: 0;
+  height: 40px;
+  padding: 5px;
+  color: var(--base1);
+}
+
+#gekregenInvites article {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 50px;
+  width: 100%;
+  background-color: var(--groen4);
+  margin-top: 5px;
+  border-radius: 10px;  
+}
+
+#gekregenInvites article p {
+  margin: 0;
+  height: 40px;
+  padding: 5px;
+  color: var(--base1);
+}
+
+#mijnVrienden article {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 50px;
+  width: 100%;
+  background-color: var(--groen4);
+  margin-top: 5px;
+  border-radius: 10px;  
+}
+
+#mijnVrienden article p {
+  margin: 0;
+  height: 40px;
+  padding: 5px;
+  color: var(--base1);
+}
+
+.smallAvatar {
+  height: 40px;
+  width: 40px;
+  object-fit: cover;
+  border-radius: 50%; /* optioneel, voor ronde avatar */
+}
+
+#voorkeuren button {
+  float: right;
+}

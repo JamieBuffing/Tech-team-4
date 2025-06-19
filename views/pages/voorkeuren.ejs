@@ -14,7 +14,7 @@
                 <div class="slide active scrollable">
                     <h2>Selecteer je favoriete genres!</h2>
                     <div class="grid genreGrid">
-                        <% genres.forEach((genre, index)=> { %>
+                        <% genresData.forEach((genre, index)=> { %>
                             <label class="genreItem">
                                 <input type="checkbox" name="genres" value="<%= genre.name %>" hidden />
                                 <img src="<%= genre.image %>" alt="<%= genre.name %>" />
@@ -29,7 +29,7 @@
                 <div class="slide">
                     <h2>Selecteer je platforms</h2>
                     <div class="grid smallGrid">
-                        <% platform.forEach((genre, index)=> { %>
+                        <% platformData.forEach((genre, index)=> { %>
                             <label class="platform">
                                 <input type="checkbox" name="platform" value="<%= genre.name %>" hidden />
                                 <img src="<%= genre.image %>" alt="<%= genre.name %>" />
@@ -62,7 +62,7 @@
                             <input type="range" id="rangeMax" name="maxAge" min="12" max="99" value="100"
                                 oninput="updateRange()">
                         </div>
-                        <div>Leeftijdsklasse: <span id="ageRange">12 - 100</span></div>
+                        <div>Leeftijdsklasse: <span id="ageRange">12 - 99</span></div>
                     </div>
                     <div class="checkboxes">
                         <ul>
@@ -76,7 +76,7 @@
                 <div class="slide">
                     <h2>Kies het land waar je vandaan komt</h2>
                     <div class="grid smallGrid">
-                        <% land.forEach((genre, index)=> { %>
+                        <% landData.forEach((genre, index)=> { %>
                             <label class="land">
                                 <input type="radio" name="land" value="<%= genre.name %>" hidden />
                                 <img src="<%= genre.image %>" alt="<%= genre.name %>" />
@@ -91,7 +91,7 @@
                 <div class="slide">
                     <h2>Kies de talen die je spreekt</h2>
                     <div class="grid smallGrid">
-                        <% taal.forEach((genre, index)=> { %>
+                        <% taalData.forEach((genre, index)=> { %>
                             <label class="taal">
                                 <input type="checkbox" name="taal" value="<%= genre.name %>" hidden />
                                 <img src="<%= genre.image %>" alt="<%= genre.name %>" />
