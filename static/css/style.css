@@ -490,18 +490,6 @@ header nav li, header ul li { /* aangepast zodat de ul van de gelikte games werk
 .profielContainer:hover #uitloggen {
   display: block;
 }
-
- 
-.buttons button {
-  padding: 0.75rem 1.5rem;
-  font-size: 1rem;
-  border: 2px solid var(--groen1);
-  background: var(--groen3);
-  color: var(--base2);
-  border-radius: 6px;
-  cursor: pointer;
-}
- 
  
 .list li {
   padding: 0.5rem;
@@ -667,7 +655,7 @@ header nav li img {
   accent-color: var(--roze1);
 }
 
-  .buttons button {
+.buttons button {
   padding: 0.75rem 1.5rem;
   font-size: 1rem;
   border: 2px solid var(--groen1);
@@ -675,6 +663,12 @@ header nav li img {
   color: var(--base2);
   border-radius: 6px;
   cursor: pointer;
+}
+
+.buttons button:hover {
+  background: var(--roze1);
+  border-color: var(--button);
+  box-shadow: 0 0 15px var(--roze1);
 }
   
   .game button:hover {
@@ -687,11 +681,6 @@ header nav li img {
         width: auto;
         float: left;
       }    
-     
-.buttons button:hover {
-  background: var(--groen4);
-  border-color: var(--groen3);
-}
      
 .genreItem img,
 .platform img {
@@ -711,12 +700,6 @@ header nav li img {
   display: block;
   margin-bottom: 0.5rem;
   object-fit: cover;
-}
- 
-.checkboxes label {
-  display: flex;
-  gap: 0.5rem;
-  font-size: 1rem;
 }
  
   /* Light mode */
@@ -809,15 +792,6 @@ header nav li img {
   body.lightMode .friends h2 {
     color: var(--base2);
   }
-
-  
-
-  .buttons button:hover {
-  background: var(--roze1);
-  border-color: var(--button);
-  box-shadow: 0 0 15px var(--roze1);
-}
-  
   
   body.lightMode .filters {
     background-color: var(--sidebar);
@@ -833,24 +807,6 @@ header nav li img {
     box-shadow: 0 0 15px var(--groen3);
     filter: none;
   }
-
-.genreItem img,
-.platform img {
-  width: 100%;
-  height: 150px;
-  border-radius: 8px;
-  margin-bottom: 0.5rem;
-  object-fit: cover;
-}
-
-.land img,
-.taal img {
-  width: 100%;
-  height: 150px;
-  border-radius: 8px;
-  margin-bottom: 0.5rem;
-  object-fit: fill;
-}
 
   body.lightMode .game img, 
   body.lightMode .liked img {
