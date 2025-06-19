@@ -5,33 +5,86 @@
     <title>Home</title>
 </head>
 <body id="home">
-<header>
-    <%- include('../partials/header'); %>
-</header>
-<menu>
-    <p><b>Welkom bij PixelPair</b> <br>
-        Jij brengt de controller, wij brengen de connectie!
-    </p>
-<ul>
-    <li><a href="/login">Maak account aan</a></li>
-    <li><a href="/games">Bekijk games</a></li>
-</ul>
-</menu>
-<main>
-    <div class="bannerWrapper">
-      <!-- Ondergrond afbeelding (het hele voorblad met nepknop) -->
-      <img src="/images/voorbladIMG.png" alt="..." class="banner">
-  
-      <!-- Losse afbeelding van de echte klikbare knop -->
-      <a href="/login" class="joinButton">
-        <img src="/images/homeButton.png" alt="Join Now knop">
-      </a>
+    <header>
+        <%- include('../partials/header'); %>
+    </header>
+    <menu>
+        <p><b>Welkom bij PixelPair</b> <br>
+            Jij brengt de controller, wij brengen de connectie!
+        </p>
+    <ul>
+        <li><a href="/login">Maak account aan</a></li>
+        <li><a href="/games">Bekijk games</a></li>
+    </ul>
+
+    <div class="floatingIcon">
+      <img src="/images/favicon.png" alt="Zwevende gamecontroller">
     </div>
-  </main>
-  
-<footer>
-    <%- include('../partials/footer'); %>
-</footer>
-<script src="/darkLight.js"></script>
-</body>
-</html>
+
+    <div class="pixelFloatZone">
+      <div class="pixel pixel1"></div>
+      <div class="pixel pixel2"></div>
+      <div class="pixel pixel3"></div>
+      <div class="pixel pixel4"></div>
+      <div class="pixel pixel5"></div>
+      <div class="pixel pixel6"></div>
+    </div>
+    
+    </menu>
+    <main>
+        <div class="bannerWrapper">
+          <img src="/images/voorbladIMG.png" alt="Banner afbeelding" class="banner">
+          <a href="/login" class="joinButton">
+            <img src="/images/homeButton.png" alt="Join Now knop">
+          </a>
+        </div>
+
+        <section class="features">
+            <div class="featureItem">
+                <img src="/images/favicon.png" alt="Pixel-art icoon van een gamecontroller, voor dat je samen kan gamen">
+              <h3>Speel met vrienden</h3>
+              <p>Verbind en speel samen met je vrienden online.</p>
+            </div>
+            <div class="featureItem">
+                <img src="/images/peopleHome.png" alt="Pixel-art icoon met twee kleurrijke poppetjes die elkaar begroeten, symbool voor het ontmoeten van nieuwe mensen en persoonlijk matchen.">
+              <h3>Ontmoet nieuwe mensen</h3>
+              <p>Personaliseer en match!</p>
+            </div>
+            <div class="featureItem">
+                <img src="/images/lockHome.png" alt="Pixel-art icoon van een sleutelslot, die toegang tot exclusieve games vertegenwoordigt.">
+              <h3>Exclusieve content</h3>
+              <p>Krijg toegang tot unieke games. </p>
+            </div>
+            <div class="featureItem">
+                <img src="/images/securityHome.png" alt="Pixel-art icoon van een gesloten schild, dat symbool staat voor veiligheid en betrouwbaarheid.">
+              <h3>Veilig en snel</h3>
+              <p>Een betrouwbaar platform waar jouw data veilig is.</p>
+            </div>
+          </section>
+
+          <section class="overOns">
+            <h2>Over ons</h2>
+            <p> <b>Welkom bij Pixel Pair, dé plek waar gameliefhebbers elkaar vinden!</b> <br>
+
+              Maak kennis met andere spelers, ontdek exclusieve games en start je volgende avontuur samen. Personaliseer je profiel, vind jouw perfecte match en speel wanneer jij wilt.
+              Of je nu houdt van retro pixelgames of de nieuwste co-op uitdagingen, hier begint jouw digitale klik! <br> <br>  
+              Level up je sociale game. Word vandaag nog lid van Pixel Pair!</p>
+              <div class="pixelArrow"></div>
+
+              <a href="/login">Word lid!</a>
+              
+          </section>
+        <section>
+            <h2>Populaire games</h2>
+            <div id="populaireGames"></div>
+        </section>
+        <a href="/hulp">Hulp pagina</a>
+      </main>
+    
+    <script src="/home.js"></script>
+    <footer>
+        <%- include('../partials/footer'); %>
+    </footer>
+    <script src="/darkLight.js"></script>
+    </body>
+    </html>
