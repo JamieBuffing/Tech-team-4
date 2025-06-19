@@ -1105,24 +1105,6 @@ Problemen die zijn opgelost:
   max-height: 300px;
 }
 
-.smallGrid {
-  grid-template-columns: repeat(5, 1fr);
-  max-height: 300px;
-  overflow-y: auto;
-}
-
-.gameGrid,
-#gameResults {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
-  padding: 1rem;
-  max-height: 350px;
-  overflow-y: auto;
-  width: 100%;
-  box-sizing: border-box;
-}
-
 .genreItem,
 .platform,
 .land,
@@ -1154,23 +1136,6 @@ Problemen die zijn opgelost:
 .taal:has(input:checked) {
   border-color: var(--roze1);
   background-color: var(--button);
-}
- 
-#gameSearchInput {
-  width: 100%;
-  max-width: 400px;
-  padding: 0.75rem 1rem;
-  margin: 1rem auto 0.5rem;
-  display: block;
-  border-radius: 8px;
-  border: 2px solid var(--groen1);
-  background-color: var(--achtergrond);
-  color: var(--base1);
-}
- 
-#zoekGame:hover {
-  background-color: var(--groen4);
-  border-color: var(--groen2);
 }
 
 .rangeContainer {
