@@ -110,3 +110,8 @@ async function openOverlay(game) {
   // Toon overlay
   overlay.style.display = 'flex';
 }
+
+// Sluitknop eventlistener
+document.getElementById('sluitOverlay').addEventListener('click', () => {
+  document.getElementById('overlay').style.display = 'none';
+});

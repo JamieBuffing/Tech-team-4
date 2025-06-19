@@ -54,13 +54,14 @@
     border-color: var(--groen1);
     padding: 10px;
     overflow-wrap: anywhere;
+    overflow-y: scroll;
   }
-
+ 
   menu p b {
     font-size: 1.5em;
     color: #fff;
   }
-
+ 
   menu p {
     padding-top: 1em;
     color: var(--roze1);
@@ -74,40 +75,40 @@
     border-style: solid none solid solid;
     border-color: var(--groen1);
     padding: 20px;
-} 
-
+}
+ 
 header nav a,  ul li a{
     text-decoration: none;
     color: #000;
 }
-
+ 
 #home menu {
   text-align: center;
 }
-
+ 
 #home main {
   padding: 0;
 }
-
+ 
 #home main>img:nth-of-type(1){
   width: 100%;
   height: 80%;
   display: block;
   z-index: 1;
 }
-
+ 
 .bannerWrapper {
   position: relative;
   width: 100%;
   margin: 0 auto;
 }
-
+ 
 .bannerWrapper img.banner {
   width: 100%;
   height: 80%;
   display: block;
 }
-
+ 
 .joinButton {
   position: absolute;
   top: 30%;   
@@ -115,36 +116,36 @@ header nav a,  ul li a{
   transform: translate(-50%, -50%);
   width: 39%;  
 }
-
+ 
 .joinButton img {
   width: 100%;
   height: 60%;
   display: block;
 }
-
+ 
 .joinButton img:hover {
   cursor: pointer;
   scale: 1.05;
 }
-
+ 
 menu ul li {
   display: flex;
   flex-direction: column;
   margin: 2em 1em;
 }
-
+ 
 .game form input{
     position: absolute;
     right: 5px;
     bottom: 5px;
 }
-
+ 
 header nav a, #uitloggen input {
         text-decoration: none;
         color: var(--base2);
         font-size: 1em;
       }
-
+ 
 #butInloggen {
     z-index: 2;
     background-color: #2e2e2e;
@@ -160,28 +161,28 @@ header nav a, #uitloggen input {
     -ms-overflow-style: none;
     scrollbar-width: none;
 }
-
+ 
 #butInloggen a {
     color: white;
     text-decoration: none;
 }
-
+ 
 #butInloggen input {
     background: none;
     border: none;
     color: white;
     font: inherit;
 }
-
- #butInloggen:hover {
+ 
+#butInloggen:hover {
     cursor: pointer;
     background-color: var(--roze1);
   }
-
+ 
 #butInloggen::-webkit-scrollbar {
   display: none;
 }  
-
+ 
   footer {
     display: grid;
     grid-area: 3 / 2 / 4 / 4;
@@ -190,7 +191,7 @@ header nav a, #uitloggen input {
     border-color: var(--groen1);
     padding: 10px;
 }
-
+ 
 #contentBlok {
     position: absolute;
     width: fit-content;
@@ -202,32 +203,32 @@ header nav a, #uitloggen input {
     background-color: var(--achtergrond2);
     border-radius: 2vw;
 }
-
+ 
 #contentBlok form {
     margin-left: auto;
     margin-right: auto;
 }
-
+ 
 #contentBlok input {
     width: -webkit-fill-available;
     color: var(--base2);
 }
-
+ 
 #contentBlok input[type="radio"] {
     width: auto; /* radios usually don't need width set */
     accent-color: var(--base2); /* modern way to set radio color */
 }
-
+ 
 #contentBlok #showpass {
     width: auto;
     float: left;
 }
-
+ 
 #contentBlok #rshowpass {
     width: auto;
     float: left;
 }
-
+ 
 body.lightMode h1 {
     color: #000;
   }
@@ -236,15 +237,15 @@ body.lightMode h1 {
     text-align: center;
     margin-bottom: 50px;
 }
-
+ 
 #login {
     display: block;
 }
-
+ 
 #registreren {
     display: none;
 }
-
+ 
 #login input {
     color: #444242;
 }
@@ -252,7 +253,7 @@ body.lightMode h1 {
 #contentblok h1 {
     padding: 0 0.3em;
 }
-
+ 
 header nav li, ul li {
     list-style-type: none;
     display: inline-flex;
@@ -264,7 +265,7 @@ header nav li, ul li {
     align-items: center;
     justify-content: center;
 }
-
+ 
 .buttons button {
   padding: 0.75rem 1.5rem;
   font-size: 1rem;
@@ -274,25 +275,25 @@ header nav li, ul li {
   border-radius: 6px;
   cursor: pointer;
 }
-
-
+ 
+ 
 .list li {
   padding: 0.5rem;
   border-bottom: 1px solid #eee;
 }
-
+ 
 header nav li:last-of-type {
     float: right;
     overflow: visible;
     border-radius: 0;
     background-color: transparent;
 }
-
+ 
 header nav li img {
     height: 210%;
     aspect-ratio: inherit;
 }
-
+ 
       header nav {
         display: flex;
         align-items: center;
@@ -304,9 +305,8 @@ header nav li img {
         display: flex;
         align-content: center;
       }
-
+ 
       header nav li:hover, ul li:hover {
-      header nav li:hover {
       cursor: pointer;
       transform: scale(1.10);
       background-color: var(--roze1);
@@ -317,11 +317,11 @@ header nav li img {
         height: 3em;
         margin: 0.3em;
       }
-
+ 
       header nav h1 {
         margin-right: auto;
       }
-
+ 
       header nav h1:hover {
         transform: scale(1.05);
         cursor: pointer;
@@ -334,7 +334,7 @@ header nav li img {
      
   
   /* Games & filters */
-
+ 
   .filters {
     width: 98%;
     display: flex;
@@ -349,7 +349,7 @@ header nav li img {
     top: 0;
     position: sticky;
   }
-
+ 
   .filters h2 {
     font-size: 20px;
     color: var(--roze1);
@@ -453,7 +453,7 @@ header nav li img {
   margin-bottom: 0.5rem;
   object-fit: cover;
   }
-
+ 
 .land img,
 .taal img {
   width: 100%;
@@ -463,19 +463,19 @@ header nav li img {
   margin-bottom: 0.5rem;
   object-fit: cover;
 }
-
+ 
 .checkboxes label {
   display: flex;
   gap: 0.5rem;
   font-size: 1rem;
 }
-
+ 
   /* Light mode */
   body.lightMode {
     background-color: #f6f9f8;
     color: var(--base2);
   }
-
+ 
   body.lightMode header,
   body.lightMode menu {
     background-color: var(--light-menu);
@@ -608,7 +608,7 @@ header nav li img {
     grid-template: 1fr / 1fr 1fr 4fr;
     padding: 1vw;
 }
-
+ 
 .genreItem {
   text-align: center;
   cursor: pointer;
@@ -618,7 +618,7 @@ header nav li img {
   transition: border 0.2s;
   background-color: var(--achtergrond);
 }
-
+ 
 .land,
 .taal,
 .platform {
@@ -630,7 +630,7 @@ header nav li img {
   transition: border 0.2s;
   background-color: var(--achtergrond);
 }
-
+ 
 .taal:hover,
 .land:hover,
 .platform:hover,
@@ -638,7 +638,7 @@ header nav li img {
   border-color: var(--groen4);
   background-color: var(--groen3);
 }
-
+ 
 .genreItem:has(input[name="selectedGames"]:checked),
 .taal:has(input[name="taal"]:checked),
 .land:has(input[name="land"]:checked),
@@ -656,7 +656,7 @@ header nav li img {
     border-radius: 50%;
     border: solid;
 }
-
+ 
 .matchingContainer {
     width: 50vw;
     height: 50vh;
@@ -668,36 +668,36 @@ header nav li img {
     border-radius: 2vw;
     display: flex;
     flex-direction: column;
-    justify-content: space-between; 
+    justify-content: space-between;
 }
-
+ 
 .carousel {
   overflow: hidden;
   position: relative;
   flex-grow: 1;
 }
-
+ 
 .slide {
   display: none;
   transition: all 0.3s ease;
   text-align: center;
 }
-
+ 
 .slide.active {
   display: block;
 }
-
+ 
 .grid {
   display: grid;
   gap: 1rem;
   padding: 1rem;
 }
-
+ 
 .genreGrid {
   grid-template-columns: repeat(5, 1fr);
   max-height: 18.75rem;
 }
-
+ 
 .gameGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -706,14 +706,14 @@ header nav li img {
   max-height: 18.75rem;
   overflow-y: scroll;
 }
-
-
+ 
+ 
 .smallGrid {
   grid-template-columns: repeat(5, 1fr);
   overflow-y: scroll;
   max-height: 18.75rem;
 }
-
+ 
 .search {
   width: 100%;
   padding: 0.75rem;
@@ -722,18 +722,18 @@ header nav li img {
   border: 1px solid var(--groen1);
   background-color: var(--achtergrond);
 }
-
+ 
 .search::placeholder {
   color: #ccc;
 }
-
+ 
 #gamesSection {
   display: flex;
   flex-direction: column;
   align-items: center;
   height: 100%;
 }
-
+ 
 #gameResults {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -744,7 +744,7 @@ header nav li img {
   width: 100%;
   box-sizing: border-box;
 }
-
+ 
 #gameSearchInput {
   width: 100%;
   max-width: 400px;
@@ -758,7 +758,7 @@ header nav li img {
   margin-top: 1rem;
   
 }
-
+ 
 #zoekGame {
   padding: 0.75rem 1.25rem;
   border-radius: 8px;
@@ -770,67 +770,67 @@ header nav li img {
   cursor: pointer;
   transition: 0.2s ease;
 }
-
+ 
 #zoekGame:hover {
   background-color: var(--groen4);
   border-color: var(--groen2);
 }
-
+ 
 #gameSearchInput::placeholder {
   color: #ccc;
 }
-
-.rangeContainer { 
+ 
+.rangeContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-top: 3rem;
   margin-bottom: 2.5rem;
 }
-
+ 
 .rangeContainer input[type="range"] {
   width: 100%;
   margin-bottom: 0.5rem;
 }
-
+ 
 .rangeContainer div {
   font-weight: bold;
 }
-
+ 
 .checkboxes {
   display: flex;
   flex-direction: row;
   justify-content: center;
   gap: 0.75rem;
 }
-
+ 
 .checkboxes ul {
   display: flex;
   flex-direction: column;
   gap: .5em;
   list-style-type: none;
 }
-
+ 
 .dualSearch {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
   margin-top: 2.5rem;
 }
-
+ 
 .buttons {
   display: flex;
   justify-content: space-between;
   padding: 1rem 0 0;  
 }
-
+ 
 .buttons .left,
 .buttons .right {
   display: flex;
   gap: 1rem;
 }
-
-
+ 
+ 
 .scrollable {
   overflow-y: scroll;
   max-height: 400px;
@@ -847,7 +847,7 @@ justify-content: center;
 z-index: 0;
 isolation: isolate;
 }
-
+ 
 .dualRange::before {
   content: '';
   position: absolute;
@@ -860,7 +860,7 @@ isolation: isolate;
   border-radius: 3px;
   z-index: 1;
 }
-
+ 
 .dualRange input[type="range"] {
   position: absolute;
   top: 50%;
@@ -871,7 +871,7 @@ isolation: isolate;
   background: transparent;
   z-index: 3;
 }
-
+ 
 .dualRange input[type="range"]::-webkit-slider-thumb {
   pointer-events: all;
   appearance: none;
@@ -884,17 +884,17 @@ isolation: isolate;
   z-index: 100;
   margin-top: -7px;
   }
-
+ 
 input[type="range"]:nth-of-type(1)::-webkit-slider-thumb {
   z-index: 100;
   position: relative;
 }
-
+ 
 input[type="range"]:nth-of-type(2)::-webkit-slider-thumb {
   z-index: 4;
   position: relative;
 }
-
+ 
   .dualRange input[type="range"]::-webkit-slider-runnable-track {
   height: 6px;
   background: #ccc;
@@ -902,7 +902,7 @@ input[type="range"]:nth-of-type(2)::-webkit-slider-thumb {
   position: relative;
   z-index: 1;
 }
-
+ 
 .dualRange input[type="range"]::-moz-range-thumb {
   height: 20px;
   width: 20px;
@@ -910,23 +910,267 @@ input[type="range"]:nth-of-type(2)::-webkit-slider-thumb {
   background: var(--groen1);
   border: none;
 }
-
+ 
 .dualRange input[type="range"]::-moz-range-track {
   height: 6px;
   background: #ccc;
   border-radius: 3px;
 }
-
+ 
 menu summary {
   width: 100%;
   padding: 5px;
   border-radius: 10px;
   background-color: var(--groen4);
 }
-
+ 
 menu details {
   width: 90%;
   margin: 25px auto 0;
   position: static;
   height: fit-content;
+}
+
+#matches {
+  top: 10vh;
+  width: 100%;
+  height: 40%;
+  min-height: 300px;
+  position: absolute;
+  border-style: solid none;
+  overflow: auto hidden;
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  padding: 16px;
+  box-sizing: border-box;
+  align-items: center;
+}
+
+.match {
+  flex: 0 0 auto;
+  height: 90%;
+  aspect-ratio: 1 / 1;
+  background-color: #797979;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  filter: grayscale(50%);
+  border-radius: 8px;
+}
+
+.match h3 {
+  position: absolute;
+  top: 2%;
+  left: 2%;
+  width: 82%;
+  height: auto;
+  margin-right: 10px;
+  overflow: hidden;
+  text-align: left;
+  background-color: var(--groen4);
+  border-radius: 8px;
+  padding-left: 8px;
+  display: flex;
+  align-items: center;
+}
+
+.addMatch {
+  position: absolute;
+  height: 12%;
+  width: 12%;
+  top: 2%;
+  right: 2%;
+  background-color: var(--groen4);
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.add {
+  padding: 5px;
+}
+
+.mtaal {
+  overflow-wrap: anywhere;
+  position: absolute;
+  top: 16%;
+  left: 2%;
+}
+
+details.mtaal > summary {
+  order: 1;
+  list-style: none; /* standaard marker weg */
+  position: relative;
+  padding-left: 20px;
+  cursor: pointer;
+}
+
+details.mtaal > summary::before {
+  content: "▶"; /* pijl naar rechts */
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%) rotate(0deg);
+  transition: transform 0.3s ease;
+  font-size: 0.8em;
+  color: var(--base1);
+}
+
+details.mtaal[open] > summary::before {
+  transform: translateY(-50%) rotate(90deg); /* draait pijl naar beneden */
+}
+
+.mgenres {
+  overflow-wrap: anywhere;
+  position: absolute;
+  bottom: 2%;
+  left: 2%;
+}
+
+details.mgenres {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+details.mgenres > summary {
+  order: 1;
+  list-style: none; /* standaard marker weg */
+  position: relative;
+  padding-left: 20px;
+  cursor: pointer;
+}
+
+details.mgenres[open] > summary {
+  order: 0;
+}
+
+details.mgenres > summary::before {
+  content: "▶"; /* pijl naar rechts */
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%) rotate(0deg);
+  transition: transform 0.3s ease;
+  font-size: 0.8em;
+  color: var(--base1);
+}
+
+details.mgenres[open] > summary::before {
+  transform: translateY(-50%) rotate(-90deg); /* draait pijl naar beneden */
+}
+
+details.mgenres[open] ::-webkit-details-marker {
+    transform: rotate(180deg);
+}
+
+.itemsgenre, .itemstaal {
+  color: var(--base1);
+}
+
+.itemsgenre p, .itemstaal p {
+  margin: 0 0 5px;
+  background-color: var(--groen4);
+  width: fit-content;
+  padding: 0 20px 0 5px;
+  text-align: left;
+  border-radius: 5px;
+}
+
+#hiddenChange {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 40%;
+  aspect-ratio: 1.5 / 1;
+  height: auto;
+  content: "";
+  background-color: var(--achtergrond);
+  border-style: none solid solid none;
+  border-color: var(--base1);
+  padding: 20px;
+}
+
+#closeChange {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding: 5px;
+}
+
+.inline {
+  display: inline;
+  margin-left: 10px;
+}
+
+.inline button {
+  padding: 0 6px;
+  font-size: 0.9em;
+  float: right;
+}
+
+#gestuurdeInvites article {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 50px;
+  width: 100%;
+  background-color: var(--groen4);
+  margin-top: 5px;
+  border-radius: 10px;
+}
+
+#gestuurdeInvites article p {
+  margin: 0;
+  height: 40px;
+  padding: 5px;
+  color: var(--base1);
+}
+
+#gekregenInvites article {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 50px;
+  width: 100%;
+  background-color: var(--groen4);
+  margin-top: 5px;
+  border-radius: 10px;  
+}
+
+#gekregenInvites article p {
+  margin: 0;
+  height: 40px;
+  padding: 5px;
+  color: var(--base1);
+}
+
+#mijnVrienden article {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 50px;
+  width: 100%;
+  background-color: var(--groen4);
+  margin-top: 5px;
+  border-radius: 10px;  
+}
+
+#mijnVrienden article p {
+  margin: 0;
+  height: 40px;
+  padding: 5px;
+  color: var(--base1);
+}
+
+.smallAvatar {
+  height: 40px;
+  width: 40px;
+  object-fit: cover;
+  border-radius: 50%; /* optioneel, voor ronde avatar */
+}
+
+#voorkeuren button {
+  float: right;
 }
