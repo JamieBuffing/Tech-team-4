@@ -11,7 +11,7 @@
         <form id="carouselForm" method="POST" action="/submit">
             <div class="carousel">
                 <!-- Slide 1: Genre selectie -->
-                <div class="slide active scrollable">
+                <div class="slide active">
                     <h2>Selecteer je favoriete genres!</h2>
                     <div class="grid genreGrid">
                         <% genres.forEach((genre, index)=> { %>
@@ -28,7 +28,7 @@
                 <!-- Slide 2: Platform selectie -->
                 <div class="slide">
                     <h2>Selecteer je platforms</h2>
-                    <div class="grid smallGrid">
+                    <div class="grid genreGrid">
                         <% platform.forEach((genre, index)=> { %>
                             <label class="platform">
                                 <input type="checkbox" name="platform" value="<%= genre.name %>" hidden />
@@ -60,8 +60,7 @@
                             <div class="sliderContainer">
                             <input type="range" id="rangeMin" name="minAge" min="18" max="100" value="18"
                                 oninput="updateRange()">
-                                </div>
-                                <div class="sliderContainer">
+                                
                             <input type="range" id="rangeMax" name="maxAge" min="18" max="100" value="100"
                                 oninput="updateRange()">
                                 </div>
@@ -82,7 +81,7 @@
                 <!-- Slide 5: Land kiezen -->
                 <div class="slide">
                     <h2>Kies het land waar je vandaan komt</h2>
-                    <div class="grid smallGrid">
+                    <div class="grid genreGrid">
                         <% land.forEach((genre, index)=> { %>
                             <label class="land">
                                 <input type="radio" name="land" value="<%= genre.name %>" hidden />
@@ -97,7 +96,7 @@
                 <!--Slide 6: gesproken talen kiezen -->
                 <div class="slide">
                     <h2>Kies de talen die je spreekt</h2>
-                    <div class="grid smallGrid">
+                    <div class="grid genreGrid">
                         <% taal.forEach((genre, index)=> { %>
                             <label class="taal">
                                 <input type="checkbox" name="taal" value="<%= genre.name %>" hidden />
@@ -113,7 +112,6 @@
 
             <!-- Carousel nav buttons -->
             <div class="buttons">
-
                     <div class="left">
                         <button type="button" id="prevBtn" style="display: none;">Previous</button>
                     </div>
@@ -196,40 +194,8 @@
     }
 });
     </script>
-
-    <!-- <script>
-
-        document.getElementById('gameSearchForm').addEventListener('click', async function (e) {
-            e.preventDefault();
-            const query = document.getElementById('gameSearchInput').value;
-            const resultsDiv = document.getElementById('gameResults');
-            resultsDiv.innerHTML = "Laden...";
-
-            try {
-                const res = await fetch(`/api/games?search=${encodeURIComponent(query)}`);
-                const data = await res.json();
-                resultsDiv.innerHTML = '';
-
-                if (data.results && data.results.length > 0) {
-                    data.results.forEach(game => {
-                        const label = document.createElement('label');
-                        label.classList.add('genreItem'); // zelfde styling als genres
-                        label.innerHTML = `
-            <input type="checkbox" name="selectedGames" value="${game.id}" hidden />
-            <img src="${game.background_image}" alt="${game.name}" />
-            <span>${game.name}</span>
-          `;
-                        resultsDiv.appendChild(label);
-                    });
-                } else {
-                    resultsDiv.innerHTML = 'Geen resultaten gevonden.';
-                }
-            } catch (err) {
-                console.error(err);
-                resultsDiv.innerHTML = 'Fout bij het ophalen van games.';
-            }
-        });
-    </script> -->
+    <script src="/darkLight.js">
+    </script>
 </body>
 
 </html>
