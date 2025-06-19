@@ -1314,7 +1314,7 @@ menu details {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  filter: grayscale(50%);
+  filter: grayscale(10%);
   border-radius: 8px;
 }
 
