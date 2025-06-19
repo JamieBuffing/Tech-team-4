@@ -54,6 +54,7 @@
     border-color: var(--groen1);
     padding: 10px;
     overflow-wrap: anywhere;
+    overflow-y: scroll;
   }
  
   menu p b {
@@ -1004,4 +1005,247 @@ menu details {
   position: static;
   height: fit-content;
 }
- 
+
+#matches {
+  top: 10vh;
+  width: 100%;
+  height: 40%;
+  min-height: 300px;
+  position: absolute;
+  border-style: solid none;
+  overflow: auto hidden;
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  padding: 16px;
+  box-sizing: border-box;
+  align-items: center;
+}
+
+.match {
+  flex: 0 0 auto;
+  height: 90%;
+  aspect-ratio: 1 / 1;
+  background-color: #797979;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  filter: grayscale(50%);
+  border-radius: 8px;
+}
+
+.match h3 {
+  position: absolute;
+  top: 2%;
+  left: 2%;
+  width: 82%;
+  height: auto;
+  margin-right: 10px;
+  overflow: hidden;
+  text-align: left;
+  background-color: var(--groen4);
+  border-radius: 8px;
+  padding-left: 8px;
+  display: flex;
+  align-items: center;
+}
+
+.addMatch {
+  position: absolute;
+  height: 12%;
+  width: 12%;
+  top: 2%;
+  right: 2%;
+  background-color: var(--groen4);
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.add {
+  padding: 5px;
+}
+
+.mtaal {
+  overflow-wrap: anywhere;
+  position: absolute;
+  top: 16%;
+  left: 2%;
+}
+
+details.mtaal > summary {
+  order: 1;
+  list-style: none; /* standaard marker weg */
+  position: relative;
+  padding-left: 20px;
+  cursor: pointer;
+}
+
+details.mtaal > summary::before {
+  content: "▶"; /* pijl naar rechts */
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%) rotate(0deg);
+  transition: transform 0.3s ease;
+  font-size: 0.8em;
+  color: var(--base1);
+}
+
+details.mtaal[open] > summary::before {
+  transform: translateY(-50%) rotate(90deg); /* draait pijl naar beneden */
+}
+
+.mgenres {
+  overflow-wrap: anywhere;
+  position: absolute;
+  bottom: 2%;
+  left: 2%;
+}
+
+details.mgenres {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+details.mgenres > summary {
+  order: 1;
+  list-style: none; /* standaard marker weg */
+  position: relative;
+  padding-left: 20px;
+  cursor: pointer;
+}
+
+details.mgenres[open] > summary {
+  order: 0;
+}
+
+details.mgenres > summary::before {
+  content: "▶"; /* pijl naar rechts */
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%) rotate(0deg);
+  transition: transform 0.3s ease;
+  font-size: 0.8em;
+  color: var(--base1);
+}
+
+details.mgenres[open] > summary::before {
+  transform: translateY(-50%) rotate(-90deg); /* draait pijl naar beneden */
+}
+
+details.mgenres[open] ::-webkit-details-marker {
+    transform: rotate(180deg);
+}
+
+.itemsgenre, .itemstaal {
+  color: var(--base1);
+}
+
+.itemsgenre p, .itemstaal p {
+  margin: 0 0 5px;
+  background-color: var(--groen4);
+  width: fit-content;
+  padding: 0 20px 0 5px;
+  text-align: left;
+  border-radius: 5px;
+}
+
+#hiddenChange {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 40%;
+  aspect-ratio: 1.5 / 1;
+  height: auto;
+  content: "";
+  background-color: var(--achtergrond);
+  border-style: none solid solid none;
+  border-color: var(--base1);
+  padding: 20px;
+}
+
+#closeChange {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding: 5px;
+}
+
+.inline {
+  display: inline;
+  margin-left: 10px;
+}
+
+.inline button {
+  padding: 0 6px;
+  font-size: 0.9em;
+  float: right;
+}
+
+#gestuurdeInvites article {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 50px;
+  width: 100%;
+  background-color: var(--groen4);
+  margin-top: 5px;
+  border-radius: 10px;
+}
+
+#gestuurdeInvites article p {
+  margin: 0;
+  height: 40px;
+  padding: 5px;
+  color: var(--base1);
+}
+
+#gekregenInvites article {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 50px;
+  width: 100%;
+  background-color: var(--groen4);
+  margin-top: 5px;
+  border-radius: 10px;  
+}
+
+#gekregenInvites article p {
+  margin: 0;
+  height: 40px;
+  padding: 5px;
+  color: var(--base1);
+}
+
+#mijnVrienden article {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 50px;
+  width: 100%;
+  background-color: var(--groen4);
+  margin-top: 5px;
+  border-radius: 10px;  
+}
+
+#mijnVrienden article p {
+  margin: 0;
+  height: 40px;
+  padding: 5px;
+  color: var(--base1);
+}
+
+.smallAvatar {
+  height: 40px;
+  width: 40px;
+  object-fit: cover;
+  border-radius: 50%; /* optioneel, voor ronde avatar */
+}
+
+#voorkeuren button {
+  float: right;
+}
