@@ -55,7 +55,13 @@
     padding: 10px;
     overflow-wrap: anywhere;
     overflow-y: scroll;
-  }
+ scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+}
+
+menu::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
  
   menu p b {
     font-size: 1.5em;
