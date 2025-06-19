@@ -12,16 +12,16 @@
     --button: #EFBADE;
     --light-menu: #a4d8cc;
     --sidebar: #62bfa8;
-    
+   
   }
-  
+ 
   * {
     margin: 0;
     padding: 0;
     transition: background-color 0.3s ease, color 0.3s ease;
     box-sizing: border-box;
   }
-  
+ 
   body {
     height: 100vh;
     width: 100vw;
@@ -31,11 +31,11 @@
     color: var(--base1);
     background-color: var(--achtergrond);
   }
-  
+ 
   h1 {
     color: white;
   }
-  
+ 
   header {
     display: grid;
     grid-area: 1 / 1 / 2 / 4;
@@ -43,7 +43,7 @@
     border-color: var(--groen1);
     background-color: var(--menus);
   }
-  
+ 
   menu {
     position: relative;
     grid-area: 2 / 1 / 4 / 2;
@@ -66,7 +66,7 @@
     padding-top: 1em;
     color: var(--roze1);
   }
-  
+ 
   main {
     display: grid;
     position: relative;
@@ -111,7 +111,7 @@ header nav a,  ul li a{
  
 .joinButton {
   position: absolute;
-  top: 30%;   
+  top: 30%;  
   left: 50%;
   transform: translate(-50%, -50%);
   width: 39%;  
@@ -232,7 +232,7 @@ header nav a, #uitloggen input {
 body.lightMode h1 {
     color: #000;
   }
-  
+ 
 #contentBlok h1 {
     text-align: center;
     margin-bottom: 50px;
@@ -249,7 +249,7 @@ body.lightMode h1 {
 #login input {
     color: #444242;
 }
-  
+ 
 #contentblok h1 {
     padding: 0 0.3em;
 }
@@ -300,7 +300,7 @@ header nav li img {
         top: 0;
         justify-content: flex-end;
       }
-      
+     
       header nav ul {
         display: flex;
         align-content: center;
@@ -312,7 +312,7 @@ header nav li img {
       background-color: var(--roze1);
       box-shadow: 0 0 15px var(--roze1);
       }
-      
+     
       header nav img {
         height: 3em;
         margin: 0.3em;
@@ -326,13 +326,13 @@ header nav li img {
         transform: scale(1.05);
         cursor: pointer;
       }
-      
+     
       #uitloggen input {
         background: none;
         border: none;
       }
      
-  
+ 
   /* Games & filters */
  
   .filters {
@@ -354,7 +354,7 @@ header nav li img {
     font-size: 20px;
     color: var(--roze1);
   }
-  
+ 
   .filters label {
     display: flow-root;
     margin-bottom: 0.5em;
@@ -362,12 +362,12 @@ header nav li img {
     font-size: 15px;
     accent-color: var(--roze1);
   }
-  
+ 
   #genreFilters,
   #platformFilters {
     margin: 0.5em 0 1em;
   }
-  
+ 
   #games {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -376,7 +376,7 @@ header nav li img {
     gap: 2em 0.5em;
     align-items: stretch;
   }
-  
+ 
   .game {
     background-color: var(--base2);
     color: var(--base1);
@@ -393,11 +393,11 @@ header nav li img {
     position: relative;
     min-height: 22em;
   }
-  
+ 
   .game:hover {
     transform: scale(1.07);
   }
-  
+ 
   .game img {
     width: 200px;
     height: 110px;
@@ -408,7 +408,7 @@ header nav li img {
     margin-bottom: 1.2em;
     filter: none;
   }
-  
+ 
   .game button {
     background-color: var(--roze1);
     padding: 0.5em;
@@ -427,23 +427,23 @@ header nav li img {
     cursor: pointer;
     transition: background-color 0.3s ease;
   }
-  
+ 
   .game button:hover {
     background-color: var(--groen4);
     box-shadow: 0 0 15px var(--groen3);
   }
-      
+     
       #contentBlok #showpass,
       #contentBlok #rshowpass {
         width: auto;
         float: left;
       }    
-      
+     
 .buttons button:hover {
   background: var(--groen4);
   border-color: var(--groen3);
 }
-      
+     
 .genreItem img,
 .platform img {
   width: 100%;
@@ -482,37 +482,37 @@ header nav li img {
     border-color: var(--roze1);
     color: var(--base2);
   }
-  
+ 
   body.lightMode main {
     background-color: var(--base1);
     border-color: var(--roze1);
     color: var(--base2);
   }
-  
+ 
   body.lightMode footer {
     background-color: var(--light-menu);
     border-color: var(--roze1);
     color: var(--base2);
   }
-  
+ 
   body.lightMode #contentBlok {
     background-color: #b8e0d6;
     border-color: var(--groen2);
     color: var(--base2);
   }
-  
+ 
   body.lightMode #login input,
   body.lightMode .filters h2,
   body.lightMode .filters label {
     color: var(--base2);
   }
-  
+ 
   body.lightMode .filters {
     background-color: var(--sidebar);
     border: 2px dashed var(--roze1);
     color: var(--base2);
   }
-  
+ 
   body.lightMode .game {
     background-color: #bbdcd3;
     border-color: var(--groen2);
@@ -520,22 +520,22 @@ header nav li img {
     box-shadow: 0 0 15px var(--groen3);
     filter: none;
   }
-  
+ 
   body.lightMode .game img {
     border: 2px solid var(--roze1);
     filter: grayscale(30%);
   }
-  
+ 
   body.lightMode .game button {
     background-color: var(--groen2);
     color: #f0f0f0;
   }
-  
+ 
   body.lightMode .game button:hover {
     background-color: var(--roze1);
     box-shadow: 0 0 15px var(--roze1);
   }
-  
+ 
   .toggleMode {
     font-family: 'Press Start 2P', cursive;
     font-size: 10px;
@@ -551,13 +551,13 @@ header nav li img {
     cursor: pointer;
     box-shadow: 0 0 8px var(--roze1);
   }
-  
+ 
   body.lightMode .toggleMode {
     background-color: var(--base1);
     color: var(--base2);
     box-shadow: 0 0 15px var(--groen1);
   }
-  
+ 
   /* Overlay */
   #overlay {
     display: none;
@@ -571,7 +571,7 @@ header nav li img {
     align-items: center;
     z-index: 1000;
   }
-  
+ 
   #overlayContent {
     background-color: white;
     color: var(--base2);
@@ -579,10 +579,12 @@ header nav li img {
     border-radius: 10px;
     max-width: 500px;
     width: 90%;
+    height: 90vh;
+    overflow-y: scroll;
     position: relative;
     text-align: center;
   }
-  
+ 
   #sluitOverlay {
     display: flex;
     justify-self: flex-end;
@@ -594,15 +596,15 @@ header nav li img {
     padding: 5px 10px;
     cursor: pointer;
   }
-  
-  /* Profielpagina */
+ 
+/* Profielpagina */
   #profiel {
     width: 100%;
     height: 100%;
     display: grid;
     grid-template: 1fr 1fr 1fr / 1fr;
   }
-  
+ 
   #userData {
     display: grid;
     grid-template: 1fr / 1fr 1fr 4fr;
@@ -647,7 +649,7 @@ header nav li img {
   border-color: var(--groen3);
   background-color: var(--groen1);
 }
-  
+ 
   #userData div img {
     display: block;
     width: 60%;
@@ -655,6 +657,79 @@ header nav li img {
     object-fit: cover;
     border-radius: 50%;
     border: solid;
+}
+
+#likedGames {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  padding: 1em;
+  align-content: space-evenly;
+  gap: 2em 0.5em;
+  align-items: stretch;
+}
+
+#likedGames form input {
+  position: absolute;
+  right: .3em;
+  bottom: .3em;
+}
+
+.liked {
+  list-style-type: none;
+  background-color: var(--base2);
+  color: var(--base1);
+  border: .2em solid var(--roze1);
+  border-radius: 1em;
+  box-shadow: 0 0 1em var(--roze1);
+  transition: transform 0.2s;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  padding: 1em 0.5em;
+  margin: .5em;
+  position: relative;
+  min-height: 22em; 
+}
+
+.liked:hover {
+  transform: scale(1.07);
+}
+  
+.liked img {
+  width: 200px;
+  height: 110px;
+  margin: 1em;
+  object-fit: cover;
+  border: .1em solid #68beb0;
+  border-radius: .4em;
+  margin-bottom: 1.2em;
+  filter: none;
+}
+  
+.liked button {
+  background-color: var(--roze1);
+  padding: 0.5em;
+  border: 0;
+  border-radius: .25em;
+  width: 12em;
+  height: 3em;
+  font-weight: 600;
+  font-size: .7em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: auto;
+  margin-bottom: 0.5em;
+  color: black;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  }
+  
+.liked button:hover {
+  background-color: var(--groen4);
+  box-shadow: 0 0 1em var(--groen3);
 }
  
 .matchingContainer {
@@ -756,7 +831,7 @@ header nav li img {
   font-size: 1rem;
   margin-bottom: .25rem;
   margin-top: 1rem;
-  
+ 
 }
  
 #zoekGame {
@@ -835,7 +910,7 @@ header nav li img {
   overflow-y: scroll;
   max-height: 400px;
 }
-    
+   
 .dualRange {
 position: relative;
 height: 30px;
