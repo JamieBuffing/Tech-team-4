@@ -687,10 +687,14 @@ header nav li img {
   }
  
   body.lightMode header,
-  body.lightMode menu {
+  body.lightMode menu  {
     background-color: var(--light-menu);
     border-color: var(--roze1);
     color: var(--base2);
+  }
+
+  input[type="checkbox" i] {
+    accent-color: var(--roze1);
   }
  
   body.lightMode main {
