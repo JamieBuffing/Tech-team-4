@@ -4,14 +4,21 @@
     <%- include('../partials/head'); %>
     <title>Profile</title>
 </head>
-<body data-user-games="<%= user.games %>">
+<body 
+    data-user-vriendendata="<%= vriendenArray %>"
+    data-user-vrienden="<%= user.vrienden %>"
+    data-user-games="<%= user.games %>"
+    data-user-gebruiker="<%= user._id %>"
+    >
 <header>
     <%- include('../partials/header'); %>
 </header>
 <menu>
     <section class="friends">
         <h2>Mijn vrienden</h2>
-        <div id="mijnVrienden"></div>
+        <div id="mijnVrienden">
+
+        </div>
     </section>
 </menu>
 <main>

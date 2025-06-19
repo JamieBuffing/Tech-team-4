@@ -209,10 +209,21 @@ app.get("/settings", toonSettings)
 app.get("/Clear_Database", ClearDatabase)
 app.get("/profile", isLoggedIn, async (req, res) => {
   let email = req.session.user.email
+  const user = await db.collection("users").findOne({r_email: email}) 
 
-  const user = await db.collection("users").findOne({r_email: email})  
+  let vriendenArray = [];
+
+    for (const vriendId of user.vrienden || []) {
+      const vriend = await db.collection("users").findOne({ _id: new ObjectId(vriendId) });
+      if (vriend) {
+        vriendenArray.push(vriend);
+      }
+    }
+
+  vriendenArray = JSON.stringify(vriendenArray)
+ 
   console.log(user)
-  res.render("pages/profile", { user }); // Pass user data to the view
+  res.render("pages/profile", { user, vriendenArray }); // Pass user data to the view
 });
 app.get("/hulp", isLoggedIn, (req, res) => {
   res.render("pages/hulp");

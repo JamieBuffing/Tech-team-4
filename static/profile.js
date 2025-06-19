@@ -1,4 +1,5 @@
 const apiKey = '80731283f03d46cfbd7f0053cf1fc99e';
+const gebruiker = document.body.dataset.userGebruiker;
 let LikeGames = document.body.dataset.userGames.split(',');
 console.log(LikeGames)
 
@@ -114,4 +115,32 @@ async function openOverlay(game) {
 // Sluitknop eventlistener
 document.getElementById('sluitOverlay').addEventListener('click', () => {
   document.getElementById('overlay').style.display = 'none';
+});
+
+
+
+const vriendenData = document.body.dataset.userVrienden;
+const vriendenHunData = JSON.parse(document.body.dataset.userVriendendata);
+
+const vrienden = vriendenData.split(",");
+
+const mijnVriendenDiv = document.getElementById("mijnVrienden");
+
+vrienden.forEach(vriendId => {
+    if (!vriendId) return;
+    
+    const vriendObj = vriendenHunData.find(v => v._id === vriendId);
+
+    if (vriendObj) {
+        const container = document.createElement("article");
+        container.classList.add("vriend");
+        const p = document.createElement("p");
+        p.textContent = vriendObj.r_voornaam;
+        const img = document.createElement("img")
+        img.src = vriendObj.avatar ? "/uploads/" + vriendObj.avatar : "/images/default-avatar.png";
+        img.className = "smallAvatar"
+
+        container.append(img, p)
+        mijnVriendenDiv.append(container);
+    }
 });
