@@ -733,8 +733,8 @@ header nav li img {
   body.lightMode .platform,
   body.lightMode .taal,
   body.lightMode .land {
-    background-color: var(--groen2);
-    border-color: var(--groen1);
+    background-color: var(--button);
+    border-color: var(--roze1);
   }
 
   body.lightMode .genreItem span,
@@ -929,8 +929,8 @@ header nav li img {
 .land:hover,
 .platform:hover,
 .genreItem:hover {
-  border-color: var(--groen4);
-  background-color: var(--groen3);
+  border-color: var(--button);
+  background-color: var(--roze1);
 }
  
 .genreItem:has(input[name="selectedGames"]:checked),
@@ -1060,9 +1060,9 @@ Problemen die zijn opgelost:
 .matchingContainer {
   width: 50vw;
   height: 65vh;
-  top: 25%;
+  top: 15%;
   left: 50%;
-  padding: 2vw;
+  padding: 1vw;
   border-radius: 2vw;
   background-color: var(--menus);
   display: flex;
