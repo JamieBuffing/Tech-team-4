@@ -7,7 +7,7 @@
             placeholder="Voornaam"
             required><br><br>
 
-        <label for="r_email">email:</label><br>
+        <label for="r_email">Email:</label><br>
         <input 
             type="email" 
             id="r_email" 
@@ -16,7 +16,7 @@
             required 
             autocomplete="email"><br><br>
 
-        <label for="r_password">wachtwoord:</label><br>
+        <label for="r_password">Wachtwoord:</label><br>
         <input 
             type="password" 
             id="r_wachtwoord" 
@@ -27,6 +27,25 @@
             <br>
             <input type="checkbox" id="rshowpass"><br>
 
+        <label for="r_leeftijd">Leeftijd:</label><br>
+        <input 
+            type="number" 
+            id="r_leeftijd" 
+            name="r_leeftijd"
+            placeholder="Leeftijd"
+            min="12" 
+            max="99"
+            required><br><br>
+        
+        <p>Geslacht:</p>
+            <input class="linksRadio" type="radio" id="optie1" name="Geslacht" value="Man">
+            <label for="optie1"> Man</label><br>         
+            <input class="linksRadio" type="radio" id="optie2" name="Geslacht" value="Vrouw">
+            <label for="optie2"> Vrouw</label><br>
+            <input class="linksRadio" type="radio" id="optie3" name="Geslacht" value="Anders">
+            <label for="optie3"> Anders</label><br><br>
+
+        <label for="avatar">Profiel afbeelding:</label><br>
         <input 
             type="file"
             id="avatar"

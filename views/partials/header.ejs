@@ -1,11 +1,27 @@
-<h1>Pixel Pair</h1>
 <nav>
+    <h1><a href="/"><img alt="logo afbeelding, tekst afgebeeld 'Pixel Pair'" src="/images/logo.png"></a></h1>
     <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/games">Games</a></li>
-        <li><a href="/profile">Profile</a></li>
+      <li><a href="/">Home</a></li>
+      <li><a href="/games">Games</a></li>
+      
+      <% if (user) { %>
         <li><a href="/matchen">Matching</a></li>
-        <li><a href="/settings">Settings</a></li>
-        <li><img alt="logo afbeelding, tekst afgebeeld 'Pixel Pair'" src="/images/logo.png"></li>
+      <% } %>
+  
+      <% if (!user) { %>
+        <li><a href="/login">Inloggen/registreren</a></li>
+      <% } %>
     </ul>
-</nav>
+  
+    <% if (user) { %>
+      <div class="profielContainer">
+        <a href="/profile">
+          <img class="profielFoto" alt="user profile picture" src="<%= user.avatar ? '/uploads/' + user.avatar : '/images/defaultImg.png' %>">
+        </a>
+        <form id="uitloggen" action="/uitloggen" method="post">
+          <input type="submit" value="Uitloggen">
+        </form>
+      </div>
+    <% } %>
+  </nav>
+  

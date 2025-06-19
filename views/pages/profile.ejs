@@ -4,18 +4,58 @@
     <%- include('../partials/head'); %>
     <title>Profile</title>
 </head>
-<body>
+<body 
+    data-user-vriendendata="<%= vriendenArray %>"
+    data-user-vrienden="<%= user.vrienden %>"
+    data-user-games="<%= user.games %>"
+    data-user-gebruiker="<%= user._id %>"
+    >
 <header>
     <%- include('../partials/header'); %>
 </header>
 <menu>
-    <%- include('../partials/menu'); %>
+    <section class="friends">
+        <h2>Mijn vrienden</h2>
+        <div id="mijnVrienden">
+
+        </div>
+    </section>
 </menu>
 <main>
-    <a href="/login">login</a>
+    <section id="profiel">
+        <section id="userData">
+            <div>
+                <img alt="user profile picture" src="/uploads/<%= user.avatar %>">
+            </div>
+            <div>
+                <p>
+                <%= user.r_voornaam %><br>
+                games = <%= user.games %><br>
+                </p>
+            </div>
+        </section>
+        <section id="myGames">
+            <h2>Mijn games</h2>
+            <ul id="likedGames">
+
+            </ul>
+
+            <div id="overlay">
+                <div id="overlayContent">
+                    <button id="sluitOverlay">Sluiten</button>
+                    <div id="overlayInfo"></div>
+                </div>
+            </div>
+        </section>
+        <section id="">
+            
+        </section>
+    </section>
 </main>
 <footer>
     <%- include('../partials/footer'); %>
 </footer>
+<script src="/profile.js"></script>
+<script src="/darkLight.js"></script>
 </body>
 </html>

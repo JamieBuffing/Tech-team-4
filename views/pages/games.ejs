@@ -2,30 +2,31 @@
 <html lang="en">
 <head>
   <%- include('../partials/head'); %>
-  <title>Filter</title>
+  <title>Games</title>
 </head>
-<body>
+<body data-user-games="<%= user.games %>">
 
-  <header>
+<header>
     <%- include('../partials/header'); %>
 </header>
 <menu>
-
-    <article class="filtersContainer">
-    <div class="filters">
-        <h2>Filter op genre:</h2>
-        <div id="genreFilters"></div>
+    <article class="filters">
+    <h2>Filter op genre:</h2>
+    <div id="genreFilters"></div>
     
-        <h2>Filter op platform:</h2>
-        <div id="platformFilters"></div>
-  </div>
-  </article>
+    <h2>Filter op platform:</h2>
+    <div id="platformFilters"></div>
+    </article>
 </menu>
 <main>
-
-
   <div id="games"></div>
-  <script src="/script.js"></script>
+
+  <div id="overlay">
+    <div id="overlayContent">
+      <button id="sluitOverlay">Sluiten</button>
+      <div id="overlayInfo"></div>
+    </div>
+  </div>
 
 </main>
 
@@ -33,5 +34,7 @@
     <%- include('../partials/footer'); %>
 </footer>
 
+  <script src="/gamesScript.js"></script>
+  <script src="/darkLight.js"></script>
 </body>
 </html>

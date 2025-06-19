@@ -7,6 +7,9 @@
 <body>
     <div id="contentBlok">
         <h1>Log in bij uw account</h1>
+        <p id="melding">
+            <%= error %>
+        </p>
         <hr>
         <section>
         <%- include('../partials/inloggen'); %>
@@ -14,7 +17,7 @@
         </section>
         <hr>
         <form id="other">
-            <label id="label" for="change">Nog geen account?</label>
+            <label id="label" for="change">Nog geen account?</label><br>
             <input
                 type="button"
                 value="Registreren"
@@ -23,14 +26,14 @@
     </div>
 </body>
 
-
+<script src="/darkLight.js"></script>
 <script>
     const showpass = document.getElementById("showpass")
     const r_showpass = document.getElementById("rshowpass")
     const swap = document.getElementById("change")
     showpass.addEventListener("click", changevis)
     r_showpass.addEventListener("click", r_changevis)
-    change.addEventListener("click", log_reg)
+    swap.addEventListener("click", log_reg)
 
     function changevis() {
         wacht = document.getElementById("wachtwoord")
@@ -42,7 +45,7 @@
     }
 
     function r_changevis() {
-        wacht = document.getElementById("r_wachtwoord")
+        let wacht = document.getElementById("r_wachtwoord")
         if(wacht.type === "password") {
             wacht.type = "text"
         } else {
@@ -52,6 +55,7 @@
 
     function log_reg() {
         let inputValue = document.getElementById("change").value
+        document.getElementById("melding").textContent = ""
         if(document.getElementById("login").style.display === "block") {
             document.getElementById("login").style.display = "none";
             document.getElementById("registreren").style.display = "block";

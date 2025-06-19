@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head'); %>
+    <title>Hulp</title>
+</head>
+<body>
+<header>
+    <%- include('../partials/header'); %>
+</header>
+<menu>
+    <%- include('../partials/menu'); %>
+</menu>
+<main style="display: block;">
+    <section style="background-color: grey; margin: 50px; width: 40%; height: auto; display: inline-block; padding: 20px;">
+        <h2>Voorkeuren opslaan</h2>
+        <hr>
+        <form id="voorkeuren" action="/voorkeuren" method="post">
+            <p>radio buttons</p>
+            <input type="radio" id="Optie1" name="Radio optie" value="A">
+            <label for="Optie1"> 1 A</label><br>
+            <input type="radio" id="Optie2" name="Radio optie" value="B">
+            <label for="Optie2"> 1 B</label><br>
+            <input type="radio" id="Optie3" name="Radio optie" value="C">
+            <label for="Optie3"> 1 C</label><br><br>
+
+            <p>checkbox</p>
+            <input type="checkbox" id="Optie2_1" name="Checkbox optie" value="A">
+            <label for="Optie2_1"> 2 A</label><br>
+            <input type="checkbox" id="Optie2_2" name="Checkbox optie" value="B">
+            <label for="Optie2_2"> 2 B</label><br>
+            <input type="checkbox" id="Optie2_3" name="Checkbox optie" value="C">
+            <label for="Optie2_3"> 2 C</label><br><br>
+
+            <p>text input</p>
+            <input 
+            type="text" 
+            id="text" 
+            name="tekst" 
+            placeholder="tekst"
+            required
+            style="color: black;"><br><br>
+
+            <p>Number input</p>
+            <label for="aantal">Nummer (tussen 1 en 15):</label>
+            <input type="number" id="aantal" name="Nummer" min="1" max="15" style="color: black;"><br><br>
+
+            <p>Range input</p>
+            <label for="ran">Een range (tusse 0 en 50):</label>
+            <input type="range" id="ran" name="range" min="0" max="50">
+
+            <br><br><br><br><br>
+        <input style="color: black;" type="submit" value="Inloggen">
+    </form>
+    </section>
+
+
+    <section style="background-color: grey; margin: 50px; width: 40%; height: auto; display: inline-block; padding: 20px;">
+        <h2>Uitleg</h2><hr>
+        <p>
+            In het ejs bestand hulp.ejs staat alle code voor deze pagina.<br>
+            In die code kan je per soort input vinden hoe je het kan gebruiken en hoe je het kan neerzetten op je pagina.<br><br>
+
+            In het server.js bestand kan je scrollen naar regel +/- 132 waar de app.post van voorkeuren begint.<br>
+            Als het goed is kan je dit zo laten staan en zou alles moeten werken als je in het aanmaken van je form het zo doet:<br>
+            <span style="color: black; font-family: monospace; background-color: lightgrey; padding: 0.1em 0.4em; border-radius: 4px; font-size: 0.95em;">
+                &lt;form id="voorkeuren" action="/voorkeuren" method="post"&gt;&lt;/form&gt;
+            </span><br>
+            Maar als je bij de code gaat kijken in de server.js dan staat bij vrijwel elke regel wat het doet.<br><br>
+
+            De gegevens van dit formulier worden opgeslagen in de database gekoppeld aan de gebruiker, 
+            daarom moet je ook ingelogd zijn om deze pagina te mogen zien.
+        </p>
+    </section>
+    <section style="background-color: grey; margin: 50px; width: 40%; height: auto; display: inline-block; padding: 20px;">
+
+    </section>
+    <section style="background-color: grey; margin: 50px; width: 40%; height: auto; display: inline-block; padding: 20px;">
+
+    </section>
+</main>
+<footer>
+    <%- include('../partials/footer'); %>
+</footer>
+<script src="/darkLight.js"></script>
+</body>
+</html>
