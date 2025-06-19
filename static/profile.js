@@ -61,7 +61,7 @@ async function Data(games) {
         input_hidden.value = game;
       
         const gameContainer = document.createElement('li'); // Maak een div aan voor elke game
-        gameContainer.classList.add("Liked"); // een class voor styling
+        gameContainer.classList.add("liked"); // een class voor styling
         gameContainer.id = game; // Voeg een id toe dat overeenkomt met het id van de game
 
         form.append(input_hidden, input);

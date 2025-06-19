@@ -9,7 +9,10 @@
     <%- include('../partials/header'); %>
 </header>
 <menu>
-    <%- include('../partials/menu'); %>
+    <section class="friends">
+        <h2>Mijn vrienden</h2>
+        <div id="mijnVrienden"></div>
+    </section>
 </menu>
 <main>
     <section id="profiel">
@@ -19,7 +22,7 @@
             </div>
             <div>
                 <p>
-                voornaam = <%= user.voornaam %><br>
+                <%= user.voornaam %><br>
                 games = <%= user.games %><br>
                 </p>
             </div>
@@ -45,7 +48,7 @@
 <footer>
     <%- include('../partials/footer'); %>
 </footer>
-<script src="/darkLight.js"></script>
 <script src="/profile.js"></script>
+<script src="/darkLight.js"></script>
 </body>
 </html>
