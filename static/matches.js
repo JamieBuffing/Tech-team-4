@@ -441,6 +441,9 @@ function change(data) {
 
             const dualRange = document.createElement("div")
                 dualRange.className = "dualRange"
+            
+            const sliderContainer = document.createElement("div")
+                sliderContainer.className = "sliderContainer"
 
             const rangeMin = document.createElement("input")
                 rangeMin.type = "range"
@@ -467,7 +470,9 @@ function change(data) {
                 span.id = "ageRange"
                 span.textContent = `${min} - ${max}`
 
-            dualRange.append(rangeMin, rangeMax)
+            
+            sliderContainer.append(rangeMin, rangeMax)
+            dualRange.append(sliderContainer)
             leeftijdsklasse.append(span)
             rangeContainer.append(dualRange, leeftijdsklasse)
             
