@@ -2,39 +2,64 @@
 <html lang="en">
 <head>
     <%- include('../partials/head'); %>
-    <title>Home</title>
+    <title>Matches</title>
 </head>
-<body>
+<body 
+    data-user-vriendendata="<%= vriendenArray %>"
+    data-user-vrienden="<%= gebruiker.vrienden %>"
+    data-user-gebruiker="<%= gebruiker._id %>"
+    data-user-matches="<%= matchData %>" 
+    data-user-addUsers="<%= addUsers %>" 
+    data-user-mijnLikes="<%= mijnLikes %>" 
+    data-user-mijnmatchesExport="<%= mijnmatchesExport %>" 
+    data-user-mijnLikesExport="<%= mijnLikesExport %>"
+    >
 <header>
     <%- include('../partials/header'); %>
 </header>
 <menu>
-    <details open>
+    <details open id="voorkeuren">
         <summary>Mijn voorkeuren</summary>
-        voornaam = <%= gebruiker.r_voornaam %><br><hr>
-        email = <%= gebruiker.r_email %><br><hr>
-        avatar = <%= gebruiker.avatar %><br><hr>
-        id = <%= gebruiker._id %><br><hr>
-        games = <%= gebruiker.games %><br><hr>
-        audiance = <%= gebruiker.audiance %><br><hr>
-        genres = <%= gebruiker.genres %><br><hr>
-        land = <%= gebruiker.land %><br><hr>
-        maxAge = <%= gebruiker.maxAge %><br><hr>
-        minAge = <%= gebruiker.minAge %><br><hr>
-        platform = <%= gebruiker.platform %><br><hr>
-        taal = <%= gebruiker.taal %><br><hr>
+        voornaam = <%= gebruiker.r_voornaam %><button type="button" onclick="change(`r_voornaam,, <%= gebruiker.r_voornaam %>,, voornaam.,, <%= gebruiker.r_email %>`)">Edit</button><br><hr>
+        avatar = <%= gebruiker.avatar %><button type="button" onclick="change(`avatar,, <%= gebruiker.avatar %>,, avatar.,, <%= gebruiker.r_email %>`)">Edit</button><br><hr>
+        leeftijd = <%= gebruiker.r_leeftijd %><button type="button" onclick="change(`r_leeftijd,, <%= gebruiker.r_leeftijd %>,, leeftijd.,, <%= gebruiker.r_email %>`)">Edit</button><br><hr>
+        audience = <%= gebruiker.audience %><button type="button" onclick="change(`audience,, <%= gebruiker.audience %>,, audience.,, <%= gebruiker.r_email %>`)">Edit</button><br><hr>
+        genres = <%= gebruiker.genres %><button type="button" onclick="change(`genres,, <%= gebruiker.genres %>,, genres.,, <%= gebruiker.r_email %>`)">Edit</button><br><hr>
+        land = <%= gebruiker.land %><button type="button" onclick="change(`land,, <%= gebruiker.land %>,, land.,, <%= gebruiker.r_email %>`)">Edit</button><br><hr>
+        maxAge = <%= gebruiker.maxAge %><button type="button" onclick="change(`maxAge,, <%= gebruiker.maxAge %>,, maximale leeftijd.,, <%= gebruiker.r_email %>,, <%= gebruiker.minAge %>,, <%= gebruiker.maxAge %>`)">Edit</button><br><hr>
+        minAge = <%= gebruiker.minAge %><button type="button" onclick="change(`minAge,, <%= gebruiker.minAge %>,, minimale leeftijd.,, <%= gebruiker.r_email %>,, <%= gebruiker.minAge %>,, <%= gebruiker.maxAge %>`)">Edit</button><br><hr>
+        platform = <%= gebruiker.platform %><button type="button" onclick="change(`platform,, <%= gebruiker.platform %>,, platform(en).,, <%= gebruiker.r_email %>`)">Edit</button><br><hr>
+        taal = <%= gebruiker.taal %><button type="button" onclick="change(`taal,, <%= gebruiker.taal %>,, taal.,, <%= gebruiker.r_email %>`)">Edit</button><br><hr>
     </details>
     <details open>
-        <summary>Mijn matches</summary>
-        Test
+        <summary>Mijn vrienden</summary>
+        <div id="mijnVrienden">
+        </div>
+    </details>
+    <details open>
+        <summary>Gestuurde invites</summary>
+        <div id="gestuurdeInvites">
+        </div>
+    </details>
+    <details open>
+        <summary>Binnenkomende invites</summary>
+        <div id="gekregenInvites">
+        </div>
     </details>
 </menu>
 <main>
-    
+    <h2>Mogelijke matches</h2>
+    <section id="matches">
+        
+    </section>
+    <div id="hiddenChange" style="overflow-y: scroll; display: none;">
+        
+    </div>
 </main>
 <footer>
     <%- include('../partials/footer'); %>
 </footer>
+<script src="/matches.js"></script>
 <script src="/darkLight.js"></script>
 </body>
 </html>
