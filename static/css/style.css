@@ -733,9 +733,18 @@ header nav li img {
   body.lightMode .platform,
   body.lightMode .taal,
   body.lightMode .land {
-    background-color: var(--button);
+    background-color: var(--groen4);
     border-color: var(--roze1);
   }
+
+body.lightMode .genreItem:has(input:checked),
+body.lightMode .platform:has(input:checked),
+body.lightMode .land:has(input:checked),
+body.lightMode .taal:has(input:checked) {
+  border-color: var(--button);
+  background-color: var(--roze1);
+}
+
 
   body.lightMode .genreItem span,
   body.lightMode .platform span,
@@ -743,14 +752,16 @@ header nav li img {
   body.lightMode .land span {
     color: #f0f0f0;
   }
+
   
+
   body.lightMode .genreItem:hover,
   body.lightMode .platform:hover,
   body.lightMode .taal:hover,
   body.lightMode .land:hover {
-    background-color: var(--roze1);
-    border-color: var(--button);
-    box-shadow: 0 0 15px var(--roze1);
+    background-color: var(--button);
+    border-color: var(--roze1);
+    box-shadow: 0 0 15px var(--button);
   }
 
   body.lightMode .rangeContainer div span {
@@ -938,8 +949,9 @@ header nav li img {
 .land:has(input[name="land"]:checked),
 .genreItem:has(input[name="genres"]:checked),
 .platform:has(input[name="platform"]:checked) {
-  border-color: var(--groen3);
-  background-color: var(--groen1);
+  border-color: var(--roze1);
+  background-color: var(--button);
+  box-shadow: 0 0 15px var(--roze1);
 }
  
   #userData div img{
