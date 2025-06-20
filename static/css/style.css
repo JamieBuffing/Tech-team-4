@@ -1044,14 +1044,8 @@ body.lightMode .taal:has(input:checked) {
   box-shadow: 0 0 1em var(--groen3);
 }
 
-/* 
-Problemen die zijn opgelost:
-  - aanroepen van ul eerder in de code specifieker gemaakt zodat het geen effect heeft op de ul van de profiel pagina
-  - class name in de js was veranderd naar "Liked", de class werd aangeroepen met "liked"
-*/
- 
-#userData p {
-  font-size: 20px;
+#userData h2 {
+  font-size: 30px;
 }
 
 .friends {
@@ -1103,7 +1097,7 @@ Problemen die zijn opgelost:
 
 #likedGames {
   display: flex;
-  overflow-x: auto;
+  overflow-x: auto; 
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
