@@ -804,7 +804,8 @@ body.lightMode .taal:has(input:checked) {
     color: var(--base2);
   }
   
-  body.lightMode .filters {
+  body.lightMode .filters,
+  body.lightMode .friends {
     background-color: var(--sidebar);
     border: 2px dashed var(--roze1);
     color: var(--base2);
@@ -828,7 +829,6 @@ body.lightMode .taal:has(input:checked) {
   body.lightMode .game button, 
   body.lightMode .liked button {
     background-color: var(--groen2);
-    color: #f0f0f0;
   }
  
   body.lightMode .game button:hover, 
@@ -861,6 +861,14 @@ body.lightMode .taal:has(input:checked) {
 
   body.lightMode #userData div img {
     border-color: var(--groen2);
+  }
+
+  body.lightMode #likedGames::-webkit-scrollbar-thumb {
+    background: var(--groen2);
+  }
+
+  body.lightMode #mijnVrienden article {
+    background-color: var(--roze1);
   }
  
   /* Overlay */
@@ -903,15 +911,15 @@ body.lightMode .taal:has(input:checked) {
   }
  
 /* Profielpagina */
-  #profiel {
-    width: 100%;
-    height: 100%;
-  }
+#profiel {
+  width: 100%;
+  height: 100%;
+}
  
-  #userData {
-    display: grid;
-    grid-template: 1fr / 1fr 1fr 4fr;
-    padding: 1vw;
+#userData {
+  display: grid;
+  grid-template: 1fr / 1fr 1fr 4fr;
+  padding: 1vw;
 }
  
 .genreItem {
@@ -954,20 +962,20 @@ body.lightMode .taal:has(input:checked) {
   box-shadow: 0 0 15px var(--roze1);
 }
  
-  #userData div img{
-    display: block;
-    width: 60%;
-    aspect-ratio: 1 / 1;
-    object-fit: cover;
-    border-radius: 50%;
-    border: solid;
-    border-color: var(--roze1);
+#userData div img{
+  display: block;
+  width: 60%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 50%;
+  border: solid;
+  border-color: var(--roze1);
 }
 
 #likedGames {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  padding: 1em;
+  padding: 1.5em;
   align-content: space-evenly;
   gap: 2em 0.5em;
   align-items: stretch;
@@ -986,14 +994,13 @@ body.lightMode .taal:has(input:checked) {
   border: .2em solid var(--roze1);
   border-radius: 1em;
   box-shadow: 0 0 1em var(--roze1);
-  transition: transform 0.2s;
   display: flex;
   justify-content: flex-start;
   align-items: center;
   flex-direction: column;
   text-align: center;
   padding: 1em 0.5em;
-  margin: .5em;
+  margin: .25em;
   position: relative;
   min-height: 22em; 
 }
@@ -1042,7 +1049,7 @@ Problemen die zijn opgelost:
   - aanroepen van ul eerder in de code specifieker gemaakt zodat het geen effect heeft op de ul van de profiel pagina
   - class name in de js was veranderd naar "Liked", de class werd aangeroepen met "liked"
 */
-
+ 
 #userData p {
   font-size: 20px;
 }
@@ -1062,10 +1069,68 @@ Problemen die zijn opgelost:
   position: sticky;
 }
 
- .friends h2 {
-    font-size: 20px;
-    color: var(--roze1);
-  }
+.friends h2 {
+  font-size: 20px;
+  color: var(--roze1);
+}
+
+#mijnVrienden article {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  height: 50px;
+  width: 100%;
+  background-color: var(--groen4);
+  margin-top: 5px;
+  border-radius: 10px;  
+}
+
+#mijnVrienden article p {
+  margin: 0;
+  height: 40px;
+  padding: 5px;
+  color: #000;
+  font-size: 20px;
+}
+
+/* Carousel profiel pagina (bron code: https://codepen.io/chriscoyier/pen/XwbNwX?editors=1100x, dit is wel aangepast zodat het beter op onze website past) */
+
+#myGames {
+  width: 1250px;
+  overflow: hidden;
+}
+
+#likedGames {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+      
+#likedGames::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+#likedGames::-webkit-scrollbar-thumb {
+  background: var(--roze1);
+  border-radius: 10px;
+}
+
+#likedGames::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+#likedGames > .liked {
+  scroll-snap-align: start;
+  flex-shrink: 0;
+  width: 300px;
+  transform-origin: center center;
+  transition: transform 0.5s;
+  position: relative;
+}
 
 /* Matching */
  
@@ -1539,24 +1604,6 @@ details.mgenres[open] ::-webkit-details-marker {
 }
 
 #gekregenInvites article p {
-  margin: 0;
-  height: 40px;
-  padding: 5px;
-  color: var(--base1);
-}
-
-#mijnVrienden article {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  height: 50px;
-  width: 100%;
-  background-color: var(--groen4);
-  margin-top: 5px;
-  border-radius: 10px;  
-}
-
-#mijnVrienden article p {
   margin: 0;
   height: 40px;
   padding: 5px;
