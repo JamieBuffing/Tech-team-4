@@ -94,7 +94,6 @@ function hartjes() { // de functie om de hartjes per game toe te voegen.
   const userGames = document.body.dataset.userGames;  // Haal data op vanuit de body (hierin staan de gelikte games van de ingelogde gebruiker)
   if (!userGames) return; // Als er geen data is ga dan maar gewoon verder
   const userGamesArray = userGames.split(","); // split de lijst met data zodat het een leesbare array wordt
-  console.log(userGamesArray);  // log de array even voor debug
   userGamesArray.forEach(gameID => {  // Voor elke losse game....
     let gameDIV = document.getElementById(gameID);  // Zoek de game id op als id om de pagina.
     if (!gameDIV) return; // Als het niet wordt gevonden kom dan terug

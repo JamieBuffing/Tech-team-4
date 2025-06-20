@@ -83,10 +83,6 @@ let aantalMatches = Object.keys(rawMatches).length;
 
 Object.entries(rawMatches).forEach(([matchKey, matchData], index) => {
     const vriendenLijst = document.body.dataset.userVrienden.split(",");
-    console.log("matchData")
-    console.log("'",matchData.matchID,"'")
-    console.log("vriendenLijst")
-    console.log(vriendenLijst)
     if (vriendenLijst.includes(matchData.matchID)) return;
   let match = `match${index + 1}Array`;
 
@@ -105,7 +101,6 @@ MatchContainer.classList.add("match"); // een class voor styling
 MatchContainer.addEventListener("click", (e) => {
             if (e.target.closest("form")) return; // klik zat in het formulier, dus niks doen
             if (e.target.closest("details")) return; // klik zat in het details, dus niks doen
-            console.log(matchData)
             showUser(matchData);
         });
 MatchContainer.id = matchData.voornaam; // Voeg een id toe dat overeenkomt met de naam van de match
@@ -275,7 +270,6 @@ rawMijnLikes.forEach(user => {
         container.classList.add(user._id);
         container.addEventListener("click", (e) => {
             if (e.target.closest("form")) return; // klik zat in het formulier, dus niks doen
-            console.log(user)
             showUser(user);
         });
     const p = document.createElement("p");
@@ -323,7 +317,6 @@ rawAddUsers.forEach(user => {
         container.classList.add(user._id);
         container.addEventListener("click", (e) => {
             if (e.target.closest("form")) return; // klik zat in het formulier, dus niks doen
-            console.log(user)
             showUser(user);
         });
     const p = document.createElement("p");
@@ -488,12 +481,10 @@ function change(data) {
             form.append(input)
         } else if(type == "genres") {
             let waardeLos = waarde.split(",").map(item => item.trim());
-            console.log(waardeLos)
             fetch('getDataGenres')
                 .then(res => res.json())
                 .then(data => {
                     data.forEach((genre) => {
-                        console.log(genre.name)
 
                         const addGenre = document.createElement("label")
                         const addCheck = document.createElement("input")
@@ -512,12 +503,10 @@ function change(data) {
                 });
         } else if(type == "land") {
             let waardeLos = waarde
-            console.log(waardeLos)
             fetch('getDataLand')
                 .then(res => res.json())
                 .then(data => {
                     data.forEach((land) => {
-                        console.log(land.name)
 
                         const addLand = document.createElement("label")
                         const addCheck = document.createElement("input")
@@ -579,12 +568,10 @@ function change(data) {
             form.append(rangeContainer, input);
         } else if(type == "platform") {
             let waardeLos = waarde.split(",").map(item => item.trim());
-            console.log(waardeLos)
             fetch('getDataPlatform')
                 .then(res => res.json())
                 .then(data => {
                     data.forEach((platform) => {
-                        console.log(platform.name)
 
                         const addPlatform = document.createElement("label")
                         const addCheck = document.createElement("input")
@@ -603,12 +590,10 @@ function change(data) {
                 });
         } else if(type == "taal") {
             let waardeLos = waarde.split(",").map(item => item.trim());
-            console.log(waardeLos)
             fetch('getDataTaal')
                 .then(res => res.json())
                 .then(data => {
                     data.forEach((taal) => {
-                        console.log(taal.name)
 
                         const addTaal = document.createElement("label")
                         const addCheck = document.createElement("input")
@@ -684,10 +669,6 @@ function checkMatches() {
     const gekregenInvites = JSON.parse(document.body.dataset.userMijnmatchesexport);
     const gekregenInvites_IDs = gekregenInvites.map(user => user._id);
 
-    console.log("Mogelijke matchIDs:", mogelijk_IDs);
-    console.log("Gestuurde invite IDs:", gestuurdeInvites_IDs);
-    console.log("Gekregen invite IDs:", gekregenInvites_IDs);
-
     gestuurdeInvites_IDs.forEach(id => {
         if (mogelijk_IDs.includes(id)) {
             console.log(`ID ${id} komt WEL voor in mogelijk_IDs | gestuurdeInvites`);
@@ -759,8 +740,6 @@ async function filtersLoad() {
 async function gamesLoadNewOptions() {
     const genreSelect = document.getElementById('genreDropDown');
     const platformSelect = document.getElementById('PlatformDropDown');
-    console.log("Genre select:", genreSelect.value);
-    console.log("Platform select:", platformSelect.value);
 
     const selectedGenreName = genreSelect.value;
     const platformName = platformSelect.value;
@@ -779,7 +758,6 @@ async function gamesLoadNewOptions() {
 
     const response = await fetch(`https://api.rawg.io/api/games?genres=${genre}&platforms=${platformId}&page_size=25&key=${apiKey}`);
     const data = await response.json();
-    console.log(data.results); // array van games
     showGamesFromResults(data.results)
 }
 
@@ -928,11 +906,9 @@ async function showUser(vriend) {
 
 if (Array.isArray(vriend.games)) {
     for (const game of vriend.games) {
-      console.log(game);
       const gameDiv = document.getElementById("vriendShowGamesDiv");
       const response = await fetch(`https://api.rawg.io/api/games/${game}?key=${apiKey}`);
       const data = await response.json();
-      console.log(data);
       const name = data.name;
       const genre = data.genres.map(g => g.name).join(', ');
       const platform = data.platforms.map(p => p.platform.name).join(', ');
@@ -1008,7 +984,6 @@ function hartjes() { // de functie om de hartjes per game toe te voegen.
   const userGames = document.body.dataset.userGames;  // Haal data op vanuit de body (hierin staan de gelikte games van de ingelogde gebruiker)
   if (!userGames) return; // Als er geen data is ga dan maar gewoon verder
   const userGamesArray = userGames.split(","); // split de lijst met data zodat het een leesbare array wordt
-  console.log(userGamesArray);  // log de array even voor debug
   userGamesArray.forEach(gameID => {  // Voor elke losse game....
     let gameDIV = document.getElementById(gameID);  // Zoek de game id op als id om de pagina.
     if (!gameDIV) return; // Als het niet wordt gevonden kom dan terug

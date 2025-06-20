@@ -206,7 +206,6 @@ app.get("/login", toonLogin)
 app.get("/games", toonGames)
 app.get("/matchen", isLoggedIn, toonMatchen)
 app.get("/settings", toonSettings)
-app.get("/Clear_Database", ClearDatabase)
 app.get("/profile", isLoggedIn, async (req, res) => {
   let email = req.session.user.email
   const user = await db.collection("users").findOne({r_email: email}) 
@@ -223,7 +222,6 @@ app.get("/profile", isLoggedIn, async (req, res) => {
 
   vriendenArray = JSON.stringify(vriendenArray)
  
-  console.log(user)
   res.render("pages/profile", { user, vriendenArray }); // Pass user data to the view
 });
 app.get("/hulp", isLoggedIn, (req, res) => {
@@ -264,10 +262,8 @@ app.post('/registreren', upload.single('avatar'), async (req, res) => {
     } else {
         postData.avatar = null
     }
-    console.log(postData)
     await db.collection('users').insertOne(postData)
         let error = "Account aangemaakt, log hier in."
-        console.log(error)
         res.render("pages/login", { error })         // Naar de profiel pagina
 })
 
@@ -282,7 +278,6 @@ app.post('/login', async (req, res) => {
         console.log("Gebruiker niet gevonden:", email);
         return res.render("pages/login", { error });
     }
-    console.log(user)
 
     bcrypt.compare(postData.password, user.r_password, function(err, result) {
     if (err) {
@@ -301,7 +296,6 @@ app.post('/login', async (req, res) => {
         res.redirect('/profile')           // Naar de profiel pagina
     } else {
       let error = "Wachtwoord onjuist"
-        console.log(error)
         res.render("pages/login", { error })
     }
     })
@@ -316,8 +310,6 @@ app.post('/voorkeuren', async (req, res) => {
     { r_email: email },               // De gebruiker wordt opgezocht in de database via de email
     { $set: postData }                // De data van het form wordt toegevoegd aan het document in de database van de bijbehorende gebruiker
   )
-  console.log(addInUser)              // Er wordt gelogd wat er precies is gebeurt tijdens het toevoegen om te kunnen debuggen
-  console.log(postData)               // Er wordt nog even gelogd wat er precies is meegekomen van het form
 })
 
 app.post("/submit", async (req, res) => {
@@ -334,7 +326,6 @@ app.post("/submit", async (req, res) => {
   if (postData.maxAge) {
         postData.maxAge = parseInt(postData.maxAge)
   }
-  console.log("Matchvoorkeuren ontvangen:", postData);
 
   await db.collection("users").updateOne(
     { r_voornaam: user.voornaam },
@@ -345,9 +336,6 @@ app.post("/submit", async (req, res) => {
 });
 
 app.post('/like', async (req, res) => {
-  console.log("--------------------")
-  console.log("Like/unlike gestart")
-  console.log("--------------------")
   // Het email adres van de ingelogde gebruiker er even bij pakken
   const email = req.session.user.email;
 
@@ -357,50 +345,35 @@ app.post('/like', async (req, res) => {
   // Als eerste de game ID uit de postData halen
   let postData = req.body
   let game_id = postData.game_id
-  console.log("Game_ID")
-  console.log(game_id)
-  console.log("--------------------")
 
   // Alvast een let aanmaken waar de games inkomen
   let newGames = []
 
   // Opzoeken of de gebruiker al eerder een game heeft gelikt en hiermee al een game array heeft
   if (req.session.user && Array.isArray(req.session.user.games)) {
-  console.log("De gebruiker heeft een games-array");
 
   // Als de gebruiker al games heeft gelikt dan moeten die games even worden opgeslagen
   newGames = req.session.user.games;
   } else {
   // Anders gebeurt er nog niks
-  console.log("Geen games-array gevonden/ nog geen games geliked");
   }
 
-  console.log("--------------------")
 
   // De al eerder opgeslagen games en de nieuwe game opslaan in een array
   if(!newGames.includes(game_id)) {
-    console.log("Game is nog niet geliked")
-    console.log("--------------------")
     newGames.push(game_id)
-    console.log("newGames")
-    console.log(newGames)
-    console.log("--------------")
       // Van de gebruiker die is ingelogd voeg de nieuwe volledige games lijst toe
     await db.collection('users').updateOne(
     { r_email: email },
     { $addToSet: { games: game_id } }
     );
   } else {
-    console.log("Game is al geliked")
-    console.log("--------------------")
     await db.collection('users').updateOne(
     { r_email: email },
     { $pull: { games: game_id } } // verwijdert game_id uit de array
     );
     // uit de newGames array sla alleen de waardes op die niet overeenkomen met game_id
     newGames = newGames.filter(g => g !== game_id);
-    console.log("newGames")
-    console.log(newGames)
   }
   
   // Voeg de volledige nieuwe lijst ook toe aan de session van de gebruiker
@@ -408,9 +381,6 @@ app.post('/like', async (req, res) => {
 
   // Ga opnieuw naar de games pagina
   let user = req.session.user;
-  console.log("--------------------")
-  console.log("Einde like/unlike")
-  console.log("--------------------")
   const previousPage = req.get('Referer');
   if (previousPage) {
     res.redirect(previousPage);
@@ -477,12 +447,8 @@ app.post("/cancelInvite", async (req, res) => {
 });
 
 app.post('/change', upload.single('avatar'), async (req, res) => {
-  console.log(req.body)
   try {
     const { type, userMail, Resultaat } = req.body;
-    console.log(type, userMail);
-
-    console.log("'" + userMail.trim() + "'");
 
     if (type === 'avatar' && req.file) {
       const avatarName = req.file.filename;
@@ -490,73 +456,54 @@ app.post('/change', upload.single('avatar'), async (req, res) => {
       const gebruiker = await db.collection("users").updateOne(
         { r_email: userMail.trim() },
         { $set: { avatar: avatarName } });
-      console.log(gebruiker);
 
       if (req.session.user && req.session.user.email === userMail.trim()) {
         req.session.user.avatar = avatarName;
       }
 
-      console.log(`Avatar updated for user ${userMail.trim()}: ${avatarName}`);
     } 
     else if (type === "r_voornaam") {
-      console.log("Voornaam")
         await db.collection("users").updateOne(
         { r_email: userMail.trim() },
         { $set: { [type]: Resultaat.trim() } });
     } else if (type === "audience") {
-      console.log("audience");
       const normalizedResultaat = Array.isArray(Resultaat) ? Resultaat : [Resultaat];
-      console.log("Resultaat (genormaliseerd):", normalizedResultaat);
       await db.collection("users").updateOne(
         { r_email: userMail.trim() },
         { $set: { [type]: normalizedResultaat } }
       );
-      console.log(req.body.audience);
     } else if (type === "genres") {
-      console.log("genres")
       const normalizedResultaat = Array.isArray(Resultaat) ? Resultaat : [Resultaat];
-      console.log("Resultaat (genormaliseerd):", normalizedResultaat);
       await db.collection("users").updateOne(
         { r_email: userMail.trim() },
         { $set: { [type]: normalizedResultaat } }
       );
     } else if (type === "land") {
-      console.log("land")
         await db.collection("users").updateOne(
         { r_email: userMail.trim() },
         { $set: { [type]: Resultaat.trim() } });
     } else if (type === "minAge") {
-        console.log("minAge");
         const minAge = Number(req.body.minAge);
         const maxAge = Number(req.body.maxAge);
-        console.log(minAge);
-        console.log(maxAge);
         await db.collection("users").updateMany(
             { r_email: userMail.trim() },
             { $set: { minAge: minAge, maxAge: maxAge } }
         );
     } else if (type === "maxAge") {
-        console.log("maxAge");
         const minAge = Number(req.body.minAge);
         const maxAge = Number(req.body.maxAge);
-        console.log(minAge);
-        console.log(maxAge);
         await db.collection("users").updateMany(
             { r_email: userMail.trim() },
             { $set: { minAge: minAge, maxAge: maxAge } }
         );
     } else if (type === "platform") {
-      console.log("platform")
       const normalizedResultaat = Array.isArray(Resultaat) ? Resultaat : [Resultaat];
-      console.log("Resultaat (genormaliseerd):", normalizedResultaat);
       await db.collection("users").updateOne(
         { r_email: userMail.trim() },
         { $set: { [type]: normalizedResultaat } }
       );
     } else if (type === "taal") {
-      console.log("taal")
       const normalizedResultaat = Array.isArray(Resultaat) ? Resultaat : [Resultaat];
-      console.log("Resultaat (genormaliseerd):", normalizedResultaat);
       await db.collection("users").updateOne(
         { r_email: userMail.trim() },
         { $set: { [type]: normalizedResultaat } }
@@ -576,8 +523,6 @@ app.post('/change', upload.single('avatar'), async (req, res) => {
 
 app.post("/deny", async (req, res) => {
   const { matchId, userId } = req.body;
-  console.log("Match ID: ", matchId)
-  console.log("User ID: ", userId)
   await db.collection("matches").updateOne(
     { userId: matchId },
     { $pull: { matchIds: userId } }
@@ -603,8 +548,6 @@ app.post("/deny", async (req, res) => {
 
 app.post("/accept", async (req, res) => {
   const { matchId, userId } = req.body;
-  console.log("Match ID: ", matchId)
-  console.log("User ID: ", userId)
   await db.collection("users").updateOne(
     { _id: new ObjectId(userId) },
     { $addToSet: { vrienden: matchId } }
@@ -634,8 +577,6 @@ app.post("/accept", async (req, res) => {
 
 app.post("/removeVriend", async (req, res) => {
   const { matchId, userId } = req.body;
-  console.log("Match ID: ", matchId)
-  console.log("User ID: ", userId)
   await db.collection("users").updateOne(
     { _id: new ObjectId(userId) },
     { $pull: { vrienden: matchId } }
@@ -724,8 +665,6 @@ async function toonMatchen(req, res) {
         { projection: { r_password: 0 } } // r_password uitsluiten
     )
     .toArray();
-    console.log("Matches----------------")
-    console.log(matches)
     
     const deGebruiker = matches.find(u => u.r_email === req.session.user.email);
 
@@ -843,27 +782,6 @@ async function toonMatchen(req, res) {
     mijnLikesExport = JSON.stringify(mijnLikesExport)
     mijnmatchesExport = JSON.stringify(mijnmatchesExport)
     
-    console.log("--- vriendenArray -------------------------")
-    console.log(vriendenArray)
-    console.log("-------------------------------------------")
-    console.log("--- gebruiker -----------------------------")
-    console.log(gebruiker)
-    console.log("-------------------------------------------")
-    console.log("--- matchData -----------------------------")
-    console.log(matchData)
-    console.log("-------------------------------------------")
-    console.log("--- addUsers ------------------------------")
-    console.log(addUsers)
-    console.log("-------------------------------------------")
-    console.log("--- mijnLikes -----------------------------")
-    console.log(mijnLikes)
-    console.log("-------------------------------------------")
-    console.log("--- mijnLikesExport -----------------------")
-    console.log(mijnLikesExport)
-    console.log("-------------------------------------------")
-    console.log("--- mijnmatchesExport ---------------------")
-    console.log(mijnmatchesExport)
-    console.log("--- einde ---------------------------------")
     res.render("pages/matches", { gebruiker, matchData, addUsers, mijnLikes, mijnLikesExport, mijnmatchesExport, vriendenArray, genresData, platformData, landData, taalData, user: gebruiker  });
   }else {             // Als de gebruiker nog geen matches heeft opgegeven
     res.render("pages/voorkeuren", {genresData, platformData, landData, taalData, user: gebruiker }); 
@@ -882,16 +800,4 @@ function toonGames(req, res) {
   }else {
     res.render("pages/games", { user }); // Pass user data to the view
   }
-}
-
-
-
-
-
-
-        // Tijdelijke functie om de Database op te kunnen schonen. shhhh deze functie zouden wij nooit durven gebruiken
-function ClearDatabase() {
-    db.collection('users').deleteMany({})
-    db.collection('matches').deleteMany({})
-    console.log("Alles verwijderd")
 }

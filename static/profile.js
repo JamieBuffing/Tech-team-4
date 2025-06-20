@@ -1,15 +1,12 @@
 const apiKey = '80731283f03d46cfbd7f0053cf1fc99e';
 const gebruiker = document.body.dataset.userGebruiker;
 let LikeGames = document.body.dataset.userGames.split(',');
-console.log(LikeGames)
 
 async function Data(games) {
     for (const game of games) {
-        console.log(game);
         const gameDiv = document.getElementById("likedGames");
         const response = await fetch(`https://api.rawg.io/api/games/${game}?key=${apiKey}`);
         const data = await response.json();
-        console.log(data);
         const name = data.name;
         const genre = data.genres.map(g => g.name).join(', ');
         const platform = data.platforms.map(p => p.platform.name).join(', ');
@@ -79,7 +76,6 @@ function hartjes() { // de functie om de hartjes per game toe te voegen.
   const userGames = document.body.dataset.userGames;  // Haal data op vanuit de body (hierin staan de gelikte games van de ingelogde gebruiker)
   if (!userGames) return; // Als er geen data is ga dan maar gewoon verder
   const userGamesArray = userGames.split(","); // split de lijst met data zodat het een leesbare array wordt
-  console.log(userGamesArray);  // log de array even voor debug
   userGamesArray.forEach(gameID => {  // Voor elke losse game....
     let gameDIV = document.getElementById(gameID);  // Zoek de game id op als id om de pagina.
     if (!gameDIV) return; // Als het niet wordt gevonden kom dan terug
@@ -220,11 +216,9 @@ async function showUser(vriend) {
 
 if (Array.isArray(vriend.games)) {
     for (const game of vriend.games) {
-      console.log(game);
       const gameDiv = document.getElementById("vriendShowGamesDiv");
       const response = await fetch(`https://api.rawg.io/api/games/${game}?key=${apiKey}`);
       const data = await response.json();
-      console.log(data);
       const name = data.name;
       const genre = data.genres.map(g => g.name).join(', ');
       const platform = data.platforms.map(p => p.platform.name).join(', ');
