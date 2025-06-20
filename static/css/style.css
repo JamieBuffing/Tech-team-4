@@ -973,12 +973,15 @@ body.lightMode .taal:has(input:checked) {
 }
 
 #likedGames {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   padding: 1.5em;
   align-content: space-evenly;
   gap: 2em 0.5em;
   align-items: stretch;
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
 }
 
 #likedGames form input {
@@ -1099,14 +1102,6 @@ Problemen die zijn opgelost:
 #myGames {
   width: 1250px;
   overflow: hidden;
-}
-
-#likedGames {
-  display: flex;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;
 }
       
 #likedGames::-webkit-scrollbar {
