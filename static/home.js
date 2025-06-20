@@ -24,6 +24,9 @@ function toonPopulaireGames(games) {
       <h3>${game.name}</h3>
       <img src="${game.background_image || 'https://via.placeholder.com/200x100?text=No+Image'}" alt="${game.name}" width="300">
       <p><strong>Rating:</strong> ${game.rating} / 5</p>
+      <p><strong>Genres:</strong> ${game.genres.map(g => g.name).join(', ')}</p>
+      <p><strong>Platforms:</strong> ${game.platforms.map(p => p.platform.name).join(', ')}</p>
+      <p><strong>Releasedatum:</strong> ${game.released || 'Onbekend'}</p>
     `;
 
     container.appendChild(div);
