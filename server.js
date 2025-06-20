@@ -214,7 +214,8 @@ app.get("/profile", isLoggedIn, async (req, res) => {
   let vriendenArray = [];
 
     for (const vriendId of user.vrienden || []) {
-      const vriend = await db.collection("users").findOne({ _id: new ObjectId(vriendId) });
+      const vriend = await db.collection("users").findOne({ _id: new ObjectId(vriendId) },
+        { projection: { r_password: 0 } });
       if (vriend) {
         vriendenArray.push(vriend);
       }
@@ -248,6 +249,11 @@ app.get("/hulp", isLoggedIn, (req, res) => {
         // Als er wordt geregistreerd dan wordt deze functie uitgevoerd
 app.post('/registreren', upload.single('avatar'), async (req, res) => {   
     let postData = req.body
+    const bestaand = await db.collection('users').findOne({ r_email: postData.r_email });
+    if (bestaand) {
+        let error = "E-mailadres is al in gebruik. Probeer een ander.";
+        return res.render("pages/login", { error }); // Terug naar registreren-pagina
+    }
     if (postData.r_leeftijd) {
         postData.r_leeftijd = parseInt(postData.r_leeftijd)
     }
@@ -405,8 +411,13 @@ app.post('/like', async (req, res) => {
   console.log("--------------------")
   console.log("Einde like/unlike")
   console.log("--------------------")
-  res.render("pages/games", {user});
-})
+  const previousPage = req.get('Referer');
+  if (previousPage) {
+    res.redirect(previousPage);
+  } else {
+    res.render('pages/games');
+  }
+});
 
 app.post("/uitloggen", (req, res) => {
   req.session.destroy((err) => {
@@ -713,6 +724,8 @@ async function toonMatchen(req, res) {
         { projection: { r_password: 0 } } // r_password uitsluiten
     )
     .toArray();
+    console.log("Matches----------------")
+    console.log(matches)
     
     const deGebruiker = matches.find(u => u.r_email === req.session.user.email);
 
@@ -767,6 +780,15 @@ async function toonMatchen(req, res) {
           Overeenkomende_genres: gemeenschappelijkeGenres,
           Overeenkomende_talen: gemeenschappelijkeTaal,
           Overeenkomende_platformen: gemeenschappelijkePlatformen,
+          r_voornaam: match.r_voornaam,
+          r_leeftijd: match.r_leeftijd,
+          avatar: match.avatar,
+          Geslacht: match.Geslacht,
+          games: match.games,
+          genres: match.genres,
+          platform: match.platform,
+          land: match.land,
+          taal: match.taal
       }
       } else {
       }
@@ -808,7 +830,8 @@ async function toonMatchen(req, res) {
     let vriendenArray = [];
 
     for (const vriendId of gebruiker.vrienden || []) {
-      const vriend = await db.collection("users").findOne({ _id: new ObjectId(vriendId) });
+      const vriend = await db.collection("users").findOne({ _id: new ObjectId(vriendId) },
+        { projection: { r_password: 0 } });
       if (vriend) {
         vriendenArray.push(vriend);
       }

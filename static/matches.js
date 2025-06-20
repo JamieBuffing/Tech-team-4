@@ -1,5 +1,84 @@
+const apiKey = '80731283f03d46cfbd7f0053cf1fc99e';
+
+const platformMap = {
+  "PC": 4,
+  "PlayStation 5": 187,
+  "Xbox One": 1,
+  "PlayStation 4": 18,
+  "Xbox Series S/X": 186,
+  "Nintendo Switch": 7,
+  "iOS": 3,
+  "Android": 21,
+  "Nintendo 3DS": 8,
+  "Nintendo DS": 9,
+  "Nintendo DSi": 13,
+  "macOS": 5,
+  "Linux": 6,
+  "Xbox 360": 14,
+  "Xbox": 80,
+  "PlayStation 3": 16,
+  "PlayStation 2": 15,
+  "PlayStation": 27,
+  "PS Vita": 19,
+  "PSP": 17,
+  "Wii U": 10,
+  "Wii": 11,
+  "GameCube": 105,
+  "Nintendo 64": 83,
+  "Game Boy Advance": 24,
+  "Game Boy Color": 43,
+  "Game Boy": 26,
+  "SNES": 22,
+  "NES": 23,
+  "Classic Macintosh": 55,
+  "Apple II": 41,
+  "Commodore / Amiga": 166,
+  "Atari 7800": 28,
+  "Atari 5200": 29,
+  "Atari 2600": 30,
+  "Atari Flashback": 31,
+  "Atari 8-bit": 32,
+  "Atari ST": 33,
+  "Atari Lynx": 34,
+  "Atari XEGS": 35,
+  "Genesis": 167,
+  "SEGA Saturn": 25,
+  "SEGA CD": 46,
+  "SEGA 32X": 47,
+  "SEGA Master System": 49,
+  "Dreamcast": 50,
+  "3DO": 34,
+  "Jaguar": 53,
+  "Game Gear": 48,
+  "Neo Geo": 52,
+  "Web": 171
+};
+
+const genreMap = {
+  "Actie": "action",
+  "Indie": "indie",
+  "RPG": "role-playing-games-rpg",
+  "Adventure": "adventure",
+  "Strategy": "strategy",
+  "Shooter": "shooter",
+  "Casual": "casual",
+  "Simulation": "simulation",
+  "Puzzle": "puzzle",
+  "Arcade": "arcade",
+  "Platformer": "platformer",
+  "Massively Multiplayer": "massively-multiplayer",
+  "Racing": "racing",
+  "Sports": "sports",
+  "Fighting": "fighting",
+  "Family": "family",
+  "Board Games": "board-games",
+  "Card": "card",
+  "Educational": "educational"
+};
+
 let rawMatches = JSON.parse(document.body.dataset.userMatches);
-const gebruiker = document.body.dataset.userGebruiker;
+const gebruikerString = document.body.dataset.userGebruiker;
+const gebruiker = JSON.parse(gebruikerString);
 let aantalMatches = Object.keys(rawMatches).length;
 
 Object.entries(rawMatches).forEach(([matchKey, matchData], index) => {
@@ -23,6 +102,12 @@ Object.entries(rawMatches).forEach(([matchKey, matchData], index) => {
 const MatchesDiv = document.getElementById("matches"); // Sla de matches section op
 const MatchContainer = document.createElement("article"); // Maak een div aan voor elke match
 MatchContainer.classList.add("match"); // een class voor styling
+MatchContainer.addEventListener("click", (e) => {
+            if (e.target.closest("form")) return; // klik zat in het formulier, dus niks doen
+            if (e.target.closest("details")) return; // klik zat in het details, dus niks doen
+            console.log(matchData)
+            showUser(matchData);
+        });
 MatchContainer.id = matchData.voornaam; // Voeg een id toe dat overeenkomt met de naam van de match
 MatchContainer.setAttribute("style", `background-image: url("/uploads/${matchData.userImg}");`);
 
@@ -141,6 +226,11 @@ vrienden.forEach(vriendId => {
     if (vriendObj) {
         const container = document.createElement("article");
         container.classList.add("vriend");
+        container.id = vriendObj._id
+        container.addEventListener("click", (e) => {
+            if (e.target.closest("form")) return; // klik zat in het formulier, dus niks doen
+            showUser(vriendObj);
+        });
         const p = document.createElement("p");
         p.textContent = vriendObj.r_voornaam;
         const img = document.createElement("img")
@@ -168,7 +258,7 @@ vrienden.forEach(vriendId => {
         const hiddenUserId = document.createElement("input"); // voegt een input toe die niet zichtbaar is met de user id
         hiddenUserId.type = "hidden"
         hiddenUserId.name = "userId"
-        hiddenUserId.value = gebruiker;
+        hiddenUserId.value = gebruiker._id;
 
         form.append(input, hiddenMatchId, hiddenUserId);
 
@@ -183,6 +273,11 @@ const mijnLikesDiv = document.getElementById("gestuurdeInvites");
 rawMijnLikes.forEach(user => {
     const container = document.createElement("article")
         container.classList.add(user._id);
+        container.addEventListener("click", (e) => {
+            if (e.target.closest("form")) return; // klik zat in het formulier, dus niks doen
+            console.log(user)
+            showUser(user);
+        });
     const p = document.createElement("p");
     const img = document.createElement("img")
         img.src = user.avatar ? "/uploads/" + user.avatar : "/images/default-avatar.png";
@@ -209,7 +304,7 @@ rawMijnLikes.forEach(user => {
     const hiddenUserId = document.createElement("input"); // voegt een input toe die niet zichtbaar is met de user id
         hiddenUserId.type = "hidden"
         hiddenUserId.name = "userId"
-        hiddenUserId.value = gebruiker;
+        hiddenUserId.value = gebruiker._id;
 
     form.append(input, hiddenMatchId, hiddenUserId);
 
@@ -226,6 +321,11 @@ const addUsersDiv = document.getElementById("gekregenInvites");
 rawAddUsers.forEach(user => {
     const container = document.createElement("article")
         container.classList.add(user._id);
+        container.addEventListener("click", (e) => {
+            if (e.target.closest("form")) return; // klik zat in het formulier, dus niks doen
+            console.log(user)
+            showUser(user);
+        });
     const p = document.createElement("p");
     const img = document.createElement("img")
         img.src = user.avatar ? "/uploads/" + user.avatar : "/images/default-avatar.png";
@@ -252,7 +352,7 @@ rawAddUsers.forEach(user => {
     const acceptHiddenUserId = document.createElement("input"); // voegt een input toe die niet zichtbaar is met de user id
         acceptHiddenUserId.type = "hidden"
         acceptHiddenUserId.name = "userId"
-        acceptHiddenUserId.value = gebruiker;
+        acceptHiddenUserId.value = gebruiker._id;
 
     formAccept.append(inputAccept, acceptHiddenMatchId, acceptHiddenUserId);
 
@@ -277,7 +377,7 @@ rawAddUsers.forEach(user => {
     const declineHiddenUserId = document.createElement("input"); // voegt een input toe die niet zichtbaar is met de user id
         declineHiddenUserId.type = "hidden"
         declineHiddenUserId.name = "userId"
-        declineHiddenUserId.value = gebruiker;
+        declineHiddenUserId.value = gebruiker._id;
 
     formDecline.append(inputDecline, declineHiddenMatchId, declineHiddenUserId);
 
@@ -605,6 +705,342 @@ function checkMatches() {
     });
 }
 
+async function filtersLoad() {
+    const test = document.getElementById("filterMatchGames");
+    const dropDownGenre = document.createElement("div");
+    const dropDownGenreLabel = document.createElement("label");
+    const dropDownPlatformLabel = document.createElement("label");
+    const dropDownGenreSelect = document.createElement("select");
+    const dropDownPlatformSelect = document.createElement("select");
 
+    // Check if gebruiker exists and has properties
+    const genreOptions = gebruiker?.genres || [];
+    const platformOptions = gebruiker?.platform || [];
+
+    dropDownGenreLabel.htmlFor = "genreDropDown";
+    dropDownGenreLabel.textContent = "Kies je genre ";
+
+    dropDownPlatformLabel.htmlFor = "PlatformDropDown";
+    dropDownPlatformLabel.textContent = " en je platform ";
+
+    dropDownGenreSelect.name = "genreDropDown";
+    dropDownGenreSelect.id = "genreDropDown";
+
+    dropDownPlatformSelect.name = "PlatformDropDown";
+    dropDownPlatformSelect.id = "PlatformDropDown";
+
+    genreOptions.forEach(goption => {
+        const option = document.createElement('option');
+        option.value = goption;
+        option.textContent = goption;
+        dropDownGenreSelect.appendChild(option);
+    });
+
+    platformOptions.forEach(poption => {
+        const option = document.createElement('option');
+        option.value = poption;
+        option.textContent = poption;
+        dropDownPlatformSelect.appendChild(option);
+    });
+
+    const buttonGo = document.createElement("button")
+        buttonGo.textContent = 'Start';
+        buttonGo.addEventListener('click', () => {
+            gamesLoadNewOptions();
+        });
+
+
+
+    dropDownGenre.append(dropDownGenreLabel, dropDownGenreSelect, dropDownPlatformLabel, dropDownPlatformSelect, "   ", buttonGo);
+    test.append(dropDownGenre);
+    gamesLoadNewOptions()
+}
+
+async function gamesLoadNewOptions() {
+    const genreSelect = document.getElementById('genreDropDown');
+    const platformSelect = document.getElementById('PlatformDropDown');
+    console.log("Genre select:", genreSelect.value);
+    console.log("Platform select:", platformSelect.value);
+
+    const selectedGenreName = genreSelect.value;
+    const platformName = platformSelect.value;
+
+    const genre = genreMap[selectedGenreName];
+    const platformId = platformMap[platformName];
+
+    if (!platformId) {
+        console.warn("Onbekend platform geselecteerd:", platformName);
+        return;
+    }
+    if (!genre) {
+        console.warn("Onbekend genre geselecteerd:", selectedGenreName);
+        return;
+    }
+
+    const response = await fetch(`https://api.rawg.io/api/games?genres=${genre}&platforms=${platformId}&page_size=25&key=${apiKey}`);
+    const data = await response.json();
+    console.log(data.results); // array van games
+    showGamesFromResults(data.results)
+}
+
+
+async function showGamesFromResults(results) {
+  const matchGamesDiv = document.getElementById("matchGames");
+  matchGamesDiv.innerHTML = ''; // Maak leeg
+
+  for (const game of results) {
+    // rest van je code hetzelfde, gebruik 'game'
+    const name = game.name;
+    const genre = game.genres.map(g => g.name).join(', ');
+    const platform = game.platforms.map(p => p.platform.name).join(', ');
+    const image = game.background_image;
+    const description = game.description;
+
+    const title = document.createElement('h2');
+    title.textContent = name;
+
+    const img = document.createElement('img');
+    img.src = image || 'https://via.placeholder.com/200x100?text=No+Image';
+    img.alt = name;
+    img.width = 300;
+
+    const genres = document.createElement('p');
+    genres.innerHTML = `<strong>Genres:</strong> ${genre}`;
+
+    const platforms = document.createElement('p');
+    platforms.innerHTML = `<strong>Platforms:</strong> ${platform}`;
+
+    const button = document.createElement('button');
+    button.textContent = 'Meer informatie';
+    button.addEventListener('click', () => {
+      openOverlay(game.id);
+    });
+
+    const form = document.createElement('form');
+    form.className = 'like';
+    form.action = '/like';
+    form.method = 'post';
+
+    const input = document.createElement('input');
+    input.type = "image";
+    input.src = "images/like_leeg.png";
+    input.alt = "Submit";
+    input.width = 24;
+    input.height = 24;
+    input.classList.add("heart");
+    input.id = game.id;
+
+    const input_hidden = document.createElement('input');
+    input_hidden.type = "hidden";
+    input_hidden.name = "game_id";
+    input_hidden.value = game.id;
+
+    const gameContainer = document.createElement('li');
+    gameContainer.classList.add("vriendenShowGames");
+    gameContainer.id = game.id;
+
+    form.append(input_hidden, input);
+    gameContainer.append(form, title, img, genres, platforms, button);
+    matchGamesDiv.append(gameContainer);
+  }
+
+  hartjes();
+}
+
+
+filtersLoad()
 menuLoad()
 checkMatches()
+
+
+
+
+
+async function showUser(vriend) {
+  const display = document.getElementById("showUser");
+  display.style.display = "block";
+  const container = document.getElementById("showUserData");
+  container.innerHTML = '<button onclick="closeShowUser()">Sluiten</button>';
+  const username = vriend.r_voornaam;
+  const talen = vriend.taal;
+  let zin = `${username} spreekt `;
+
+  const naam = document.createElement("h3");
+  const afbeelding = document.createElement("img");
+  const land = document.createElement("p");
+  const taal = document.createElement("p");
+  const platforms = document.createElement("details");
+  const platformTitel = document.createElement("summary");
+  const games = document.createElement("ul");
+  const genres = document.createElement("details");
+  const genresTitel = document.createElement("summary");
+  const gamesDiv = document.createElement("div");
+
+  naam.id = "vriendShowNaam";
+  afbeelding.id = "vriendShowAfbeelding";
+  gamesDiv.id = "vriendShowGamesDiv";
+  genres.id = "vriendShowGenres";
+  land.id = "vriendShowLand";
+  taal.id = "vriendShowTaal";
+  platforms.id = "vriendShowPlatforms";
+
+  naam.textContent = `${vriend.r_voornaam} (${vriend.r_leeftijd})`;
+  land.textContent = vriend.r_voornaam + " komt uit " + vriend.land;
+  platformTitel.textContent = vriend.r_voornaam + "'s gekozen platform(en)"
+  genresTitel.textContent = vriend.r_voornaam + "'s gekozen genres"
+
+  afbeelding.src = vriend.avatar ? "/uploads/" + vriend.avatar : "/images/default-avatar.png";
+
+  if (Array.isArray(vriend.genres)) {
+    vriend.genres.forEach(genre => {
+      const li = document.createElement("li");
+      li.textContent = genre;
+      genres.append(li);
+    });
+  }
+
+  if (Array.isArray(talen)) {
+    if (talen.length === 1) {
+      zin += talen[0];
+    } else if (talen.length === 2) {
+      zin += `${talen[0]} en ${talen[1]}`;
+    } else {
+      const laatsteTaal = talen[talen.length - 1];
+      const overigeTalen = talen.slice(0, -1);
+      zin += `${overigeTalen.join(', ')} en ${laatsteTaal}`;
+    }
+    zin += ".";
+  } else {
+    zin += "geen talen.";
+  }
+  taal.textContent = zin;
+
+  if (Array.isArray(vriend.platform)) {
+    vriend.platform.forEach(platform => {
+      const li = document.createElement("li");
+      li.textContent = platform;
+      platforms.append(li);
+    });
+  }
+  genres.append(genresTitel)
+  platforms.append(platformTitel)
+  container.append(naam, afbeelding, land, taal, games, gamesDiv);
+
+if (Array.isArray(vriend.games)) {
+    for (const game of vriend.games) {
+      console.log(game);
+      const gameDiv = document.getElementById("vriendShowGamesDiv");
+      const response = await fetch(`https://api.rawg.io/api/games/${game}?key=${apiKey}`);
+      const data = await response.json();
+      console.log(data);
+      const name = data.name;
+      const genre = data.genres.map(g => g.name).join(', ');
+      const platform = data.platforms.map(p => p.platform.name).join(', ');
+      const image = data.background_image
+      const description = data.description
+
+      const title = document.createElement('h2');
+      title.textContent = name;
+
+      const img = document.createElement('img');
+      // Gebruik game-afbeelding of standaardplaatje als er geen is
+      img.src = image || 'https://via.placeholder.com/200x100?text=No+Image';
+      img.alt = name;
+      img.width = 300;
+
+      // haalt de objecten op en vertaald het naar leesbare tekst
+      const genres = document.createElement('p');
+      genres.innerHTML = `<strong>Genres:</strong> ${genre}`;
+
+      // zelfde maar dan voor platform
+      const platforms = document.createElement('p');
+      platforms.innerHTML = `<strong>Platforms:</strong> ${platform}`;
+
+      // maakt info button
+      const button = document.createElement('button');
+      button.textContent = 'Meer informatie';
+      
+      // Eventlistener toevoegen zodat de overlay verschijnt met info als je op de knop klikt
+      button.addEventListener('click', () => {
+          openOverlay(game);
+      });
+
+      const form = document.createElement('form');  // voegt een form toe met de volgende class, action en method
+      form.className = 'like';
+      form.action = '/like';
+      form.method = 'post';
+
+      const input = document.createElement('input');  // voegt een input toe met de volgende waardes
+      input.type = "image" 
+      input.src = "images/like_leeg.png" 
+      input.alt = "Submit" 
+      input.width = 24;
+      input.height = 24;
+      input.classList.add("heart");
+      input.id = game;
+      
+      const input_hidden = document.createElement('input'); // voegt een input toe die niet zichtbaar is met de game id
+      input_hidden.type = "hidden"
+      input_hidden.name = "game_id"
+      input_hidden.value = game;
+    
+      const gameContainer = document.createElement('li'); // Maak een div aan voor elke game
+      gameContainer.classList.add("vriendenShowGames"); // een class voor styling
+      gameContainer.id = game; // Voeg een id toe dat overeenkomt met het id van de game
+
+      form.append(input_hidden, input);
+      gameContainer.append(form, title, img, genres, platforms, button);
+      gameDiv.append(gameContainer);
+    }
+      hartjes()
+  }
+
+}
+
+function closeShowUser() {
+  const display = document.getElementById("showUser")
+  display.style.display = "none"
+  const container = document.getElementById("showUserData")
+  container.innerHTML = '<button onclick="closeShowUser()">Sluiten</button>';
+}   
+
+function hartjes() { // de functie om de hartjes per game toe te voegen.
+  const userGames = document.body.dataset.userGames;  // Haal data op vanuit de body (hierin staan de gelikte games van de ingelogde gebruiker)
+  if (!userGames) return; // Als er geen data is ga dan maar gewoon verder
+  const userGamesArray = userGames.split(","); // split de lijst met data zodat het een leesbare array wordt
+  console.log(userGamesArray);  // log de array even voor debug
+  userGamesArray.forEach(gameID => {  // Voor elke losse game....
+    let gameDIV = document.getElementById(gameID);  // Zoek de game id op als id om de pagina.
+    if (!gameDIV) return; // Als het niet wordt gevonden kom dan terug
+    let heart = gameDIV.querySelector("form input.heart[type='image']");  // variabele heart is het input type van een form met type img
+    if (heart) {  // als heart wordt gevonden...
+      heart.src = "images/like_vol.png";  // verander het dan zodat het een rood heartje wordt
+    }
+  });
+}
+
+// Functie om overlay te vullen en tonen
+async function openOverlay(game) {
+    const response = await fetch(`https://api.rawg.io/api/games/${game}?key=${apiKey}`);
+    const data = await response.json();
+  const overlay = document.getElementById('overlay');
+  const overlayInfo = document.getElementById('overlayInfo');
+
+  // Vul overlay met gewenste info van de game
+  overlayInfo.innerHTML = `
+    <h2>${data.name}</h2>
+    <img src="${data.background_image || 'https://via.placeholder.com/400x200?text=No+Image'}" alt="${data.name}" style="width: 100%; max-width: 400px;"/>
+    <p><strong>Genres:</strong> ${data.genres.map(g => g.name).join(', ')}</p>
+    <p><strong>Platforms:</strong> ${data.platforms.map(p => p.platform.name).join(', ')}</p>
+    <p><strong>Releasedatum:</strong> ${data.released || 'Onbekend'}</p>
+    <p><strong>Rating:</strong> ${data.rating} / 5 (${data.ratings_count || '0'} reviews)</p>
+    <p><strong>Beschrijving:</strong> ${data.description_raw || 'Geen beschrijving beschikbaar.'}</p>
+  `;
+
+  // Toon overlay
+  overlay.style.display = 'flex';
+}
+// Sluitknop eventlistener
+document.getElementById('sluitOverlay').addEventListener('click', () => {
+  document.getElementById('overlay').style.display = 'none';
+});

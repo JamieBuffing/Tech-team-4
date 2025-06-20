@@ -10,6 +10,12 @@
     data-user-games="<%= user.games %>"
     data-user-gebruiker="<%= user._id %>"
     >
+<div id="showUser" style="display: none;">
+    <article id="showUserData">
+        <button onclick="closeShowUser()">Sluiten</button>
+        
+    </article>
+</div>
 <header>
     <%- include('../partials/header'); %>
 </header>
