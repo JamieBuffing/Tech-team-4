@@ -1,17 +1,28 @@
 const apiKey = '80731283f03d46cfbd7f0053cf1fc99e';
 let allGames = [];
 
+// Deze functie start het hele proces:
+// haalt meerdere pagina's games op, vult filters en toont alle games
 async function Data() {
-  // Deze functie start het hele proces: haalt de games op en laat ze zien en maakt filters
-  const response = await fetch(`https://api.rawg.io/api/games?key=${apiKey}&page_size=200`); // toont 200 games
-  const data = await response.json();
-  allGames = data.results;
+  let allResults = [];
+  let totalPages = 5; // Aantal pagina's dat je wilt ophalen van de api
 
-  vulFilters(allGames);  // Maak filters voor genres en platforms
-  laatZien(allGames);    // Toon alle games op de pagina
+  // Loop door pagina 1 tot en met totalPages om meerdere sets games op te halen
+  for (let i = 1; i <= totalPages; i++) {
+    const response = await fetch(`https://api.rawg.io/api/games?key=${apiKey}&page_size=40&page=${i}`);
+    const data = await response.json();
+
+    // Voeg de games van deze pagina toe aan onze totale lijst
+    allResults = allResults.concat(data.results);
+  }
+
+  allGames = allResults;           // Sla alle opgehaalde games op in globale variabele
+  vulFilters(allGames);            // Maak filters aan op basis van genres en platforms
+  laatZien(allGames);              // Toon alle games op de pagina
 }
 
 Data();
+
 function laatZien(games) {
   const gameDiv = document.getElementById('games');
   gameDiv.innerHTML = "";  // Maak de container leeg zodat oude games verdwijnen
@@ -83,7 +94,6 @@ function hartjes() { // de functie om de hartjes per game toe te voegen.
   const userGames = document.body.dataset.userGames;  // Haal data op vanuit de body (hierin staan de gelikte games van de ingelogde gebruiker)
   if (!userGames) return; // Als er geen data is ga dan maar gewoon verder
   const userGamesArray = userGames.split(","); // split de lijst met data zodat het een leesbare array wordt
-  console.log(userGamesArray);  // log de array even voor debug
   userGamesArray.forEach(gameID => {  // Voor elke losse game....
     let gameDIV = document.getElementById(gameID);  // Zoek de game id op als id om de pagina.
     if (!gameDIV) return; // Als het niet wordt gevonden kom dan terug

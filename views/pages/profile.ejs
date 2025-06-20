@@ -10,6 +10,12 @@
     data-user-games="<%= user.games %>"
     data-user-gebruiker="<%= user._id %>"
     >
+<div id="showUser" style="display: none;">
+    <article id="showUserData">
+        <button onclick="closeShowUser()">Sluiten</button>
+        
+    </article>
+</div>
 <header>
     <%- include('../partials/header'); %>
 </header>
@@ -28,10 +34,9 @@
                 <img alt="user profile picture" src="/uploads/<%= user.avatar %>">
             </div>
             <div>
-                <p>
-                <%= user.r_voornaam %><br>
-                games = <%= user.games %><br>
-                </p>
+                <h2>
+                <%= user.r_voornaam %>
+                </h2>
             </div>
         </section>
         <section id="myGames">

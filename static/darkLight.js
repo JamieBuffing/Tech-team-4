@@ -1,30 +1,43 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // Maakt de toggle-knop
-  const toggleBtn = document.createElement('button');
-  toggleBtn.className = 'toggleMode';
-  toggleBtn.innerText = 'Dark/Light Mode';
-  document.body.appendChild(toggleBtn);
+  const radios = document.querySelectorAll('input[name="theme"]');
 
-  // Functie om de juiste modus toe te passen
-  const applyMode = () => {
-    const storedMode = localStorage.getItem('mode');
+  // Zet het juiste thema op basis van de keuze
+  function setTheme(mode) {
+    document.body.classList.remove('lightMode', 'darkMode');
 
-    if (storedMode) {
-      // Gebruik de opgeslagen voorkeur
-      document.body.classList.toggle('lightMode', storedMode === 'dark');
-    } else {
-      // Geen voorkeur opgeslagen volgt het systeeminstelling
+    // volgt light of dark op basis dat je hebt gekozen maakt het aan
+    if (mode === 'light') {
+      document.body.classList.add('lightMode');
+    } else if (mode === 'dark') {
+      document.body.classList.add('darkMode');
+    } else if (mode === 'auto') {
+      // Volgt de systeeminstelling
       const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      document.body.classList.toggle('lightMode', prefersDark);
+      document.body.classList.add(prefersDark ? 'darkMode' : 'lightMode');
     }
-  };
 
-  // Wanneer je op de knop klikt, wissel tussen light en dark en sla het op
-  toggleBtn.addEventListener('click', () => {
-    const isDark = document.body.classList.toggle('lightMode');
-    localStorage.setItem('mode', isDark ? 'dark' : 'light');
+    // Sla de voorkeur op
+    localStorage.setItem('mode', mode);
+  }
+
+  // Haal opgeslagen voorkeur op of standaard 'auto'
+  const savedMode = localStorage.getItem('mode') || 'auto';
+  setTheme(savedMode);
+
+  // Vink de juiste radio button aan op basis van opgeslagen voorkeur
+  document.querySelector(`input[name="theme"][value="${savedMode}"]`).checked = true;
+
+  // kijkt of iets is veranderd in de selectie
+  radios.forEach(radio => {
+    radio.addEventListener('change', (e) => {
+      setTheme(e.target.value);
+    });
   });
 
-  // Pas de modus toe bij opstart
-  applyMode();
+  // Als systeem verandert en 'auto' staat aan, pas thema aan
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+    if (localStorage.getItem('mode') === 'auto') {
+      setTheme('auto');
+    }
+  });
 });
