@@ -67,7 +67,6 @@ menu::-webkit-scrollbar {
  
   menu p b {
     font-size: 1.5em;
-    color: #fff;
   }
  
   menu p {
@@ -184,7 +183,7 @@ header nav a, header ul li a{ /* aangepast zodat de ul voor de gelikte games wer
 
 .floatingIcon {
   position: absolute;
-  top: 23%;
+  top: 27%;
   left: 35%;
   animation: float 8s ease-in-out infinite;
   z-index: 1;
@@ -194,27 +193,37 @@ header nav a, header ul li a{ /* aangepast zodat de ul voor de gelikte games wer
   width: 4em;
 }
 
+#home section h2 {
+  margin: 1em;
+}
+
 @keyframes float {
   0%   { transform: translateY(0); }
   50%  { transform: translateY(-80px); }
   100% { transform: translateY(0); }
 }
 
+.arrowAndButton {
+  display: flex;
+  align-items: center;
+  gap: 1em; 
+  justify-content: center; 
+  margin-top: 1em;
+  margin-right: 3.4em;
+}
+
 .pixelArrow {
-  position: absolute;
-  top: 64.5%;
-  left: 39%;
-  width: 4em;
-  height: 4em;
+  width: 3em;
+  height: 3em;
   background: url('/images/arrowHome.png') no-repeat center/contain;
   animation: blink 2s steps(1) infinite;
-  z-index: 5;
 }
 
 @keyframes blink {
   0%, 50%, 100% { opacity: 1; }
   25%, 75% { opacity: 0; }
 }
+
 
 .pixelFloatZone {
   position: fixed;
@@ -305,6 +314,10 @@ menu ul li {
     position: absolute;
     right: 5px;
     bottom: 5px;
+}
+
+.game p {
+  padding: 0.2em;
 }
  
 header nav a, #uitloggen input {
@@ -421,7 +434,7 @@ body.lightMode h1 {
     padding: 0 0.3em;
 }
 
-.overOns a {
+.overOns a, menu ul li a {
   width: 8vw;
   padding: 0.8em;
   display: flex;
@@ -434,7 +447,16 @@ body.lightMode h1 {
   color: #1a1a1a;
   box-shadow: 0 0 10px var(--groen4);
 }
+
+menu ul li a {
+  width: 15vw !important;
+}
  
+.overOns a:hover, menu ul li a:hover {
+  background-color: var(--roze1);
+  box-shadow: 0 0 15px var(--roze1);
+}
+
 header nav li, header ul li { /* aangepast zodat de ul van de gelikte games werkt */
     list-style-type: none;
     color: #1a1a1a;
@@ -446,11 +468,6 @@ header nav li, header ul li { /* aangepast zodat de ul van de gelikte games werk
     padding: 0.1em 1.5em;
     align-items: center;
     justify-content: center;
-}
-
-.profielFoto:hover {
-  cursor: pointer;
-  box-shadow: 0 0 15px var(--roze1);
 }
 
 .profielContainer {
@@ -466,30 +483,57 @@ header nav li, header ul li { /* aangepast zodat de ul van de gelikte games werk
   border: 1px solid var(--roze1);
   object-fit: cover;
   margin: 0.5em 1.5em;
+  cursor: pointer;
+  box-shadow: 0 0 0 transparent;
+  transition: box-shadow 0.2s;
 }
 
-#uitloggen {
+.profielFoto:hover {
+  box-shadow: 0 0 15px var(--roze1);
+}
+
+.dropdownMenu {
   display: none;
+  flex-direction: column;
+  gap: 0.5em;
   position: absolute;
-  top: 100%; 
+  top: 100%;
   left: 50%;
   transform: translateX(-50%);
   background-color: white;
   border: 1px solid var(--roze1);
-  padding: 0.5rem;
+  padding: 0.8rem;
   z-index: 10;
   border-radius: 8px;
   white-space: nowrap;
+  align-items: flex-start;
 }
 
-#uitloggen:hover {
+.profielContainer:hover .dropdownMenu {
+  display: flex;
+}
+
+#uitloggen input {
   cursor: pointer;
-  background-color: var(--roze1);
-} 
-
-.profielContainer:hover #uitloggen {
-  display: block;
+  padding: 0.3rem 0.8rem;
+  border: none;
+  background-color: var(--groen4);
+  border-radius: 6px;
+  color: black;
 }
+
+#uitloggen input:hover {
+  background-color: var(--roze1);
+  box-shadow: 0 0 15px var(--roze1);
+}
+
+.kleurModus label {
+  display: block;
+  cursor: pointer;
+  color: var(--base2);
+  accent-color: var(--roze1);
+}
+
  
 .list li {
   padding: 0.5rem;
@@ -535,12 +579,6 @@ header nav li img {
         cursor: pointer;
       }
      
-      #uitloggen input {
-        background: none;
-        border: none;
-      }
-     
- 
   /* Games & filters */
  
   .filters {
@@ -601,6 +639,7 @@ header nav li img {
     position: relative;
     min-height: 22em;
   }
+
  
   .game:hover {
     transform: scale(1.07);
@@ -703,6 +742,7 @@ header nav li img {
 }
  
   /* Light mode */
+
   body.lightMode {
     background-color: #f6f9f8;
     color: var(--base2);
@@ -710,6 +750,11 @@ header nav li img {
 
   body.lightMode .matchingContainer {
     background-color: #b8e0d6;
+  }
+
+  body.lightMode .logo {
+    content: url("/images/logoRoze.png");
+    height: 3em;
   }
 
   body.lightMode header,
@@ -800,7 +845,8 @@ body.lightMode .taal:has(input:checked) {
   body.lightMode #login input,
   body.lightMode .filters h2,
   body.lightMode .filters label, 
-  body.lightMode .friends h2 {
+  body.lightMode .friends h2
+  body.lightMode menu p b {
     color: var(--base2);
   }
   
@@ -908,6 +954,11 @@ body.lightMode .taal:has(input:checked) {
     border: none;
     padding: 5px 10px;
     cursor: pointer;
+  }
+
+  #sluitOverlay:hover {
+    background-color: var(--groen4);
+    box-shadow: 0 0 15px var(--groen4);
   }
  
 /* Profielpagina */
