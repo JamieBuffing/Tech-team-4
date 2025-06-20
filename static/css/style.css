@@ -56,9 +56,14 @@
     border-color: var(--groen1);
     padding: 10px;
     overflow-wrap: anywhere;
-    overflow-y: scroll;
- scrollbar-width: none; /* Firefox */
+
+    /* overflow-y: scroll; */
+    scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none;  /* Internet Explorer 10+ */
+}
+
+.menuMatch {
+  overflow-y: scroll;
 }
 
 menu::-webkit-scrollbar {
@@ -582,6 +587,8 @@ header nav li img {
   /* Games & filters */
  
   .filters {
+    position: sticky;
+    top: 0;
     width: 98%;
     display: flex;
     flex-direction: column;
@@ -592,8 +599,8 @@ header nav li img {
     margin: 1em 0.1em;
     color: #ccc;
     font-size: 13px;
-    top: 0;
-    position: sticky;
+    max-height: 98vh; 
+    overflow-y: auto; 
   }
  
   .filters h2 {
